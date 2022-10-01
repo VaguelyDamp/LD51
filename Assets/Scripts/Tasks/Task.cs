@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Task : MonoBehaviour
 {
+    public string name = "Task Name";
     public KeyCode[] keys;
     public bool isOrdered = true;
 
@@ -95,6 +97,7 @@ public class Task : MonoBehaviour
         }
 
         prompt = Instantiate(promptPrefab, actualSpot.transform);
+        prompt.transform.Find("Name").GetComponent<TextMeshPro>().text = name;
         for (int i = 0; i < keys.Length; i++)
         {
             //Assigne the correct sprites to the prefab
