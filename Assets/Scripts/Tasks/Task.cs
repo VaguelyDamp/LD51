@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Task : MonoBehaviour
 {
+    public string name = "Task Name";
     public KeyCode[] keys;
     public bool isOrdered = true;
 
@@ -95,6 +97,7 @@ public class Task : MonoBehaviour
         }
 
         prompt = Instantiate(promptPrefab, actualSpot.transform);
+        prompt.transform.Find("Name").GetComponent<TextMeshPro>().text = name;
         for (int i = 0; i < keys.Length; i++)
         {
             //Assigne the correct sprites to the prefab
@@ -136,11 +139,23 @@ public class Task : MonoBehaviour
         StartCoroutine(KeyFailAnim(keyIndex));
 
     }
-    private IEnumerator KeyFailAnim(int i)
+    private IEnumerator KeyFailAnim(int k)
     {
-        SpriteRenderer keySR = prompt.transform.Find((i+1).ToString()).gameObject.GetComponent<SpriteRenderer>();
+        GameObject key = prompt.transform.Find((k+1).ToString()).gameObject;
+        SpriteRenderer keySR = key.GetComponent<SpriteRenderer>();
         keySR.color = failColor;
-        yield return new WaitForSeconds(0.3f);
+        Vector3 origPos = key.transform.position;
+        float amp = 0.02f;
+        float speed = 75;
+        for (float eTime = 0; eTime < .3f; eTime += Time.deltaTime)
+        {
+            Vector3 kPos = key.transform.position;
+            kPos.z = origPos.z + amp*Mathf.Sin(eTime*speed);
+            kPos.y = origPos.y + amp*Mathf.Cos(eTime*speed);
+            key.transform.position = kPos;
+            yield return null;
+        }
+        key.transform.position = origPos;
         keySR.color = Color.white;
     }
 

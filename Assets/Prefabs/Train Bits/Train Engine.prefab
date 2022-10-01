@@ -476,13 +476,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38ae1b191c0e0a4f9bac635cdefbe28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys: 610000006200000063000000
+  name: Shovel Coal
+  keys: 730000006c00000064000000
   isOrdered: 1
   minInterval: 10
   maxInterval: 10
   failTime: 4
-  promptPrefab: {fileID: 0}
-  prompt: {fileID: 0}
+  successColor: {r: 0, g: 1, b: 0, a: 1}
+  failColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8762475957029343529
 GameObject:
   m_ObjectHideFlags: 0
