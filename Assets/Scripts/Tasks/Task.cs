@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Task : MonoBehaviour
 {
-    public string name = "Task Name";
+    public string taskName = "Task Name";
     public KeyCode[] keys;
     public bool isOrdered = true;
 
@@ -21,6 +21,7 @@ public class Task : MonoBehaviour
     private PromptSpot actualSpot;
     private GameObject promptPrefab;
     private GameObject prompt;
+    private FillMeter timerMeter;
 
     public Color successColor = Color.green;
     public Color failColor = Color.red;
@@ -97,7 +98,8 @@ public class Task : MonoBehaviour
         }
 
         prompt = Instantiate(promptPrefab, actualSpot.transform);
-        prompt.transform.Find("Name").GetComponent<TextMeshPro>().text = name;
+        Transform promptCanvas = prompt.transform.Find("Canvas");
+        promptCanvas.Find("Name").GetComponent<TextMeshPro>().text = taskName;
         for (int i = 0; i < keys.Length; i++)
         {
             //Assigne the correct sprites to the prefab
@@ -112,6 +114,9 @@ public class Task : MonoBehaviour
         timeTillFail = failTime;
         taskUp = true;
         keyIndex = 0;
+
+        timerMeter = promptCanvas.Find("Timer").GetComponent<FillMeter>();
+        timerMeter.maxVal = failTime;
     }
 
     private void EndTask()
@@ -177,6 +182,7 @@ public class Task : MonoBehaviour
         if (taskUp)
         {
             timeTillFail -= Time.deltaTime;
+            timerMeter.Value = timeTillFail;
             if (timeTillFail <= 0) FailTask();
 
             if (Input.GetKeyDown(keys[keyIndex])) KeySuccess();
