@@ -14,13 +14,28 @@ public class Train : MonoBehaviour
 
     public List<GameObject> cars;
 
-    public GameObject CarPrefab;
     public Vector3 carSpacing = new Vector3(0, 0, -6);
 
     public Cinemachine.CinemachineTargetGroup camTargetGroup;
 
+    private DeckManager deck;
+
     private void Start() {
         CurrentSpeed = this.MaxSpeed;
+
+        deck = FindObjectOfType<DeckManager>();
+
+        if(deck) {
+            Debug.Log("Found deck, placing cars from hand");
+            foreach(GameObject card in deck.GetHand()){
+                Debug.LogFormat("Card {0}", card);
+                CarCard carCard = card.GetComponent<CarCard>();
+                if (carCard) {
+                    Debug.Log("Found car card in hand");
+                    AddCar(carCard.CarPrefab);
+                }
+            }
+        }
     }
 
     public void SelectCar(int index) {
@@ -32,11 +47,11 @@ public class Train : MonoBehaviour
         SelectedCar = index;
     }
 
-    public void AddCar() {
-        GameObject created = GameObject.Instantiate(CarPrefab, Vector3.zero, Quaternion.identity, transform);
+    public void AddCar(GameObject carPrefab) {
+        GameObject created = GameObject.Instantiate(carPrefab, Vector3.zero, Quaternion.identity, transform);
         created.transform.localPosition = carSpacing * cars.Count;
         camTargetGroup.AddMember(created.transform, 1, 3);
-        created.GetComponentInChildren<TextMeshPro>().text = (10 - cars.Count).ToString();
+        created.transform.Find("NumberText").GetComponent<TextMeshPro>().text = (10 - cars.Count).ToString();
         cars.Add(created);
 
     }
@@ -80,9 +95,5 @@ public class Train : MonoBehaviour
 
     private void Update() {
         DoKeyboardCarSelection();
-
-        if(Input.GetKeyDown(KeyCode.UpArrow) && cars.Count < 10) {
-            AddCar();
-        }
     }
 }

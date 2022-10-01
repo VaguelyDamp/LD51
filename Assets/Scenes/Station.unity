@@ -906,7 +906,7 @@ MonoBehaviour:
   cardSpacing: {x: 250, y: 0, z: 0}
   allowedSelection: 3
   dealCount: 5
-  nextSceneName: 
+  nextSceneName: trainplace
   fadeOutTime: 1
   fadeOutPrefab: {fileID: 4528036844759529282, guid: f8d8a26cb42914347bb91dc9c8812b38, type: 3}
   acceptButton: {fileID: 1362658124}

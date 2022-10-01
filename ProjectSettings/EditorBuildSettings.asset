@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scripts/Utility/qASIC/Scenes/qASIC Example Scene.unity
     guid: 3a82c5581e46e154d92b45a7f5944172
+  - enabled: 1
+    path: Assets/Scenes/Station.unity
+    guid: b4f78568ffa4a34449263a156caabc1f
+  - enabled: 1
+    path: Assets/Scenes/trainplace.unity
+    guid: ce8f29455229ed44cbcae907c7f72ffe
   m_configObjects: {}

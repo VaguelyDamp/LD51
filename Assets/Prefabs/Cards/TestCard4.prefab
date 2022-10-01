@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8381751213810111530}
   - component: {fileID: 8020048714497119696}
   - component: {fileID: 3455767766681629481}
+  - component: {fileID: -6425946469928493723}
   m_Layer: 5
   m_Name: TestCard4
   m_TagString: Untagged
@@ -155,6 +156,19 @@ MonoBehaviour:
   rejectionShakeMagnitude: 30
   toFade:
   - {fileID: 8381751213810111530}
+--- !u!114 &-6425946469928493723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3999512425623944423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ab54632ff758748be69061ce577c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarPrefab: {fileID: 8195772660174741314, guid: ba9ce134e611d4b49aeeee6f8cef6d82, type: 3}
 --- !u!1 &7491706643471591684
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,6 +37,10 @@ public class DeckManager : MonoBehaviour
     }
 
     public void AddToHand(GameObject card) {
-        hand.Add(gameObject);
+        hand.Add(card);
+    }
+
+    public List<GameObject> GetHand() {
+        return hand;
     }
 }

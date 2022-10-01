@@ -41,14 +41,15 @@ public class CardDealer : MonoBehaviour
     }
 
     private void SpawnCards() {
-        dealtCards = deck.Draw(dealCount);
+        GameObject[] deal = deck.Draw(dealCount);
         Vector3 cardPos = ((dealCount - 1) / -2.0f) * cardSpacing;
 
         for(int i = 0; i < dealCount; ++i) {
-            GameObject card = Instantiate(dealtCards[i], cardRow);
+            GameObject card = Instantiate(deal[i], cardRow);
             card.transform.localPosition = cardPos;
             card.GetComponent<CardChooser>().cardIndex = i;
             cardPos += cardSpacing;
+            dealtCards[i] = deal[i];
         }
     }
 
@@ -59,15 +60,12 @@ public class CardDealer : MonoBehaviour
         bool isSelected = false;
         if(selectedCards.Contains(selection)) {
             selectedCards.Remove(selection);
-            Debug.LogFormat("Removed {0}", selection);
         }
         else {
             if (selectedCards.Count >= allowedSelection) {
-                Debug.LogFormat("Selection full, rejected {0}", selection);
             }
             else {
                 selectedCards.Add(selection);
-                Debug.LogFormat("Selected {0}", selection);
                 isSelected = true;
             }
         }
@@ -84,7 +82,7 @@ public class CardDealer : MonoBehaviour
                 }
                 else {
                     // Return unchosen to deck
-                    deck.AddToDeck(dealtCards[i]);
+                    deck.AddToDeck(dealtCards[i]); 
                 }
             }
 
