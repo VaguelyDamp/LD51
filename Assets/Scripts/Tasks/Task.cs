@@ -136,11 +136,23 @@ public class Task : MonoBehaviour
         StartCoroutine(KeyFailAnim(keyIndex));
 
     }
-    private IEnumerator KeyFailAnim(int i)
+    private IEnumerator KeyFailAnim(int k)
     {
-        SpriteRenderer keySR = prompt.transform.Find((i+1).ToString()).gameObject.GetComponent<SpriteRenderer>();
+        GameObject key = prompt.transform.Find((k+1).ToString()).gameObject;
+        SpriteRenderer keySR = key.GetComponent<SpriteRenderer>();
         keySR.color = failColor;
-        yield return new WaitForSeconds(0.3f);
+        Vector3 origPos = key.transform.position;
+        float amp = 0.02f;
+        float speed = 75;
+        for (float eTime = 0; eTime < .3f; eTime += Time.deltaTime)
+        {
+            Vector3 kPos = key.transform.position;
+            kPos.z = origPos.z + amp*Mathf.Sin(eTime*speed);
+            kPos.y = origPos.y + amp*Mathf.Cos(eTime*speed);
+            key.transform.position = kPos;
+            yield return null;
+        }
+        key.transform.position = origPos;
         keySR.color = Color.white;
     }
 
