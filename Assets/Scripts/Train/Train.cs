@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Train : MonoBehaviour
 {
@@ -35,7 +36,9 @@ public class Train : MonoBehaviour
         GameObject created = GameObject.Instantiate(CarPrefab, Vector3.zero, Quaternion.identity, transform);
         created.transform.localPosition = carSpacing * cars.Count;
         camTargetGroup.AddMember(created.transform, 1, 3);
+        created.GetComponentInChildren<TextMeshPro>().text = (10 - cars.Count).ToString();
         cars.Add(created);
+
     }
 
     private void DoKeyboardCarSelection() {
