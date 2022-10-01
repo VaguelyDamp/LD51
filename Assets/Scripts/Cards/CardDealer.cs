@@ -16,12 +16,6 @@ public class CardDealer : MonoBehaviour
 
     private GameObject[] dealtCards;
 
-    public string nextSceneName;
-    public float fadeOutTime = 1.0f;
-
-    private UnityEngine.UI.Image fadeOutImage;
-    public GameObject fadeOutPrefab;
-
     public UnityEngine.UI.Button acceptButton;
 
     private void Awake() {
@@ -33,11 +27,9 @@ public class CardDealer : MonoBehaviour
     private void Start() {
         SpawnCards();
 
-        GameObject fadeOutObj = GameObject.Instantiate(fadeOutPrefab, transform);
-        fadeOutImage = fadeOutObj.GetComponent<UnityEngine.UI.Image>();
         acceptButton.interactable = (selectedCards.Count == allowedSelection);
 
-        StartCoroutine(SceneFadeIn());
+        
     }
 
     private void SpawnCards() {
@@ -86,42 +78,10 @@ public class CardDealer : MonoBehaviour
                 }
             }
 
-            StartCoroutine(SceneTransitionOut());
+            FindObjectOfType<SceneTransition>().StartSceneTransition();
         }
         else {
             // Rejection
         }
-    }
-
-    private IEnumerator SceneFadeIn() {
-        float timer = fadeOutTime;
-
-        while(timer > 0) {
-            float t = 1 - (timer / fadeOutTime);
-
-            Color newColor = fadeOutImage.color;
-            newColor.a = 1 - t;
-            fadeOutImage.color = newColor;
-
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    private IEnumerator SceneTransitionOut() {
-        float timer = fadeOutTime;
-
-        while(timer > 0) {
-            float t = 1 - (timer / fadeOutTime);
-
-            Color newColor = fadeOutImage.color;
-            newColor.a = t;
-            fadeOutImage.color = newColor;
-
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneName);
     }
 }

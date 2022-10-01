@@ -800,6 +800,7 @@ GameObject:
   - component: {fileID: 2035494182}
   - component: {fileID: 2035494181}
   - component: {fileID: 2035494185}
+  - component: {fileID: 2035494186}
   m_Layer: 5
   m_Name: DealerCanvas
   m_TagString: Untagged
@@ -906,7 +907,20 @@ MonoBehaviour:
   cardSpacing: {x: 250, y: 0, z: 0}
   allowedSelection: 3
   dealCount: 5
+  acceptButton: {fileID: 1362658124}
+--- !u!114 &2035494186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035494180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87083cb5c2e3c8b4892fd01d1f6db36c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   nextSceneName: trainplace
+  fadeInTime: 1
   fadeOutTime: 1
   fadeOutPrefab: {fileID: 4528036844759529282, guid: f8d8a26cb42914347bb91dc9c8812b38, type: 3}
-  acceptButton: {fileID: 1362658124}
