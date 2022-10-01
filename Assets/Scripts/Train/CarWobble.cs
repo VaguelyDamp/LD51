@@ -15,6 +15,8 @@ public class CarWobble : MonoBehaviour
 
     private Vector3 trackPos;
 
+    public Transform toWobble;
+
     private void Start() {
         train = FindObjectOfType<Train>();
         wobbleOffset = Random.Range(0, 2 * Mathf.PI);
@@ -25,12 +27,17 @@ public class CarWobble : MonoBehaviour
             Debug.LogError("No Train!");
             Destroy(this);
         }
+
+        if(!toWobble) {
+            toWobble = transform.Find("Car");
+        }
+
     }
 
     private void Update() {
         float wobbleVal = (train.CurrentSpeed / train.MaxSpeed) * wobbleMagnitude * Mathf.Sin((Time.time + wobbleOffset) * (wobbleRate * train.CurrentSpeed));
         float bounceVal = (train.CurrentSpeed / train.MaxSpeed) * bounceMagnitude * Mathf.Sin((Time.time + bounceOffset) * (bounceRate * train.CurrentSpeed));
-        transform.rotation = Quaternion.AngleAxis(wobbleVal, Vector3.forward);
-        transform.position = trackPos + Vector3.up + new Vector3(0, bounceMagnitude + bounceVal);
+        toWobble.rotation = Quaternion.AngleAxis(wobbleVal, Vector3.forward);
+        toWobble.position = trackPos + Vector3.up + new Vector3(0, bounceMagnitude + bounceVal);
     }
 }
