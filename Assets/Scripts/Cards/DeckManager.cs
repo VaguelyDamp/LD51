@@ -11,6 +11,10 @@ public class DeckManager : MonoBehaviour
     public List<GameObject> hand;
 
     private void Awake() {
+        if(FindObjectOfType<DeckManager>() != this) {
+            Destroy(gameObject);
+        }
+
         deck = new List<GameObject>();
         deck.AddRange(baseDeck);
 

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/trainplace.unity
     guid: ce8f29455229ed44cbcae907c7f72ffe
+  - enabled: 1
+    path: Assets/Scenes/TestWorld.unity
+    guid: a4b0969fc05d3f04da7bc92b3d8e8a2a
   m_configObjects: {}
