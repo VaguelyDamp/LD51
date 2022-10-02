@@ -38,8 +38,8 @@ public class Task : MonoBehaviour
     private AudioSource audioS;
     public AudioClip taskPopUp;
     public AudioClip taskFailNoise;
-    public AudioClip goodKey;
-    public AudioClip badKey;
+    public AudioClip[] goodKeys;
+    public AudioClip[] badKeys;
     public AudioClip taskSucceed;
 
     
@@ -178,7 +178,7 @@ public class Task : MonoBehaviour
     {
         //Debug.Log("Correct Key");
         //Do positive feedback here
-        audioS.PlayOneShot(goodKey, 0.5f);
+        audioS.PlayOneShot(goodKeys[Random.Range(0, goodKeys.Length)], 0.5f);
         prompt.transform.Find((keyIndex+1).ToString()).gameObject.GetComponent<SpriteRenderer>().color = successColor;
         keyIndex++;
         if (keyIndex >= keys.Length) SucceedTask();
@@ -188,7 +188,7 @@ public class Task : MonoBehaviour
     {
         //Debug.Log("Incorrect Key");
         //Do negative feedback here
-        audioS.PlayOneShot(badKey);
+        audioS.PlayOneShot(badKeys[Random.Range(0, badKeys.Length)]);
         StartCoroutine(KeyFailAnim(keyIndex));
 
     }
