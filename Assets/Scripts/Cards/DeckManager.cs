@@ -6,7 +6,7 @@ public class DeckManager : MonoBehaviour
 {
     public GameObject[] baseDeck;
 
-    private List<GameObject> deck;
+    public List<GameObject> deck;
 
     public List<GameObject> hand;
 
@@ -41,8 +41,56 @@ public class DeckManager : MonoBehaviour
         deck.Add(card);
     }
 
-    public void AddToHand(GameObject card) {
-        hand.Add(card);
+    public GameObject AddToHand(GameObject card) {
+        GameObject instance = Instantiate(card, transform);
+        CardChooser cc = instance.GetComponent<CardChooser>();
+        if(cc) {
+            Destroy(cc);
+        }
+        CardDrag cd = instance.GetComponent<CardDrag>();
+        if(cd) {
+            Destroy(cd);
+        }
+        hand.Add(instance);
+
+        return instance;
+    }
+
+    public int GetStaffSlotCountInHandByType(StaffCard.StaffType staffType) {
+        int count = 0;
+
+        foreach(GameObject card in hand) {
+            CarCard cc = card.GetComponent<CarCard>();
+            if(cc) {
+                count += cc.GetSlotCountOfType(staffType);
+            }
+        }
+
+        return count;
+    }
+
+    public int GetStaffCardCountInHandByType(StaffCard.StaffType staffType) {
+        int count = 0;
+
+        foreach(GameObject card in hand) {
+            StaffCard sc = card.GetComponent<StaffCard>();
+            if(sc) {
+                if(sc.staffType == staffType) ++count;
+            }
+        }
+        return count;
+    }
+
+    public int GetCarCardCountInHand() {
+        int count = 0;
+
+        foreach(GameObject card in hand) {
+            CarCard cc = card.GetComponent<CarCard>();
+            if(cc) {
+                ++count;
+            }
+        }
+        return count;
     }
 
     public List<GameObject> GetHand() {

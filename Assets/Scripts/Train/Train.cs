@@ -28,6 +28,8 @@ public class Train : MonoBehaviour
     private bool ded = false;
     public float initialSecondsToDestination = 60.0f;
 
+    public bool disableLogic = false;
+
     private void Start() {
         CurrentSpeed = this.MaxSpeed;
 
@@ -35,8 +37,18 @@ public class Train : MonoBehaviour
 
         secsToDest = initialSecondsToDestination;
 
-        Meter.Get(ValueChannel.Progress).minVal = 0;
-        Meter.Get(ValueChannel.Progress).maxVal = initialSecondsToDestination;
+        if(disableLogic) { 
+            foreach(CarWobble w in GetComponentsInChildren<CarWobble>()) {
+                w.enabled = false;
+            }
+            foreach(Task t in GetComponentsInChildren<Task>()) {
+                t.enabled = false;
+            }
+        }
+        else {
+            Meter.Get(ValueChannel.Progress).minVal = 0;
+            Meter.Get(ValueChannel.Progress).maxVal = initialSecondsToDestination;
+        }
 
         if(deck) {
             foreach(GameObject card in deck.GetHand()){
@@ -72,12 +84,22 @@ public class Train : MonoBehaviour
     public void AddCar(GameObject carPrefab) {
         GameObject created = GameObject.Instantiate(carPrefab, Vector3.zero, Quaternion.identity, transform);
         created.transform.localPosition = carSpacing * cars.Count;
-        camTargetGroup.AddMember(created.transform, 1, 3);
-        created.transform.Find("NumberText").GetComponent<TextMeshPro>().text = (10 - cars.Count).ToString();
-
-        foreach(Task t in created.GetComponents<Task>()) {
-            t.associatedTrainCar = cars.Count;
+        created.transform.localRotation = Quaternion.identity;
+        
+        if(disableLogic) {
+            created.GetComponent<CarWobble>().enabled = false;
+            foreach(Task t in created.GetComponents<Task>()) {
+                t.enabled = false;
+            }
         }
+        else {
+            camTargetGroup.AddMember(created.transform, 1, 3);
+            foreach(Task t in created.GetComponents<Task>()) {
+                t.associatedTrainCar = cars.Count;
+            }
+        }
+
+        created.transform.Find("NumberText").GetComponent<TextMeshPro>().text = (10 - cars.Count).ToString();
         
         cars.Add(created);
     }
@@ -103,7 +125,7 @@ public class Train : MonoBehaviour
     }
 
     private void Update() {
-        if (!ded){
+        if (!ded && !disableLogic){
             DoKeyboardCarSelection();
             DestinationCountdown();
         } 

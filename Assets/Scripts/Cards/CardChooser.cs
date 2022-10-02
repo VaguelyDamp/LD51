@@ -10,6 +10,11 @@ public class CardChooser : MonoBehaviour
 
     private bool selected = false;
 
+    public bool Selected {
+        get { return selected; }
+        set { selected = value; }
+    }
+
     private Vector3 unselectPos;
     private Vector3 selectPos;
 
@@ -27,6 +32,11 @@ public class CardChooser : MonoBehaviour
 
     private IEnumerator rejectionCoroutine;
 
+    public TMPro.TextMeshPro janitorVacancyUi;
+    public TMPro.TextMeshPro engineerVacancyUi;
+    public TMPro.TextMeshPro cookVacancyUi;
+    public TMPro.TextMeshPro conductorVacancyUi;
+
     private void Start() {
         dealer = FindObjectOfType<CardDealer>();
 
@@ -38,6 +48,10 @@ public class CardChooser : MonoBehaviour
         selectPos = unselectPos + selectedMove;
 
         animationActive = false;
+    }
+
+    private void UpdateJobVacanciesUI() {
+        
     }
 
     public void SelectCard() {
@@ -61,6 +75,7 @@ public class CardChooser : MonoBehaviour
 
     IEnumerator RejectionShake() {
         float timer = rejectionEffectTime;
+        Vector3 basePos = transform.position;
         animationActive = true;
 
         while(timer > 0) {
@@ -70,7 +85,7 @@ public class CardChooser : MonoBehaviour
                 img.color = Color.Lerp(rejectionColor, Color.white, t);
             }
 
-            transform.position = unselectPos 
+            transform.position = basePos 
                 + new Vector3((1 - t) * rejectionShakeMagnitude * Mathf.Sin(t * 4 * Mathf.PI), 0, 0);
 
             timer -= Time.deltaTime;
