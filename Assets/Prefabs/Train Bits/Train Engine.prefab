@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38ae1b191c0e0a4f9bac635cdefbe28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Shovel Coal
+  taskName: Shovel Coal
   keys: 730000006c00000064000000
   isOrdered: 1
   minInterval: 10

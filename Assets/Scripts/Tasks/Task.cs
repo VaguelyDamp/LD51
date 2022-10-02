@@ -9,6 +9,8 @@ public class Task : MonoBehaviour
     public KeyCode[] keys;
     public bool isOrdered = true;
 
+    public int associatedTrainCar = 0;
+
     public float minInterval = 10;
     public float maxInterval = 10;
     public float failTime = 2;
@@ -22,6 +24,8 @@ public class Task : MonoBehaviour
     private GameObject promptPrefab;
     private GameObject prompt;
     private FillMeter timerMeter;
+
+    private bool selected = false;
 
     public Color successColor = Color.green;
     public Color failColor = Color.red;
@@ -117,6 +121,16 @@ public class Task : MonoBehaviour
 
         timerMeter = promptCanvas.Find("Timer").GetComponent<FillMeter>();
         timerMeter.maxVal = failTime;
+
+        SetKeyPromptsHidden(!selected);
+    }
+
+    private void SetKeyPromptsHidden(bool hide){
+        if(taskUp) {
+            foreach(SpriteRenderer sr in prompt.GetComponentsInChildren<SpriteRenderer>()) {
+                sr.enabled = !hide;
+            }
+        }
     }
 
     private void EndTask()
@@ -126,6 +140,8 @@ public class Task : MonoBehaviour
         actualSpot.taken = false;
         actualSpot = null;
         ResetTask();
+
+        FindObjectOfType<Train>().SelectCar(-1);
     }
 
     private void KeySuccess()
@@ -171,6 +187,8 @@ public class Task : MonoBehaviour
 
         if (keys.Length > 5) Debug.LogError("Too many keys!");
         promptPrefab = Resources.Load<GameObject>("Prefabs/TaskPrompts/"+keys.Length.ToString()+"Key"); //Find correct size prefab
+    
+        FindObjectOfType<Train>().CarSelectionChanged.AddListener(OnTrainSelectionChanged);
     }
 
     // Update is called once per frame
@@ -185,8 +203,18 @@ public class Task : MonoBehaviour
             timerMeter.Value = timeTillFail;
             if (timeTillFail <= 0) FailTask();
 
-            if (Input.GetKeyDown(keys[keyIndex])) KeySuccess();
-            else if (Input.anyKeyDown) KeyFail();
+            if (selected) {
+                if (Input.GetKeyDown(keys[keyIndex])) KeySuccess();
+                else if (Input.anyKeyDown) KeyFail();
+            }
         }     
+    }
+
+    private void OnTrainSelectionChanged(int newSelection) {
+        selected = (newSelection == associatedTrainCar);
+        SetKeyPromptsHidden(!selected);
+        if(selected) {
+            Debug.LogFormat("Task {0} on car {1} is now active", taskName, associatedTrainCar);
+        }
     }
 }

@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 using TMPro;
 
 public class Train : MonoBehaviour
 {
+    public UnityEvent<int> CarSelectionChanged;
+
     public float MaxSpeed = 50;
 
     public float CurrentSpeed;
@@ -50,6 +54,8 @@ public class Train : MonoBehaviour
         if(SelectedCar != -1) cars[SelectedCar].GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
         if(index != -1) cars[index].GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>().Priority = 100;
         SelectedCar = index;
+
+        CarSelectionChanged.Invoke(SelectedCar);
     }
 
     public void AddCar(GameObject carPrefab) {
@@ -57,8 +63,12 @@ public class Train : MonoBehaviour
         created.transform.localPosition = carSpacing * cars.Count;
         camTargetGroup.AddMember(created.transform, 1, 3);
         created.transform.Find("NumberText").GetComponent<TextMeshPro>().text = (10 - cars.Count).ToString();
-        cars.Add(created);
 
+        foreach(Task t in created.GetComponents<Task>()) {
+            t.associatedTrainCar = cars.Count;
+        }
+        
+        cars.Add(created);
     }
 
     private void Update() {
