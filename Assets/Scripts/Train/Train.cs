@@ -77,11 +77,16 @@ public class Train : MonoBehaviour
     }
     private IEnumerator DoGameOver()
     {
+        float cameraNoiseGain = 1;
+        Cinemachine.CinemachineVirtualCamera trainCam = GameObject.Find("CM Whole Train").GetComponent<Cinemachine.CinemachineVirtualCamera>();
         for (float speed = CurrentSpeed; speed > 0; speed = speed - 30*Time.deltaTime) 
         {
             CurrentSpeed = speed;
+            cameraNoiseGain += .1f*Time.deltaTime;
+            trainCam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = cameraNoiseGain;
             yield return null;
         }
+         trainCam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
         //Transition to game over screen
     }
 
