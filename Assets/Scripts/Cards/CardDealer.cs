@@ -11,37 +11,52 @@ public class CardDealer : MonoBehaviour
 
     private HashSet<int> selectedCards;
 
-    public int allowedSelection = 3;
+    public int minAllowedSelection = 3;
+    public int maxAllowedSelection = 3;
     public int dealCount = 5;
 
     private GameObject[] dealtCards;
+    private GameObject[] dealtCardObjs;
 
     public UnityEngine.UI.Button acceptButton;
 
+    public GameObject TrainPrefab;
+
+    public Transform TrainSpawnPosition;
+    public Transform TrainWaitPosition;
+
+    public float trainApproachTime;
+
+    public bool choosingCards;
+    public bool assigningStaff;
+
     private void Awake() {
         selectedCards = new HashSet<int>();
-        dealtCards = new GameObject[dealCount];
         deck = FindObjectOfType<DeckManager>();
     }
 
     private void Start() {
         SpawnCards();
 
-        acceptButton.interactable = (selectedCards.Count == allowedSelection);
+        acceptButton.interactable = (selectedCards.Count >= minAllowedSelection);
 
-        
+        choosingCards = true;
+        assigningStaff = false;
     }
 
     private void SpawnCards() {
-        GameObject[] deal = deck.Draw(dealCount);
-        Vector3 cardPos = ((deal.Length - 1) / -2.0f) * cardSpacing;
+        dealtCards = deck.Draw(dealCount);
+        dealtCardObjs = new GameObject[dealtCards.Length];
 
-        for(int i = 0; i < deal.Length; ++i) {
-            GameObject card = Instantiate(deal[i], cardRow);
+        Vector3 cardPos = ((dealtCards.Length - 1) / -2.0f) * cardSpacing;
+
+        for(int i = 0; i < dealtCards.Length; ++i) {
+            GameObject card = Instantiate(dealtCards[i], cardRow);
             card.transform.localPosition = cardPos;
             card.GetComponent<CardChooser>().cardIndex = i;
             cardPos += cardSpacing;
-            dealtCards[i] = deal[i];
+
+            dealtCardObjs[i] = card;
         }
     }
 
@@ -49,12 +64,14 @@ public class CardDealer : MonoBehaviour
         Returns a boolean for if the card should be selected after the operation
     */
     public bool RegisterCardSelection(int selection) {
+        if(!choosingCards) return true;
+
         bool isSelected = false;
         if(selectedCards.Contains(selection)) {
             selectedCards.Remove(selection);
         }
         else {
-            if (selectedCards.Count >= allowedSelection) {
+            if (selectedCards.Count >= maxAllowedSelection) {
             }
             else {
                 selectedCards.Add(selection);
@@ -62,26 +79,83 @@ public class CardDealer : MonoBehaviour
             }
         }
 
-        acceptButton.interactable = (selectedCards.Count == allowedSelection);
+        acceptButton.interactable = (selectedCards.Count >= minAllowedSelection);
         return isSelected;
     }
 
+    private IEnumerator DropOutCard(GameObject card, Vector3 motion) {
+        float timer = 0;
+
+        card.GetComponent<CardChooser>().enabled = false;
+
+        while(timer < 1) {
+            timer += Time.deltaTime;
+
+            card.transform.position += motion * Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(card);
+    }
+
     public void AcceptDeal() {
-        if(selectedCards.Count == allowedSelection) {
+        if(choosingCards && selectedCards.Count >= minAllowedSelection && selectedCards.Count <= maxAllowedSelection) {
+            int staffToAssign = 0;
+            choosingCards = false;
             for (int i = 0; i < dealCount; ++i) {
                 if (selectedCards.Contains(i)) {
+                    if(dealtCards[i].GetComponent<StaffCard>()) {
+                        CardChooser cc = dealtCardObjs[i].GetComponent<CardChooser>();
+                        cc.Selected = (staffToAssign == 0);
+                        cc.GetComponent<UnityEngine.UI.Button>().enabled = false;
+                        staffToAssign++;
+                    }
+                    else {
+                        StartCoroutine(DropOutCard(dealtCardObjs[i], Vector3.left * 2000));
+                        dealtCardObjs[i] = null;
+                    }
                     deck.AddToHand(dealtCards[i]);
                 }
                 else {
                     // Return unchosen to deck
                     deck.AddToDeck(dealtCards[i]); 
+                    StartCoroutine(DropOutCard(dealtCardObjs[i], Vector3.down * 1000));
+                    dealtCardObjs[i] = null;
                 }
             }
 
-            FindObjectOfType<SceneTransition>().StartSceneTransition();
+            Destroy(acceptButton.gameObject);
+
+            //StartCoroutine(StartChosingStaff());
+            if(staffToAssign > 0) {
+                StartCoroutine(BringInTrain());
+            }
+            else {
+                FindObjectOfType<SceneTransition>().StartSceneTransition();
+            }            
         }
         else {
             // Rejection
         }
+    }
+
+    private IEnumerator BringInTrain() {
+        GameObject train = Instantiate(TrainPrefab, TrainSpawnPosition.position, TrainSpawnPosition.rotation);
+        Train traintrain = train.GetComponent<Train>();
+
+        traintrain.CurrentSpeed = 0;
+        traintrain.disableLogic = true;
+
+        float moveTimer = trainApproachTime;
+
+        while(moveTimer > 0) {
+            float t = 1 - (moveTimer / trainApproachTime);
+
+            train.transform.position = Vector3.Lerp(TrainSpawnPosition.position, TrainWaitPosition.position, EasingFunction.EaseOutCubic(0, 1, t));
+
+            moveTimer -= Time.deltaTime;
+            yield return null;
+        }
+
     }
 }

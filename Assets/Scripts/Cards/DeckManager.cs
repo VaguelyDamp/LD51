@@ -6,7 +6,7 @@ public class DeckManager : MonoBehaviour
 {
     public GameObject[] baseDeck;
 
-    private List<GameObject> deck;
+    public List<GameObject> deck;
 
     public List<GameObject> hand;
 
@@ -42,7 +42,7 @@ public class DeckManager : MonoBehaviour
     }
 
     public void AddToHand(GameObject card) {
-        hand.Add(card);
+        hand.Add(Instantiate(card, transform));
     }
 
     public List<GameObject> GetHand() {

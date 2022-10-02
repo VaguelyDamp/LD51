@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4611123218285089695}
   - component: {fileID: 4611123218285089680}
   - component: {fileID: 4611123218285089693}
+  - component: {fileID: 4901680389742666628}
   m_Layer: 5
   m_Name: TestCard1
   m_TagString: Untagged
@@ -155,6 +156,19 @@ MonoBehaviour:
   rejectionShakeMagnitude: 30
   toFade:
   - {fileID: 4611123218285089695}
+--- !u!114 &4901680389742666628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611123218285089682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c57936c5d553e439ed746aceb856b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staffType: 0
 --- !u!1 &5898939087161508053
 GameObject:
   m_ObjectHideFlags: 0

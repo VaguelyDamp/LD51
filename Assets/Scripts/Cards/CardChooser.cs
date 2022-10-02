@@ -10,6 +10,11 @@ public class CardChooser : MonoBehaviour
 
     private bool selected = false;
 
+    public bool Selected {
+        get { return selected; }
+        set { selected = value; }
+    }
+
     private Vector3 unselectPos;
     private Vector3 selectPos;
 
