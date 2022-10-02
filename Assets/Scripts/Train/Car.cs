@@ -19,6 +19,8 @@ public class Car : MonoBehaviour
     private CarWobble carWobble;
     private Transform car;
 
+    public GameObject fire;
+
     private bool shakinBakin = false;
 
     public void TaskFailed()
@@ -77,6 +79,8 @@ public class Car : MonoBehaviour
             FindObjectOfType<Train>().GameOver();
         }
         //Do fire here
+        GameObject iFire = Instantiate(fire, car.Find("FireSpawn"));
+        iFire.transform.localPosition = Vector3.zero;
         gameObject.GetComponent<CarWobble>().resetRot(endPos);
         gameObject.GetComponent<CarWobble>().iBeWobblin = true;
     }
@@ -98,6 +102,8 @@ public class Car : MonoBehaviour
 
         carWobble = gameObject.GetComponent<CarWobble>();
         car = transform.Find("Car");
+
+        if (fire == null) Debug.LogError("No fire prefab!");
     }
 
     // Update is called once per frame
