@@ -52,6 +52,7 @@ public class Task : MonoBehaviour
         taskUp = false;
         StartCoroutine(FailTaskAnim());
         //Failure Stuff
+        gameObject.GetComponent<Car>().TaskFailed();
     }
     private IEnumerator FailTaskAnim()
     {
