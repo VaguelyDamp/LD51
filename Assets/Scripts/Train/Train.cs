@@ -25,6 +25,7 @@ public class Train : MonoBehaviour
     private DeckManager deck;
 
     public float secsToDest;
+    private bool ded = false;
     public float initialSecondsToDestination = 60.0f;
 
     private void Start() {
@@ -74,6 +75,7 @@ public class Train : MonoBehaviour
     public void GameOver()
     {
         StartCoroutine(DoGameOver());
+        ded = true;
     }
     private IEnumerator DoGameOver()
     {
@@ -91,8 +93,10 @@ public class Train : MonoBehaviour
     }
 
     private void Update() {
-        DoKeyboardCarSelection();
-        DestinationCountdown();
+        if (!ded){
+            DoKeyboardCarSelection();
+            DestinationCountdown();
+        } 
     }
 
     private void DestinationCountdown() {
