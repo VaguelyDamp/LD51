@@ -169,6 +169,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarPrefab: {fileID: 3391668288838565724, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
+  carHealth: 3
+  value: 2
+  staffSlots: 0300000000000000
+  uiSprite: {fileID: 0}
 --- !u!1 &4608346186727295507
 GameObject:
   m_ObjectHideFlags: 0
