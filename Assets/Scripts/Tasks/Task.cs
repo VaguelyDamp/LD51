@@ -20,7 +20,7 @@ public class Task : MonoBehaviour
 
     private float timeTillStart = 0;
     private float timeTillFail;
-    private bool taskUp = false;
+    public bool taskUp = false;
     private int keyIndex = 0;
 
     private PromptSpot actualSpot;
@@ -113,6 +113,11 @@ public class Task : MonoBehaviour
             return;
         }
 
+        if (prompt != null) 
+        {
+            Debug.LogWarning("Trying to create an already existing prompt");
+            Destroy(prompt);
+        }
         prompt = Instantiate(promptPrefab, actualSpot.transform);
         Transform promptCanvas = prompt.transform.Find("Canvas");
         promptCanvas.Find("Name").GetComponent<TextMeshPro>().text = taskName;
@@ -208,7 +213,7 @@ public class Task : MonoBehaviour
     void Update()
     {
         timeTillStart -= Time.deltaTime;
-        if (timeTillStart <= 0 && !carDead) StartTask();
+        if (timeTillStart <= 0 && !carDead && !taskUp) StartTask();
 
         if (taskUp)
         {
