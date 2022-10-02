@@ -793,10 +793,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDeck:
   - {fileID: 4611123218285089682, guid: 2fd505a4ac3041a418d0c2820ca8c565, type: 3}
+  - {fileID: 4611123218285089682, guid: 2fd505a4ac3041a418d0c2820ca8c565, type: 3}
+  - {fileID: 4611123218285089682, guid: 2fd505a4ac3041a418d0c2820ca8c565, type: 3}
+  - {fileID: 3324454879679233599, guid: 0327d61cbf085844e989a0bfbfd92cbf, type: 3}
+  - {fileID: 3324454879679233599, guid: 0327d61cbf085844e989a0bfbfd92cbf, type: 3}
   - {fileID: 3324454879679233599, guid: 0327d61cbf085844e989a0bfbfd92cbf, type: 3}
   - {fileID: 70718601566728446, guid: 52103aa9b27b64140aa4e7458ff20366, type: 3}
-  - {fileID: 3999512425623944423, guid: e680c2eacef8e504580bf42c26e4253c, type: 3}
   - {fileID: 70718601566728446, guid: 52103aa9b27b64140aa4e7458ff20366, type: 3}
+  - {fileID: 70718601566728446, guid: 52103aa9b27b64140aa4e7458ff20366, type: 3}
+  - {fileID: 70718601566728446, guid: 52103aa9b27b64140aa4e7458ff20366, type: 3}
+  - {fileID: 3999512425623944423, guid: e680c2eacef8e504580bf42c26e4253c, type: 3}
+  - {fileID: 3999512425623944423, guid: e680c2eacef8e504580bf42c26e4253c, type: 3}
+  - {fileID: 3999512425623944423, guid: e680c2eacef8e504580bf42c26e4253c, type: 3}
+  - {fileID: 3999512425623944423, guid: e680c2eacef8e504580bf42c26e4253c, type: 3}
   deck: []
   hand: []
 --- !u!4 &1622836067

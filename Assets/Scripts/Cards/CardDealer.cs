@@ -91,8 +91,10 @@ public class CardDealer : MonoBehaviour
     private IEnumerator DropOutCard(GameObject card, Vector3 motion) {
         float timer = 0;
 
-        card.GetComponent<CardChooser>().enabled = false;
-        card.GetComponent<CardDrag>().enabled = false;
+        CardChooser cc = card.GetComponent<CardChooser>();
+        if(cc) Destroy(cc);
+        CardDrag cd = card.GetComponent<CardDrag>();
+        if(cd) Destroy(cd);
 
         while(timer < 1) {
             timer += Time.deltaTime;

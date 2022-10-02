@@ -12,19 +12,20 @@ public class MainMenu : MonoBehaviour
     }
 
     
-    public void ShowSettings ()
+    public void ShowSettings()
     {
         settingsMenu.SetActive(true);
     }
 
-    public void HideSettings ()
+    public void HideSettings()
     {
         settingsMenu.SetActive(false);
     }
 
-    public void StartGame ()
+    public void StartGame()
     {
-        SceneManager.LoadScene("worldScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("station", LoadSceneMode.Single);
+
     }
 
     public void QuitGame()

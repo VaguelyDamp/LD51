@@ -25,6 +25,7 @@ public class Train : MonoBehaviour
     private DeckManager deck;
 
     public float secsToDest;
+    private bool ded = false;
     public float initialSecondsToDestination = 60.0f;
 
     public bool disableLogic = false;
@@ -93,11 +94,31 @@ public class Train : MonoBehaviour
         cars.Add(created);
     }
 
-    private void Update() {
-        if(disableLogic) return;
+    public void GameOver()
+    {
+        StartCoroutine(DoGameOver());
+        ded = true;
+    }
+    private IEnumerator DoGameOver()
+    {
+        float cameraNoiseGain = 1;
+        Cinemachine.CinemachineVirtualCamera trainCam = GameObject.Find("CM Whole Train").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        for (float speed = CurrentSpeed; speed > 0; speed = speed - 30*Time.deltaTime) 
+        {
+            CurrentSpeed = speed;
+            cameraNoiseGain += .1f*Time.deltaTime;
+            trainCam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = cameraNoiseGain;
+            yield return null;
+        }
+         trainCam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
+        //Transition to game over screen
+    }
 
-        DoKeyboardCarSelection();
-        DestinationCountdown();
+    private void Update() {
+        if (!ded && !disableLogic){
+            DoKeyboardCarSelection();
+            DestinationCountdown();
+        } 
     }
 
     private void DestinationCountdown() {
@@ -145,7 +166,7 @@ public class Train : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha0)) {
             SelectCar(0);
         }
-        else if (Input.GetKeyDown(KeyCode.Space)) {
+        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)) {
             SelectCar(-1);
         }
     }

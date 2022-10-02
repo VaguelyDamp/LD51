@@ -7,13 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: offset
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5124728853918309568, guid: 632100e88c2871e45bcae48265f68628, type: 3}
       propertyPath: m_text
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7814490443448733176, guid: 632100e88c2871e45bcae48265f68628, type: 3}
       propertyPath: m_Name
-      value: Train Car2
+      value: Train Car2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
       propertyPath: m_RootOrder

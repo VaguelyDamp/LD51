@@ -13,19 +13,21 @@ public class Task : MonoBehaviour
 
     public float minInterval = 10;
     public float maxInterval = 10;
-    public float failTime = 2;
+    public float offset = 0;
+    public float failTime = 4;
 
-    public float otherSelectedTimeMult = 0.5f;
+    public float otherSelectedTimeMult = 0.75f;
 
     private float timeTillStart = 0;
     private float timeTillFail;
-    private bool taskUp = false;
+    public bool taskUp = false;
     private int keyIndex = 0;
 
     private PromptSpot actualSpot;
     private GameObject promptPrefab;
     private GameObject prompt;
     private FillMeter timerMeter;
+    private bool carDead = false;
 
     private bool selected = false;
     private bool otherSelected = false;
@@ -37,6 +39,12 @@ public class Task : MonoBehaviour
     private float interval() 
     {
         return Random.Range(minInterval, maxInterval);
+    }
+
+    public void KillCar()
+    {
+        carDead = true;
+        Destroy(prompt);
     }
 
     private void ResetTask()
@@ -52,6 +60,7 @@ public class Task : MonoBehaviour
         taskUp = false;
         StartCoroutine(FailTaskAnim());
         //Failure Stuff
+        gameObject.GetComponent<Car>().TaskFailed();
     }
     private IEnumerator FailTaskAnim()
     {
@@ -83,8 +92,15 @@ public class Task : MonoBehaviour
 
     private void StartTask() 
     {
-        Debug.Log("Task Started");
+        //Debug.Log("Task Started");
         //Display Task
+
+        if (prompt != null) 
+        {
+            Debug.LogWarning("Trying to create an already existing prompt");
+            timeTillStart = 0.2f;
+            return;
+        }
         
         PromptSpot[] spots = transform.Find("TrainPlane").gameObject.GetComponentsInChildren<PromptSpot>();
         actualSpot = null;
@@ -138,18 +154,18 @@ public class Task : MonoBehaviour
 
     private void EndTask()
     {
-        Debug.Log("Task Completed!");
+        //Debug.Log("Task Completed!");
         taskUp = false;
         actualSpot.taken = false;
         actualSpot = null;
         ResetTask();
 
-        if(selected) FindObjectOfType<Train>().SelectCar(-1);
+        //if(selected) FindObjectOfType<Train>().SelectCar(-1);
     }
 
     private void KeySuccess()
     {
-        Debug.Log("Correct Key");
+        //Debug.Log("Correct Key");
         //Do positive feedback here
         prompt.transform.Find((keyIndex+1).ToString()).gameObject.GetComponent<SpriteRenderer>().color = successColor;
         keyIndex++;
@@ -158,7 +174,7 @@ public class Task : MonoBehaviour
 
     private void KeyFail()
     {
-        Debug.Log("Incorrect Key");
+        //Debug.Log("Incorrect Key");
         //Do negative feedback here
         StartCoroutine(KeyFailAnim(keyIndex));
 
@@ -186,6 +202,7 @@ public class Task : MonoBehaviour
     void Start()
     {
         ResetTask();
+        timeTillStart = offset;
         timeTillFail = failTime;
 
         if (keys.Length > 5) Debug.LogError("Too many keys!");
@@ -198,7 +215,7 @@ public class Task : MonoBehaviour
     void Update()
     {
         timeTillStart -= Time.deltaTime;
-        if (timeTillStart <= 0) StartTask();
+        if (timeTillStart <= 0 && !carDead && !taskUp) StartTask();
 
         if (taskUp)
         {
