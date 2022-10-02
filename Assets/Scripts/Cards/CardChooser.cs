@@ -32,6 +32,11 @@ public class CardChooser : MonoBehaviour
 
     private IEnumerator rejectionCoroutine;
 
+    public TMPro.TextMeshPro janitorVacancyUi;
+    public TMPro.TextMeshPro engineerVacancyUi;
+    public TMPro.TextMeshPro cookVacancyUi;
+    public TMPro.TextMeshPro conductorVacancyUi;
+
     private void Start() {
         dealer = FindObjectOfType<CardDealer>();
 
@@ -43,6 +48,10 @@ public class CardChooser : MonoBehaviour
         selectPos = unselectPos + selectedMove;
 
         animationActive = false;
+    }
+
+    private void UpdateJobVacanciesUI() {
+        
     }
 
     public void SelectCard() {

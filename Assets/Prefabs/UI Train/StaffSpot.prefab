@@ -63,10 +63,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   janitorSpriteFull: {fileID: 21300000, guid: 097f51948c667154b9bbced6380b4ea3, type: 3}
   janitorSpriteEmpty: {fileID: 21300000, guid: 03a667eff219a0a41a58f41106c3b3d0, type: 3}
-  engineerSpriteFull: {fileID: 21300000, guid: 5b44a1b2655a4934981aa637e5f93647, type: 3}
-  engineerSpriteEmpty: {fileID: 21300000, guid: d70466e179e8e1544a2f3dd34cdc9f73, type: 3}
-  conductorSpriteFull: {fileID: 21300000, guid: 5b44a1b2655a4934981aa637e5f93647, type: 3}
-  conductorSpriteEmpty: {fileID: 21300000, guid: d70466e179e8e1544a2f3dd34cdc9f73, type: 3}
+  engineerSpriteFull: {fileID: 21300000, guid: 7b47a38253e38764e8d7dc2582681ff2, type: 3}
+  engineerSpriteEmpty: {fileID: 21300000, guid: 94f75f5f59a69a345a92eb516dd0ae60, type: 3}
+  conductorSpriteFull: {fileID: 21300000, guid: 5986879fee9294f48b28acba947b876b, type: 3}
+  conductorSpriteEmpty: {fileID: 21300000, guid: 90e3dd1bab844f94f99c5d334cf84481, type: 3}
   cookSpriteFull: {fileID: 21300000, guid: e08f3674790399e4ea7da886b3927c89, type: 3}
   cookSpriteEmpty: {fileID: 21300000, guid: 5ce49cfcfc06905499c20f54e8f18ad8, type: 3}
   staffType: 0

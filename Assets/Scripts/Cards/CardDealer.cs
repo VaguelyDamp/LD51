@@ -32,6 +32,11 @@ public class CardDealer : MonoBehaviour
 
     private int staffToAssign;
 
+    public TMPro.TextMeshProUGUI janitorVacancyUi;
+    public TMPro.TextMeshProUGUI engineerVacancyUi;
+    public TMPro.TextMeshProUGUI cookVacancyUi;
+    public TMPro.TextMeshProUGUI conductorVacancyUi;
+
     private void Awake() {
         selectedCards = new HashSet<int>();
         deck = FindObjectOfType<DeckManager>();
@@ -45,6 +50,8 @@ public class CardDealer : MonoBehaviour
 
         choosingCards = true;
         assigningStaff = false;
+
+        UpdateJobVacanciesUI();
 
         StartCoroutine(BringInTrain());
     }
@@ -87,6 +94,26 @@ public class CardDealer : MonoBehaviour
         return count;
     }
 
+    private void UpdateJobVacanciesUI() {
+        janitorVacancyUi.text = CalculateVacanciesForJobType(StaffCard.StaffType.Janitor).ToString();
+        engineerVacancyUi.text = CalculateVacanciesForJobType(StaffCard.StaffType.Engineer).ToString();
+        cookVacancyUi.text = CalculateVacanciesForJobType(StaffCard.StaffType.Cook).ToString();
+        conductorVacancyUi.text = CalculateVacanciesForJobType(StaffCard.StaffType.Conductor).ToString();
+    }
+
+    private int CalculateVacanciesForJobType(StaffCard.StaffType staffType) {
+        int currentSlots = deck.GetStaffSlotCountInHandByType(staffType);
+        int currentStaff = deck.GetStaffCardCountInHandByType(staffType);
+
+        int addedSlots = GetAddedStaffSlotsWithCurrentSelection(staffType);
+        int addedStaff = GetAddedStaffCardsWithCurrentSelection(staffType);
+
+        int totalSlots = currentSlots + addedSlots;
+        int totalStaff = currentStaff + addedStaff;
+
+        return totalSlots - totalStaff;
+    }
+
     /*
         Returns a boolean for if the card should be selected after the operation
     */
@@ -98,15 +125,10 @@ public class CardDealer : MonoBehaviour
             CarCard car = dealtCards[selection].GetComponent<CarCard>();
             if(car) {
                 foreach(var slotType in car.staffSlots) {
-                    int currentSlots = deck.GetStaffSlotCountInHandByType(slotType);
-                    int currentStaff = deck.GetStaffCardCountInHandByType(slotType);
-
-                    int addedSlots = GetAddedStaffSlotsWithCurrentSelection(slotType);
-                    int addedStaff = GetAddedStaffCardsWithCurrentSelection(slotType);
-
+                    int curVacancies = CalculateVacanciesForJobType(slotType);
                     int slotCountChange = car.GetSlotCountOfType(slotType);
 
-                    if((currentSlots + addedSlots - slotCountChange) < (currentStaff + addedStaff)) {
+                    if(curVacancies - slotCountChange < 0) {
                         isSelected = true;
                         break;
                     }
@@ -126,16 +148,9 @@ public class CardDealer : MonoBehaviour
                 StaffCard staff = dealtCards[selection].GetComponent<StaffCard>();
                 if(staff) {
                     var staffType = staff.staffType;
-                    int currentSlots = deck.GetStaffSlotCountInHandByType(staffType);
-                    int currentStaff = deck.GetStaffCardCountInHandByType(staffType);
+                    int curVacancies = CalculateVacanciesForJobType(staffType);
 
-                    int addedSlots = GetAddedStaffSlotsWithCurrentSelection(staffType);
-                    int addedStaff = GetAddedStaffCardsWithCurrentSelection(staffType);
-
-                    int totalSlots = currentSlots + addedSlots;
-                    int totalStaff = currentStaff + addedStaff;
-
-                    if(totalSlots > totalStaff){
+                    if(curVacancies > 0){
                         selectedCards.Add(selection);
                         isSelected = true;
                     }
@@ -148,6 +163,7 @@ public class CardDealer : MonoBehaviour
         }
 
         acceptButton.interactable = (selectedCards.Count >= minAllowedSelection);
+        UpdateJobVacanciesUI();
         return isSelected;
     }
 
