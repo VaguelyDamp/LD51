@@ -91,6 +91,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 611816303462815893, guid: 4476d69e98505a343b0bf792840507c6, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1405023746144759455, guid: 4476d69e98505a343b0bf792840507c6, type: 3}
       propertyPath: m_Name
       value: 4Key
@@ -139,9 +143,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3091015173027055613, guid: 4476d69e98505a343b0bf792840507c6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8091480079561567921, guid: 4476d69e98505a343b0bf792840507c6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8097401756972154846, guid: 4476d69e98505a343b0bf792840507c6, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645923005826005457, guid: 4476d69e98505a343b0bf792840507c6, type: 3}
+      propertyPath: m_Maskable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4476d69e98505a343b0bf792840507c6, type: 3}

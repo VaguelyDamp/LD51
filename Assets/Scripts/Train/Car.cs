@@ -34,6 +34,7 @@ public class Car : MonoBehaviour
         //Turn car red
         //carWobble.iBeWobblin = false;
         shakinBakin = true;
+        car = transform.Find("Car");
         Vector3 origPos = car.transform.position;
         float amp = 0.2f;
         float speed = 50;
@@ -79,7 +80,7 @@ public class Car : MonoBehaviour
         //gameObject.GetComponent<CarWobble>().iBeWobblin = true;
     }
 
-    protected void Start()
+    private void Awake()
     {
         heartMeter = transform.Find("Car").Find("CarCanvas").Find("HeartMeter").GetComponent<ChunkMeter>();
         heartMeter.maxVal = hearts;
