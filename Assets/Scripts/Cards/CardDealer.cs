@@ -30,9 +30,12 @@ public class CardDealer : MonoBehaviour
     public bool choosingCards;
     public bool assigningStaff;
 
+    private int staffToAssign;
+
     private void Awake() {
         selectedCards = new HashSet<int>();
         deck = FindObjectOfType<DeckManager>();
+        staffToAssign = 0;
     }
 
     private void Start() {
@@ -42,6 +45,8 @@ public class CardDealer : MonoBehaviour
 
         choosingCards = true;
         assigningStaff = false;
+
+        StartCoroutine(BringInTrain());
     }
 
     private void SpawnCards() {
@@ -87,6 +92,7 @@ public class CardDealer : MonoBehaviour
         float timer = 0;
 
         card.GetComponent<CardChooser>().enabled = false;
+        card.GetComponent<CardDrag>().enabled = false;
 
         while(timer < 1) {
             timer += Time.deltaTime;
@@ -98,23 +104,35 @@ public class CardDealer : MonoBehaviour
         Destroy(card);
     }
 
+    public void MarkStaffCardAssigned(GameObject staffCard) {
+        staffToAssign--;
+
+        DropOutCard(staffCard, Vector3.left * 2000);
+
+        if(staffToAssign <= 0) {
+            FindObjectOfType<SceneTransition>().StartSceneTransition();
+            StartCoroutine(SendOutTrain());
+        }
+    }
+
     public void AcceptDeal() {
         if(choosingCards && selectedCards.Count >= minAllowedSelection && selectedCards.Count <= maxAllowedSelection) {
-            int staffToAssign = 0;
+            staffToAssign = 0;
             choosingCards = false;
             for (int i = 0; i < dealCount; ++i) {
                 if (selectedCards.Contains(i)) {
                     if(dealtCards[i].GetComponent<StaffCard>()) {
+                        dealtCardObjs[i].AddComponent<CardDrag>();
                         CardChooser cc = dealtCardObjs[i].GetComponent<CardChooser>();
-                        cc.Selected = (staffToAssign == 0);
+                        cc.Selected = true;
                         cc.GetComponent<UnityEngine.UI.Button>().enabled = false;
                         staffToAssign++;
                     }
                     else {
                         StartCoroutine(DropOutCard(dealtCardObjs[i], Vector3.left * 2000));
                         dealtCardObjs[i] = null;
+                        deck.AddToHand(dealtCards[i]);
                     }
-                    deck.AddToHand(dealtCards[i]);
                 }
                 else {
                     // Return unchosen to deck
@@ -126,12 +144,14 @@ public class CardDealer : MonoBehaviour
 
             Destroy(acceptButton.gameObject);
 
-            //StartCoroutine(StartChosingStaff());
+            
+
             if(staffToAssign > 0) {
-                StartCoroutine(BringInTrain());
+                FindObjectOfType<UI_Train>().SpawnTrain();
             }
             else {
                 FindObjectOfType<SceneTransition>().StartSceneTransition();
+                StartCoroutine(SendOutTrain());
             }            
         }
         else {
@@ -152,6 +172,28 @@ public class CardDealer : MonoBehaviour
             float t = 1 - (moveTimer / trainApproachTime);
 
             train.transform.position = Vector3.Lerp(TrainSpawnPosition.position, TrainWaitPosition.position, EasingFunction.EaseOutCubic(0, 1, t));
+
+            moveTimer -= Time.deltaTime;
+            yield return null;
+        }
+
+    }
+
+    private IEnumerator SendOutTrain() {
+        GameObject train = FindObjectOfType<Train>().gameObject;
+        Train traintrain = train.GetComponent<Train>();
+
+        traintrain.CurrentSpeed = 0;
+        traintrain.disableLogic = true;
+
+        Vector3 endPos = TrainWaitPosition.position + (TrainWaitPosition.position - TrainSpawnPosition.position);
+
+        float moveTimer = trainApproachTime;
+
+        while(moveTimer > 0) {
+            float t = 1 - (moveTimer / trainApproachTime);
+
+            train.transform.position = Vector3.Lerp(TrainWaitPosition.position, endPos, EasingFunction.EaseInCubic(0, 1, t));
 
             moveTimer -= Time.deltaTime;
             yield return null;

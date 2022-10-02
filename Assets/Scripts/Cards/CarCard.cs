@@ -10,4 +10,13 @@ public class CarCard : MonoBehaviour
     public int value;
 
     public StaffCard.StaffType[] staffSlots;
+
+    public Sprite uiSprite;
+
+    private void Awake() {
+        foreach(StaffCard.StaffType slot in staffSlots) {
+            GameObject slotObj = new GameObject(string.Format("StaffSpot:{0}", slot.ToString()));
+            slotObj.transform.parent = transform;
+        }
+    }
 }

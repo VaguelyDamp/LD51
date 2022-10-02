@@ -8,6 +8,7 @@ public class StaffCard : MonoBehaviour
         Janitor,
         Engineer,
         Conductor,
+        Cook,
     }
 
     public StaffType staffType;
