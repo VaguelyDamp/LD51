@@ -27,6 +27,7 @@ public class Task : MonoBehaviour
     private GameObject promptPrefab;
     private GameObject prompt;
     private FillMeter timerMeter;
+    private bool carDead = false;
 
     private bool selected = false;
     private bool otherSelected = false;
@@ -38,6 +39,12 @@ public class Task : MonoBehaviour
     private float interval() 
     {
         return Random.Range(minInterval, maxInterval);
+    }
+
+    public void KillCar()
+    {
+        carDead = true;
+        Destroy(prompt);
     }
 
     private void ResetTask()
@@ -201,7 +208,7 @@ public class Task : MonoBehaviour
     void Update()
     {
         timeTillStart -= Time.deltaTime;
-        if (timeTillStart <= 0) StartTask();
+        if (timeTillStart <= 0 && !carDead) StartTask();
 
         if (taskUp)
         {

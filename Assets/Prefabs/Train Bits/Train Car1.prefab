@@ -963,8 +963,8 @@ MonoBehaviour:
   keys: 6200000069000000740000006300000068000000
   isOrdered: 1
   associatedTrainCar: 0
-  minInterval: 10
-  maxInterval: 10
+  minInterval: 4
+  maxInterval: 6
   offset: 1
   failTime: 3
   otherSelectedTimeMult: 0.5
