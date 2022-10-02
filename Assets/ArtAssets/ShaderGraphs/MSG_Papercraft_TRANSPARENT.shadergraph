@@ -901,7 +901,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"fe0faf64d25efb1479c695c26cf9f696\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"b32237f3f30f4f3438d0eb90f2426a1d\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -999,7 +999,7 @@
         "m_Id": "5489a40373654ea09d5ef1fbdab374b9"
     },
     "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 0,
+    "m_SurfaceType": 1,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,

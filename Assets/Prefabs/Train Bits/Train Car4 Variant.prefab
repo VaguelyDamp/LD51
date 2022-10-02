@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3391668288853834828, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.5997783
+      value: 2.1213872
       objectReference: {fileID: 0}
     - target: {fileID: 4107472798377636301, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
       propertyPath: m_RootOrder
@@ -107,5 +107,6 @@ MonoBehaviour:
   offset: 0
   failTime: 5
   otherSelectedTimeMult: 0.5
+  taskUp: 0
   successColor: {r: 0, g: 1, b: 0, a: 1}
   failColor: {r: 1, g: 0, b: 0, a: 1}
