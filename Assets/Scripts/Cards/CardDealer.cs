@@ -34,9 +34,9 @@ public class CardDealer : MonoBehaviour
 
     private void SpawnCards() {
         GameObject[] deal = deck.Draw(dealCount);
-        Vector3 cardPos = ((dealCount - 1) / -2.0f) * cardSpacing;
+        Vector3 cardPos = ((deal.Length - 1) / -2.0f) * cardSpacing;
 
-        for(int i = 0; i < dealCount; ++i) {
+        for(int i = 0; i < deal.Length; ++i) {
             GameObject card = Instantiate(deal[i], cardRow);
             card.transform.localPosition = cardPos;
             card.GetComponent<CardChooser>().cardIndex = i;

@@ -107,6 +107,13 @@ public abstract class Meter : MonoBehaviour
         }
     }
 
+    private void OnDestroy() {
+        if(channel != ValueChannel.None) 
+        {
+            GlobalMetersDict.Remove(channel);
+        }
+    }
+
     static Meter()
     {
         GlobalMetersDict = new Dictionary<ValueChannel, Meter>();

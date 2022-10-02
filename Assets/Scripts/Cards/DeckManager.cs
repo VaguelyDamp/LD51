@@ -29,8 +29,9 @@ public class DeckManager : MonoBehaviour
     }
 
     public GameObject[] Draw(int count) {
-        GameObject[] deal = new GameObject[count];
-        for(int i = 0; i < count; ++i) {
+        int toDraw = Mathf.Min(count, deck.Count);
+        GameObject[] deal = new GameObject[toDraw];
+        for(int i = 0; i < toDraw; ++i) {
             deal[i] = Draw();
         }
         return deal;

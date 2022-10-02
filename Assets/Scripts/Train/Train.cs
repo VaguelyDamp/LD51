@@ -20,18 +20,23 @@ public class Train : MonoBehaviour
 
     private DeckManager deck;
 
+    public float secsToDest;
+    public float initialSecondsToDestination = 60.0f;
+
     private void Start() {
         CurrentSpeed = this.MaxSpeed;
 
         deck = FindObjectOfType<DeckManager>();
 
+        secsToDest = initialSecondsToDestination;
+
+        Meter.Get(ValueChannel.Progress).minVal = 0;
+        Meter.Get(ValueChannel.Progress).maxVal = initialSecondsToDestination;
+
         if(deck) {
-            Debug.Log("Found deck, placing cars from hand");
             foreach(GameObject card in deck.GetHand()){
-                Debug.LogFormat("Card {0}", card);
                 CarCard carCard = card.GetComponent<CarCard>();
                 if (carCard) {
-                    Debug.Log("Found car card in hand");
                     AddCar(carCard.CarPrefab);
                 }
             }
@@ -54,6 +59,24 @@ public class Train : MonoBehaviour
         created.transform.Find("NumberText").GetComponent<TextMeshPro>().text = (10 - cars.Count).ToString();
         cars.Add(created);
 
+    }
+
+    private void Update() {
+        DoKeyboardCarSelection();
+        DestinationCountdown();
+    }
+
+    private void DestinationCountdown() {
+        secsToDest -= Time.deltaTime;
+
+        if(secsToDest <= 0) {
+            FindObjectOfType<SceneTransition>().StartSceneTransition();
+        }
+        else {
+            if(Meter.Get(ValueChannel.Progress) != null) {
+                Meter.Get(ValueChannel.Progress).Value = initialSecondsToDestination - secsToDest;
+            }
+        }
     }
 
     private void DoKeyboardCarSelection() {
@@ -93,7 +116,5 @@ public class Train : MonoBehaviour
         }
     }
 
-    private void Update() {
-        DoKeyboardCarSelection();
-    }
+    
 }
