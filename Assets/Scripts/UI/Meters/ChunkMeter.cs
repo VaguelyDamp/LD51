@@ -64,6 +64,7 @@ public class ChunkMeter : Meter
         GameObject chunk = new GameObject("barChunk");
         chunk.transform.parent = transform;
         chunk.transform.localPosition = position;
+        chunk.transform.rotation = transform.rotation;
         chunk.transform.localScale = new Vector3(
             chunkSize.x / chunkSprite.bounds.size.x,
             chunkSize.y / chunkSprite.bounds.size.x,

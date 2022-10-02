@@ -7,14 +7,20 @@ public class Car : MonoBehaviour
     int stars = 1;
     int hearts = 3;
 
+    public bool carDead = false;
+
 
     [SerializeField]
     private AnimationCurve fallCurve;
     private float fallTime = 2.5f;
 
+    private ChunkMeter heartMeter;
+
     public void TaskFailed()
     {
         hearts -= 1;
+        Debug.Log("Car: "+name+" has "+hearts+" hearts");
+        heartMeter.Value = hearts;
         if (hearts <= 0) KillCar();
     }
 
@@ -22,6 +28,7 @@ public class Car : MonoBehaviour
     {
         stars = 0;
         hearts = 0;
+        carDead = true;
         StartCoroutine(CarFall());
     }
     private IEnumerator CarFall()
@@ -44,7 +51,10 @@ public class Car : MonoBehaviour
 
     void Start()
     {
-        
+        heartMeter = transform.Find("Car").Find("CarCanvas").Find("HeartMeter").GetComponent<ChunkMeter>();
+        heartMeter.maxVal = hearts;
+        heartMeter.numChunks = hearts;
+        heartMeter.Value = hearts;
     }
 
     // Update is called once per frame

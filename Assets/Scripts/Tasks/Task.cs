@@ -13,6 +13,7 @@ public class Task : MonoBehaviour
 
     public float minInterval = 10;
     public float maxInterval = 10;
+    public float offset = 0;
     public float failTime = 2;
 
     public float otherSelectedTimeMult = 0.5f;
@@ -84,7 +85,7 @@ public class Task : MonoBehaviour
 
     private void StartTask() 
     {
-        Debug.Log("Task Started");
+        //Debug.Log("Task Started");
         //Display Task
         
         PromptSpot[] spots = transform.Find("TrainPlane").gameObject.GetComponentsInChildren<PromptSpot>();
@@ -139,7 +140,7 @@ public class Task : MonoBehaviour
 
     private void EndTask()
     {
-        Debug.Log("Task Completed!");
+        //Debug.Log("Task Completed!");
         taskUp = false;
         actualSpot.taken = false;
         actualSpot = null;
@@ -150,7 +151,7 @@ public class Task : MonoBehaviour
 
     private void KeySuccess()
     {
-        Debug.Log("Correct Key");
+        //Debug.Log("Correct Key");
         //Do positive feedback here
         prompt.transform.Find((keyIndex+1).ToString()).gameObject.GetComponent<SpriteRenderer>().color = successColor;
         keyIndex++;
@@ -159,7 +160,7 @@ public class Task : MonoBehaviour
 
     private void KeyFail()
     {
-        Debug.Log("Incorrect Key");
+        //Debug.Log("Incorrect Key");
         //Do negative feedback here
         StartCoroutine(KeyFailAnim(keyIndex));
 
@@ -187,6 +188,7 @@ public class Task : MonoBehaviour
     void Start()
     {
         ResetTask();
+        timeTillStart = offset;
         timeTillFail = failTime;
 
         if (keys.Length > 5) Debug.LogError("Too many keys!");

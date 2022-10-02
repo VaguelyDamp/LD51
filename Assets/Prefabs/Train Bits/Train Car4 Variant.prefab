@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4844528625953675344, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
+      propertyPath: offset
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
 --- !u!1 &8195772660174741314 stripped
@@ -132,6 +136,7 @@ MonoBehaviour:
   associatedTrainCar: 0
   minInterval: 15
   maxInterval: 25
+  offset: 0
   failTime: 5
   otherSelectedTimeMult: 0.5
   successColor: {r: 0, g: 1, b: 0, a: 1}
