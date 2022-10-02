@@ -98,6 +98,7 @@ public class Task : MonoBehaviour
         if (prompt != null) 
         {
             Debug.LogWarning("Trying to create an already existing prompt");
+            timeTillStart = 0.2f;
             return;
         }
         
