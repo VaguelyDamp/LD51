@@ -15,6 +15,8 @@ public class Task : MonoBehaviour
     public float maxInterval = 10;
     public float failTime = 2;
 
+    public float otherSelectedTimeMult = 0.5f;
+
     private float timeTillStart = 0;
     private float timeTillFail;
     private bool taskUp = false;
@@ -26,6 +28,7 @@ public class Task : MonoBehaviour
     private FillMeter timerMeter;
 
     private bool selected = false;
+    private bool otherSelected = false;
 
     public Color successColor = Color.green;
     public Color failColor = Color.red;
@@ -141,7 +144,7 @@ public class Task : MonoBehaviour
         actualSpot = null;
         ResetTask();
 
-        FindObjectOfType<Train>().SelectCar(-1);
+        if(selected) FindObjectOfType<Train>().SelectCar(-1);
     }
 
     private void KeySuccess()
@@ -199,7 +202,8 @@ public class Task : MonoBehaviour
 
         if (taskUp)
         {
-            timeTillFail -= Time.deltaTime;
+            float modTimeStep = Time.deltaTime * (otherSelected ? otherSelectedTimeMult : 1.0f);
+            timeTillFail -= modTimeStep;
             timerMeter.Value = timeTillFail;
             if (timeTillFail <= 0) FailTask();
 
@@ -212,6 +216,8 @@ public class Task : MonoBehaviour
 
     private void OnTrainSelectionChanged(int newSelection) {
         selected = (newSelection == associatedTrainCar);
+        otherSelected = !selected && (newSelection != -1);
+
         SetKeyPromptsHidden(!selected);
         if(selected) {
             Debug.LogFormat("Task {0} on car {1} is now active", taskName, associatedTrainCar);

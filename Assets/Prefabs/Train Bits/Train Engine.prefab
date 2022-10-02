@@ -479,6 +479,7 @@ MonoBehaviour:
   taskName: Shovel Coal
   keys: 730000006c00000064000000
   isOrdered: 1
+  associatedTrainCar: 0
   minInterval: 10
   maxInterval: 10
   failTime: 4
@@ -552,15 +553,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8762475957576713383}
-  m_LocalRotation: {x: -0.11255516, y: 0.7019516, z: -0.1138831, w: -0.69399273}
-  m_LocalPosition: {x: 4.071128, y: 2.4119282, z: -0.8294821}
+  m_LocalRotation: {x: 0.026509129, y: -0.7066097, z: 0.026509129, w: 0.7066097}
+  m_LocalPosition: {x: 4.9745817, y: 2.669952, z: -0.96772003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8762475957029343530}
   m_Father: {fileID: 8762475957025095142}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.297, y: -90, z: 0}
 --- !u!114 &8762475957576713369
 MonoBehaviour:
   m_ObjectHideFlags: 0
