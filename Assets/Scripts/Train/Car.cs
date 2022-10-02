@@ -77,7 +77,8 @@ public class Car : MonoBehaviour
             FindObjectOfType<Train>().GameOver();
         }
         //Do fire here
-        //gameObject.GetComponent<CarWobble>().iBeWobblin = true;
+        gameObject.GetComponent<CarWobble>().resetRot(endPos);
+        gameObject.GetComponent<CarWobble>().iBeWobblin = true;
     }
 
     private void Awake()
@@ -87,10 +88,13 @@ public class Car : MonoBehaviour
         heartMeter.numChunks = hearts;
         heartMeter.Value = hearts;
 
-        starMeter = transform.Find("Car").Find("CarCanvas").Find("StarMeter").GetComponent<ChunkMeter>();
-        starMeter.maxVal = stars;
-        starMeter.numChunks = stars;
-        starMeter.Value = stars;
+        if (gameObject.tag == "Car")
+        {
+            starMeter = transform.Find("Car").Find("CarCanvas").Find("StarMeter").GetComponent<ChunkMeter>();
+            starMeter.maxVal = stars;
+            starMeter.numChunks = stars;
+            starMeter.Value = stars;
+        }
 
         carWobble = gameObject.GetComponent<CarWobble>();
         car = transform.Find("Car");
