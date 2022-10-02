@@ -52,8 +52,18 @@ public class Train : MonoBehaviour
         if(SelectedCar == index) index = -1;
         if(index >= cars.Count) index = -1;
 
-        if(SelectedCar != -1) cars[SelectedCar].GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
-        if(index != -1) cars[index].GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>().Priority = 100;
+        if(SelectedCar != -1)
+        {
+            cars[SelectedCar].GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
+            cars[SelectedCar].GetComponent<IntFlipper>().Flip(false);
+        } 
+        if(index != -1)
+        {
+            cars[index].GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>().Priority = 100;
+            cars[index].GetComponent<IntFlipper>().Flip(true);
+        }        
+        
+
         SelectedCar = index;
 
         CarSelectionChanged.Invoke(SelectedCar);
