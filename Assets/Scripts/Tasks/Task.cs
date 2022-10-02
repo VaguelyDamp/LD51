@@ -14,9 +14,9 @@ public class Task : MonoBehaviour
     public float minInterval = 10;
     public float maxInterval = 10;
     public float offset = 0;
-    public float failTime = 2;
+    public float failTime = 4;
 
-    public float otherSelectedTimeMult = 0.5f;
+    public float otherSelectedTimeMult = 0.75f;
 
     private float timeTillStart = 0;
     private float timeTillFail;
@@ -153,7 +153,7 @@ public class Task : MonoBehaviour
         actualSpot = null;
         ResetTask();
 
-        if(selected) FindObjectOfType<Train>().SelectCar(-1);
+        //if(selected) FindObjectOfType<Train>().SelectCar(-1);
     }
 
     private void KeySuccess()

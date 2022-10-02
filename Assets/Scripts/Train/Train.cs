@@ -71,6 +71,20 @@ public class Train : MonoBehaviour
         cars.Add(created);
     }
 
+    public void GameOver()
+    {
+        StartCoroutine(DoGameOver());
+    }
+    private IEnumerator DoGameOver()
+    {
+        for (float speed = CurrentSpeed; speed > 0; speed = speed - 30*Time.deltaTime) 
+        {
+            CurrentSpeed = speed;
+            yield return null;
+        }
+        //Transition to game over screen
+    }
+
     private void Update() {
         DoKeyboardCarSelection();
         DestinationCountdown();
@@ -121,7 +135,7 @@ public class Train : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha0)) {
             SelectCar(0);
         }
-        else if (Input.GetKeyDown(KeyCode.Space)) {
+        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)) {
             SelectCar(-1);
         }
     }

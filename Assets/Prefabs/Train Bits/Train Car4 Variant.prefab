@@ -67,38 +67,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CM Train
       objectReference: {fileID: 0}
-    - target: {fileID: 3391668288853834827, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.718
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391668288853834827, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7031853
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391668288853834827, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.010115263
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391668288853834827, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7108158
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391668288853834827, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.0130057875
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391668288853834827, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 1.875
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391668288853834827, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90.615
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391668288853834827, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.224
-      objectReference: {fileID: 0}
     - target: {fileID: 3391668288853834828, guid: c2f83b62ff8009242a9f67853d6757d5, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
       value: 1.5997783

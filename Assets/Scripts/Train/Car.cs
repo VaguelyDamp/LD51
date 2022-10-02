@@ -28,7 +28,7 @@ public class Car : MonoBehaviour
         StartCoroutine(DamageShake());
         if (hearts <= 0) KillCar();
     }
-    private IEnumerator DamageShake()
+    protected IEnumerator DamageShake()
     {
         //Turn car red
         //carWobble.iBeWobblin = false;
@@ -48,7 +48,7 @@ public class Car : MonoBehaviour
         shakinBakin = false;
     }
 
-    private void KillCar()
+    protected void KillCar()
     {
         stars = 0;
         hearts = 0;
@@ -56,7 +56,7 @@ public class Car : MonoBehaviour
         foreach (Task task in gameObject.GetComponents<Task>()) task.KillCar();
         StartCoroutine(CarFall());
     }
-    private IEnumerator CarFall()
+    protected IEnumerator CarFall()
     {
         while(shakinBakin) yield return null;
         Quaternion startPos = car.rotation;
@@ -70,11 +70,15 @@ public class Car : MonoBehaviour
             car.rotation = Quaternion.LerpUnclamped(startPos, endPos, fallCurve.Evaluate(percent));
             yield return null;
         }
+        if (gameObject.tag == "Engine")
+        {
+            FindObjectOfType<Train>().GameOver();
+        }
         //Do fire here
         //gameObject.GetComponent<CarWobble>().iBeWobblin = true;
     }
 
-    void Start()
+    protected void Start()
     {
         heartMeter = transform.Find("Car").Find("CarCanvas").Find("HeartMeter").GetComponent<ChunkMeter>();
         heartMeter.maxVal = hearts;
