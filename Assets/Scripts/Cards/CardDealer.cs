@@ -65,6 +65,28 @@ public class CardDealer : MonoBehaviour
         }
     }
 
+    private int GetAddedStaffSlotsWithCurrentSelection(StaffCard.StaffType staffType) {
+        int count = 0;
+        foreach(int selected in selectedCards) {
+            CarCard cc = dealtCards[selected].GetComponent<CarCard>();
+            if(cc) {
+                count += cc.GetSlotCountOfType(staffType);
+            }
+        }
+        return count;
+    }
+
+    private int GetAddedStaffCardsWithCurrentSelection(StaffCard.StaffType staffType) {
+        int count = 0;
+        foreach(int selected in selectedCards) {
+            StaffCard sc = dealtCards[selected].GetComponent<StaffCard>();
+            if(sc && sc.staffType == staffType) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
     /*
         Returns a boolean for if the card should be selected after the operation
     */
@@ -73,14 +95,55 @@ public class CardDealer : MonoBehaviour
 
         bool isSelected = false;
         if(selectedCards.Contains(selection)) {
-            selectedCards.Remove(selection);
+            CarCard car = dealtCards[selection].GetComponent<CarCard>();
+            if(car) {
+                foreach(var slotType in car.staffSlots) {
+                    int currentSlots = deck.GetStaffSlotCountInHandByType(slotType);
+                    int currentStaff = deck.GetStaffCardCountInHandByType(slotType);
+
+                    int addedSlots = GetAddedStaffSlotsWithCurrentSelection(slotType);
+                    int addedStaff = GetAddedStaffCardsWithCurrentSelection(slotType);
+
+                    int slotCountChange = car.GetSlotCountOfType(slotType);
+
+                    if((currentSlots + addedSlots - slotCountChange) < (currentStaff + addedStaff)) {
+                        isSelected = true;
+                        break;
+                    }
+                }
+                if(!isSelected) {
+                    selectedCards.Remove(selection);
+                }
+            }
+            else {
+                selectedCards.Remove(selection);
+            }
         }
         else {
             if (selectedCards.Count >= maxAllowedSelection) {
             }
             else {
-                selectedCards.Add(selection);
-                isSelected = true;
+                StaffCard staff = dealtCards[selection].GetComponent<StaffCard>();
+                if(staff) {
+                    var staffType = staff.staffType;
+                    int currentSlots = deck.GetStaffSlotCountInHandByType(staffType);
+                    int currentStaff = deck.GetStaffCardCountInHandByType(staffType);
+
+                    int addedSlots = GetAddedStaffSlotsWithCurrentSelection(staffType);
+                    int addedStaff = GetAddedStaffCardsWithCurrentSelection(staffType);
+
+                    int totalSlots = currentSlots + addedSlots;
+                    int totalStaff = currentStaff + addedStaff;
+
+                    if(totalSlots > totalStaff){
+                        selectedCards.Add(selection);
+                        isSelected = true;
+                    }
+                }
+                else {
+                    selectedCards.Add(selection);
+                    isSelected = true;
+                }
             }
         }
 

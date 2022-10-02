@@ -62,9 +62,7 @@ public class DeckManager : MonoBehaviour
         foreach(GameObject card in hand) {
             CarCard cc = card.GetComponent<CarCard>();
             if(cc) {
-                foreach(StaffCard.StaffType slot in cc.staffSlots) {
-                    if(slot == staffType) ++count;
-                }
+                count += cc.GetSlotCountOfType(staffType);
             }
         }
 

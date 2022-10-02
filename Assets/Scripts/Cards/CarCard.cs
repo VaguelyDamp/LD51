@@ -19,4 +19,14 @@ public class CarCard : MonoBehaviour
             slotObj.transform.parent = transform;
         }
     }
+
+    public int GetSlotCountOfType(StaffCard.StaffType staffType) {
+        int count = 0;
+        foreach(StaffCard.StaffType slot in staffSlots) {
+            if(slot == staffType) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
