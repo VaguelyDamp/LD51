@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    int stars = 1;
-    int hearts = 3;
+    public int stars = 1;
+    public int hearts = 3;
 
     public bool carDead = false;
 
@@ -15,6 +15,7 @@ public class Car : MonoBehaviour
     private float fallTime = 2.5f;
 
     private ChunkMeter heartMeter;
+    private ChunkMeter starMeter;
     private CarWobble carWobble;
     private Transform car;
 
@@ -84,6 +85,11 @@ public class Car : MonoBehaviour
         heartMeter.maxVal = hearts;
         heartMeter.numChunks = hearts;
         heartMeter.Value = hearts;
+
+        starMeter = transform.Find("Car").Find("CarCanvas").Find("StarMeter").GetComponent<ChunkMeter>();
+        starMeter.maxVal = stars;
+        starMeter.numChunks = stars;
+        starMeter.Value = stars;
 
         carWobble = gameObject.GetComponent<CarWobble>();
         car = transform.Find("Car");

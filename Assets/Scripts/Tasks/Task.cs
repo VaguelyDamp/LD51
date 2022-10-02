@@ -94,6 +94,12 @@ public class Task : MonoBehaviour
     {
         //Debug.Log("Task Started");
         //Display Task
+
+        if (prompt != null) 
+        {
+            Debug.LogWarning("Trying to create an already existing prompt");
+            return;
+        }
         
         PromptSpot[] spots = transform.Find("TrainPlane").gameObject.GetComponentsInChildren<PromptSpot>();
         actualSpot = null;
@@ -113,11 +119,6 @@ public class Task : MonoBehaviour
             return;
         }
 
-        if (prompt != null) 
-        {
-            Debug.LogWarning("Trying to create an already existing prompt");
-            Destroy(prompt);
-        }
         prompt = Instantiate(promptPrefab, actualSpot.transform);
         Transform promptCanvas = prompt.transform.Find("Canvas");
         promptCanvas.Find("Name").GetComponent<TextMeshPro>().text = taskName;
