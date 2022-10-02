@@ -1966,7 +1966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardRow: {fileID: 118117702}
   cardSpacing: {x: 250, y: 0, z: 0}
-  minAllowedSelection: 3
+  minAllowedSelection: 1
   maxAllowedSelection: 3
   dealCount: 5
   acceptButton: {fileID: 1362658124}

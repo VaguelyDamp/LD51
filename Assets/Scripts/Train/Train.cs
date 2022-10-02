@@ -176,8 +176,15 @@ public class Train : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha0)) {
             SelectCar(0);
         }
-        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)) {
+        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.DownArrow)) {
             SelectCar(-1);
+        }
+
+        if (SelectedCar != -1 && SelectedCar > 0 && Input.GetKeyDown(KeyCode.RightArrow)) {
+            SelectCar(SelectedCar - 1);
+        }
+        else if (SelectedCar != -1 && SelectedCar < 9 && Input.GetKeyDown(KeyCode.LeftArrow)) {
+            SelectCar(SelectedCar + 1);
         }
     }
 
