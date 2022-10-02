@@ -110,3 +110,8 @@ MonoBehaviour:
   taskUp: 0
   successColor: {r: 0, g: 1, b: 0, a: 1}
   failColor: {r: 1, g: 0, b: 0, a: 1}
+  taskPopUp: {fileID: 8300000, guid: 71fc25c94d511ac41ab8d2f84dcc9d6f, type: 3}
+  taskFailNoise: {fileID: 8300000, guid: 8249cf48e6251344abd2bf2bdabb99e4, type: 3}
+  goodKey: {fileID: 8300000, guid: 85d0c67178db14d48ac3cb9b9b17fd92, type: 3}
+  badKey: {fileID: 8300000, guid: cff02d13b7e6cf94992b14c0e22be6ec, type: 3}
+  taskSucceed: {fileID: 8300000, guid: dd8439498710dbe48941640c1b9f1f6d, type: 3}

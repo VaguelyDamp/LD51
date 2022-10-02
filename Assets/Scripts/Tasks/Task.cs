@@ -35,6 +35,13 @@ public class Task : MonoBehaviour
     public Color successColor = Color.green;
     public Color failColor = Color.red;
 
+    private AudioSource audioS;
+    public AudioClip taskPopUp;
+    public AudioClip taskFailNoise;
+    public AudioClip goodKey;
+    public AudioClip badKey;
+    public AudioClip taskSucceed;
+
     
     private float interval() 
     {
@@ -57,6 +64,7 @@ public class Task : MonoBehaviour
     private void FailTask()
     {
         Debug.Log("Task Failed");
+        audioS.PlayOneShot(taskFailNoise);
         taskUp = false;
         StartCoroutine(FailTaskAnim());
         //Failure Stuff
@@ -77,6 +85,7 @@ public class Task : MonoBehaviour
     {
         Debug.Log("Task Succeeded");
         taskUp = false;
+        audioS.PlayOneShot(taskSucceed);
         StartCoroutine(SucceedTaskAnim());
     }
     private IEnumerator SucceedTaskAnim()
@@ -119,6 +128,8 @@ public class Task : MonoBehaviour
             Debug.Log("Can't find a spot");
             return;
         }
+
+        audioS.PlayOneShot(taskPopUp);
 
         prompt = Instantiate(promptPrefab, actualSpot.transform);
         Transform promptCanvas = prompt.transform.Find("Canvas");
@@ -167,6 +178,7 @@ public class Task : MonoBehaviour
     {
         //Debug.Log("Correct Key");
         //Do positive feedback here
+        audioS.PlayOneShot(goodKey, 0.5f);
         prompt.transform.Find((keyIndex+1).ToString()).gameObject.GetComponent<SpriteRenderer>().color = successColor;
         keyIndex++;
         if (keyIndex >= keys.Length) SucceedTask();
@@ -176,6 +188,7 @@ public class Task : MonoBehaviour
     {
         //Debug.Log("Incorrect Key");
         //Do negative feedback here
+        audioS.PlayOneShot(badKey);
         StartCoroutine(KeyFailAnim(keyIndex));
 
     }
@@ -201,6 +214,7 @@ public class Task : MonoBehaviour
 
     void Start()
     {
+        audioS = gameObject.GetComponent<AudioSource>();
         ResetTask();
         timeTillStart = offset;
         timeTillFail = failTime;
