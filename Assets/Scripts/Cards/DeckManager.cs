@@ -55,16 +55,19 @@ public class DeckManager : MonoBehaviour
         else {
             instance = this;
 
-            deck = new List<GameObject>();
-            deck.AddRange(baseDeck);
-
-            hand = new List<GameObject>();
-            discard = new List<GameObject>();
-
-            score = 0;
-
-            DontDestroyOnLoad(gameObject);
+            ResetDeck();
         }
+    }
+
+    public void ResetDeck() {
+        deck = new List<GameObject>();
+        deck.AddRange(baseDeck);
+
+        hand = new List<GameObject>();
+        discard = new List<GameObject>();
+
+        score = 0;
+        stationIndex = 0;
     }
 
     public GameObject Draw() {
