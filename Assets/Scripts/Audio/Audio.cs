@@ -88,6 +88,10 @@ public class Audio : MonoBehaviour
             Die();
             StartCoroutine(DoMainMenu());
         }
+        else if (scene.name == "MainMenu" && stationRadio.isPlaying) 
+        {
+            Fade(stationRadio, 1);
+        }
         else if (scene.name == "Winsville")
         {
             Die();
