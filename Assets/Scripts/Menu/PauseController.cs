@@ -1,13 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class PauseController : MonoBehaviour
 {
     void Awake()
     {
-        TextMeshPro myTextMesh = GetComponent<TextMeshPro>();
-        myTextMesh.text = "TEXT on a screen!!";
 
     }
     // Start is called before the first frame update
@@ -21,15 +18,31 @@ public class PauseController : MonoBehaviour
     {
         
     }
-
     GameObject menuText = new GameObject();
 
-    // public void PauseButton()
-    // {
-    //     Time.timeScale = 0.0f;
-    //     _pauseMenu.SetActive(true);
-    //     _pauseButton.SetActive(false);
-    // }
+    [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _pauseButton;
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void Menu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void PauseButton()
+    {
+        Time.timeScale = 0.0f;
+        _pauseMenu.SetActive(true);
+        _pauseButton.SetActive(false);
+    }
 
     // public void ResumeButton()
     // {
