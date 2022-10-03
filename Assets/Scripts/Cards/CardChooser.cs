@@ -33,6 +33,7 @@ public class CardChooser : MonoBehaviour
     private IEnumerator rejectionCoroutine;
 
     public AudioClip selectBoop;
+    public AudioClip deselectBoop;
     public AudioClip rejectBoop;
 
     private AudioSource sauce;
@@ -68,6 +69,9 @@ public class CardChooser : MonoBehaviour
         }
         else if(selected) {
             sauce.PlayOneShot(selectBoop);
+        }
+        else if (!selected) {
+            sauce.PlayOneShot(deselectBoop);
         }
     }
 

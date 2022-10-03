@@ -162,6 +162,7 @@ MonoBehaviour:
   toFade:
   - {fileID: 7337424603442357587}
   selectBoop: {fileID: 8300000, guid: 215f7b3a55524d74d848545ce64d1812, type: 3}
+  deselectBoop: {fileID: 8300000, guid: b53703fef5c7760499529ba680001045, type: 3}
   rejectBoop: {fileID: 8300000, guid: 9774270560ded4b4da3179b8a49b1940, type: 3}
 --- !u!82 &5151825421748049730
 AudioSource:
