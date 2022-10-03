@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: b199be1f7dd853e498194abaae39b903
+guid: 8991f275b1620fd448496a0c321a3fd5
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: DarkMarbleMtl
-    second: {fileID: 2100000, guid: 69c653afc4b2e484a8b0e9ef06c3df0a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MarbleMtl
-    second: {fileID: 2100000, guid: 04aacf79120af504492906972a3109a1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: YellowMtl
-    second: {fileID: 2100000, guid: fb2c3cc7b440ebc479094c6878dc26a9, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
