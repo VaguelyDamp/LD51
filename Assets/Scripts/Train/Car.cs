@@ -61,6 +61,8 @@ public class Car : MonoBehaviour
         carDead = true;
         foreach (Task task in gameObject.GetComponents<Task>()) task.KillCar();
         StartCoroutine(CarFall());
+
+        FindObjectOfType<DeckManager>().RemoveCardFromHand(card.gameObject);
     }
     protected IEnumerator CarFall()
     {
