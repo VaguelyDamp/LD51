@@ -247,7 +247,7 @@ public class Task : MonoBehaviour
     void Update()
     {
         timeTillStart -= Time.deltaTime;
-        if (timeTillStart <= 0 && !carDead && !taskUp && taskEnabled) StartTask();
+        if (timeTillStart <= 0 && !carDead && !taskUp && taskEnabled && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "trainplace") StartTask();
 
         if (taskUp)
         {
