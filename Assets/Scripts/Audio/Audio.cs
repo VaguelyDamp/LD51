@@ -13,10 +13,20 @@ public class Audio : MonoBehaviour
 
     public float fadeDuration;
 
-    void Start ()
+    void Awake ()
     {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Audio");
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
         DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        if (SceneManager.GetActiveScene().name == "trainplace")
+        {
+            DepartStation();
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadType)
