@@ -28,6 +28,8 @@ public class Train : MonoBehaviour
     private bool ded = false;
     public float initialSecondsToDestination = 60.0f;
 
+    public AudioSource bigDieRadio;
+
     public bool disableLogic = false;
 
     private void Start() {
@@ -116,6 +118,7 @@ public class Train : MonoBehaviour
     public void GameOver()
     {
         StartCoroutine(DoGameOver());
+        bigDieRadio.Play();
         ded = true;
     }
     private IEnumerator DoGameOver()

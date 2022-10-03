@@ -13,6 +13,15 @@ public class Audio : MonoBehaviour
 
     public float fadeDuration;
 
+    public void Die ()
+    {
+        ambientRadio.Stop();
+        trainRadio.Stop();
+        stationRadio.Stop();
+        arrivalRadio.Stop();
+        departureRadio.Stop();
+    }
+
     void Awake ()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Audio");
