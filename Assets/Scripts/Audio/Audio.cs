@@ -85,13 +85,20 @@ public class Audio : MonoBehaviour
         }
         else if (scene.name == "MainMenu" && trainRadio.isPlaying)
         {
-            Fade(stationRadio, 1);
+            Die();
+            StartCoroutine(DoMainMenu());
         }
         else if (scene.name == "Winsville")
         {
             Die();
             winRadio.Play();
         }
+    }
+
+    private IEnumerator DoMainMenu ()
+    {
+        yield return new WaitForSeconds(fadeDuration);
+        Fade(stationRadio, 1);
     }
 
     void Update ()
