@@ -54,7 +54,8 @@ public class Train : MonoBehaviour
             foreach(GameObject card in deck.GetHand()){
                 CarCard carCard = card.GetComponent<CarCard>();
                 if (carCard) {
-                    AddCar(carCard.CarPrefab);
+                    GameObject car = AddCar(carCard.CarPrefab);
+                    car.GetComponent<Car>().card = carCard;
                 }
             }
         }
@@ -81,7 +82,7 @@ public class Train : MonoBehaviour
         CarSelectionChanged.Invoke(SelectedCar);
     }
 
-    public void AddCar(GameObject carPrefab) {
+    public GameObject AddCar(GameObject carPrefab) {
         GameObject created = GameObject.Instantiate(carPrefab, Vector3.zero, Quaternion.identity, transform);
         created.transform.localPosition = carSpacing * cars.Count;
         created.transform.localRotation = Quaternion.identity;
@@ -102,6 +103,7 @@ public class Train : MonoBehaviour
         created.transform.Find("NumberText").GetComponent<TextMeshPro>().text = (10 - cars.Count).ToString();
         
         cars.Add(created);
+        return created;
     }
 
     public void GameOver()

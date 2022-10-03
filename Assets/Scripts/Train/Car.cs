@@ -23,6 +23,8 @@ public class Car : MonoBehaviour
 
     private bool shakinBakin = false;
 
+    public CarCard card;
+
     public void TaskFailed()
     {
         hearts -= 1;
@@ -85,6 +87,14 @@ public class Car : MonoBehaviour
         gameObject.GetComponent<CarWobble>().iBeWobblin = true;
     }
 
+    public List<StaffCard.StaffType> GetAssignedStaffTypes() {
+        return card.GetStaffTypes();
+    }
+
+    private void Start() {
+        if(card) Debug.LogFormat("Associated Card: {0} - has {1} staff", card.gameObject.name, card.GetAttachedStaff().Length);
+    }
+
     private void Awake()
     {
         heartMeter = transform.Find("Car").Find("CarCanvas").Find("HeartMeter").GetComponent<ChunkMeter>();
@@ -109,6 +119,6 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

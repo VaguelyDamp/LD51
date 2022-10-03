@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardIndex: 0
   selectedMove: {x: 0, y: 200, z: 0}
-  moveSpeed: 1000
+  moveSpeed: 2500
   rejectionEffectTime: 0.5
   rejectionColor: {r: 1, g: 0, b: 0, a: 1}
   rejectionShakeMagnitude: 30
@@ -172,6 +172,7 @@ MonoBehaviour:
   carHealth: 3
   value: 3
   staffSlots: 00000000
+  uiSprite: {fileID: 0}
 --- !u!1 &7491706643471591684
 GameObject:
   m_ObjectHideFlags: 0

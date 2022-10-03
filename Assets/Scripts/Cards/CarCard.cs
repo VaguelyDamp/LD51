@@ -29,4 +29,18 @@ public class CarCard : MonoBehaviour
         }
         return count;
     }
+
+    public StaffCard[] GetAttachedStaff() {
+        return GetComponentsInChildren<StaffCard>();
+    }
+
+    public List<StaffCard.StaffType> GetStaffTypes() {
+        List<StaffCard.StaffType> staffList = new List<StaffCard.StaffType>();
+        
+        foreach(StaffCard card in GetAttachedStaff()) {
+            staffList.Add(card.staffType);
+        }
+
+        return staffList;
+    }
 }

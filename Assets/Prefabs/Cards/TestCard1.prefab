@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardIndex: 0
   selectedMove: {x: 0, y: 200, z: 0}
-  moveSpeed: 1000
+  moveSpeed: 2500
   rejectionEffectTime: 0.5
   rejectionColor: {r: 1, g: 0, b: 0, a: 1}
   rejectionShakeMagnitude: 30
