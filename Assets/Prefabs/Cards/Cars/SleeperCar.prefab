@@ -977,7 +977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ab54632ff758748be69061ce577c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarPrefab: {fileID: 3877516555010593548, guid: 2c0e93387b1d0274f8f0173255f68a98, type: 3}
+  CarPrefab: {fileID: 6425115574767557582, guid: 86a3eaaf1c6bac54b8bc500fc5262ae3, type: 3}
   carHealth: 2
   value: 2
   staffSlots: 0000000002000000
