@@ -56,7 +56,7 @@ public class StaffSpot : MonoBehaviour
 
         if(sc && !filled && sc.staffType == staffType) {
             Debug.LogFormat("Dropped Staff Card {0}", sc.gameObject.name);
-            FindObjectOfType<DeckManager>().AddToHand(sc.gameObject).transform.parent = slotGameObject.transform;
+            DeckManager.instance.AddToHand(sc.gameObject).transform.parent = slotGameObject.transform;
             FindObjectOfType<CardDealer>().MarkStaffCardAssigned(sc.gameObject);
 
             filled = true;

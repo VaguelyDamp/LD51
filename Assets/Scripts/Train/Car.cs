@@ -69,7 +69,7 @@ public class Car : MonoBehaviour
         foreach (Task task in gameObject.GetComponents<Task>()) task.KillCar();
         StartCoroutine(CarFall());
 
-        FindObjectOfType<DeckManager>().RemoveCardFromHand(card.gameObject);
+        DeckManager.instance.RemoveCardFromHand(card.gameObject);
     }
     protected IEnumerator CarFall()
     {

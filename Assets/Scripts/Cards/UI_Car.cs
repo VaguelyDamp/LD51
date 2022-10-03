@@ -23,9 +23,11 @@ public class UI_Car : MonoBehaviour {
         }
 
         realCardStaffSlots = new List<GameObject>();
-        foreach(Transform child in realCard.transform) {
-            if(child.name.StartsWith(staffSpotPredicate)) {
-                realCardStaffSlots.Add(child.gameObject);
+        if(realCard) {
+            foreach(Transform child in realCard.transform) {
+                if(child.name.StartsWith(staffSpotPredicate)) {
+                    realCardStaffSlots.Add(child.gameObject);
+                }
             }
         }
 

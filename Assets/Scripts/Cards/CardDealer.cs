@@ -7,8 +7,6 @@ public class CardDealer : MonoBehaviour
 {
     public Transform cardRow;
     public Vector3 cardSpacing = new Vector3(250, 0, 0);
-    
-    private DeckManager deck;
 
     private HashSet<int> selectedCards;
 
@@ -50,7 +48,6 @@ public class CardDealer : MonoBehaviour
 
     private void Awake() {
         selectedCards = new HashSet<int>();
-        deck = FindObjectOfType<DeckManager>();
         staffToAssign = 0;
     }
 
@@ -70,7 +67,7 @@ public class CardDealer : MonoBehaviour
     }
 
     private void SpawnCards() {
-        dealtCards = deck.Draw(dealCount);
+        dealtCards = DeckManager.instance.Draw(dealCount);
         dealtCardObjs = new GameObject[dealtCards.Length];
 
         Vector3 cardPos = ((dealtCards.Length - 1) / -2.0f) * cardSpacing;
@@ -115,8 +112,8 @@ public class CardDealer : MonoBehaviour
     }
 
     private int CalculateVacanciesForJobType(StaffCard.StaffType staffType) {
-        int currentSlots = deck.GetStaffSlotCountInHandByType(staffType);
-        int currentStaff = deck.GetStaffCardCountInHandByType(staffType);
+        int currentSlots = DeckManager.instance.GetStaffSlotCountInHandByType(staffType);
+        int currentStaff = DeckManager.instance.GetStaffCardCountInHandByType(staffType);
 
         int addedSlots = GetAddedStaffSlotsWithCurrentSelection(staffType);
         int addedStaff = GetAddedStaffCardsWithCurrentSelection(staffType);
@@ -236,12 +233,12 @@ public class CardDealer : MonoBehaviour
                     else {
                         StartCoroutine(DropOutCard(dealtCardObjs[i], selectedCardShoop));
                         dealtCardObjs[i] = null;
-                        deck.AddToHand(dealtCards[i]);
+                        DeckManager.instance.AddToHand(dealtCards[i]);
                     }
                 }
                 else {
                     // Return unchosen to deck
-                    deck.AddToDeck(dealtCards[i]); 
+                    DeckManager.instance.AddToDeck(dealtCards[i]); 
                     StartCoroutine(DropOutCard(dealtCardObjs[i], discardedCardShoop));
                     dealtCardObjs[i] = null;
                 }

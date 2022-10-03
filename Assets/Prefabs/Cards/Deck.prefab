@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9091689064682213663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9091689064682213661}
+  - component: {fileID: 9091689064682213660}
+  m_Layer: 0
+  m_Name: Deck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9091689064682213661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9091689064682213663}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1031.7177, y: 313.33405, z: -729.0038}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9091689064682213660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9091689064682213663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be73c76a8702c7544b3668d55d30b641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDeck:
+  - {fileID: 8585822884919717249, guid: 4afa19f868d143847874d328f5a81b76, type: 3}
+  - {fileID: 8585822884919717249, guid: 4afa19f868d143847874d328f5a81b76, type: 3}
+  - {fileID: 8585822884919717249, guid: 4afa19f868d143847874d328f5a81b76, type: 3}
+  - {fileID: 5876269917000528910, guid: 7c3a1b4223f0f124f9c158473195f89b, type: 3}
+  - {fileID: 3421681301472684325, guid: 53829aecc89c2c34ab4fec9b9ce69ec0, type: 3}
+  - {fileID: 3421681301472684325, guid: 53829aecc89c2c34ab4fec9b9ce69ec0, type: 3}
+  - {fileID: 6987242978944514608, guid: e7d26b08f0c7cfd409e777ca1a9b7ecc, type: 3}
+  - {fileID: 598640333220343669, guid: 0a1324e608fc57b4db7007836393f0c8, type: 3}
+  - {fileID: 598640333220343669, guid: 0a1324e608fc57b4db7007836393f0c8, type: 3}
+  - {fileID: 598640333220343669, guid: 0a1324e608fc57b4db7007836393f0c8, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 4178104964906985293, guid: 6eb3e87d756cfb342ac2fdd0fb2fc45a, type: 3}
+  - {fileID: 4178104964906985293, guid: 6eb3e87d756cfb342ac2fdd0fb2fc45a, type: 3}
+  - {fileID: 4178104964906985293, guid: 6eb3e87d756cfb342ac2fdd0fb2fc45a, type: 3}
+  - {fileID: 4421483021947486609, guid: 7abf223763e7d1d4eae1b90ca2060e7f, type: 3}
+  - {fileID: 4421483021947486609, guid: 7abf223763e7d1d4eae1b90ca2060e7f, type: 3}
+  - {fileID: 4421483021947486609, guid: 7abf223763e7d1d4eae1b90ca2060e7f, type: 3}
+  - {fileID: 3977871517934573145, guid: 31eb08e0147980b48aefd0a10e8734cb, type: 3}
+  - {fileID: 3977871517934573145, guid: 31eb08e0147980b48aefd0a10e8734cb, type: 3}
+  - {fileID: 3977871517934573145, guid: 31eb08e0147980b48aefd0a10e8734cb, type: 3}
+  - {fileID: 4418259822049101302, guid: ca66ea25d84f4314d9048a4857263d4c, type: 3}
+  - {fileID: 4418259822049101302, guid: ca66ea25d84f4314d9048a4857263d4c, type: 3}
+  - {fileID: 6562467227870671901, guid: 3f410e8de2acc8647bdf46144e13b24b, type: 3}
+  - {fileID: 6562467227870671901, guid: 3f410e8de2acc8647bdf46144e13b24b, type: 3}
+  - {fileID: 7088432481883311504, guid: 1dc1c7b3671175e4ba1344eb89eabd96, type: 3}
+  - {fileID: 7088432481883311504, guid: 1dc1c7b3671175e4ba1344eb89eabd96, type: 3}
+  - {fileID: 7088432481883311504, guid: 1dc1c7b3671175e4ba1344eb89eabd96, type: 3}
+  - {fileID: 7088432481883311504, guid: 1dc1c7b3671175e4ba1344eb89eabd96, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 4178104964906985293, guid: 6eb3e87d756cfb342ac2fdd0fb2fc45a, type: 3}
+  - {fileID: 5876269917000528910, guid: 7c3a1b4223f0f124f9c158473195f89b, type: 3}
+  - {fileID: 3421681301472684325, guid: 53829aecc89c2c34ab4fec9b9ce69ec0, type: 3}
+  - {fileID: 3421681301472684325, guid: 53829aecc89c2c34ab4fec9b9ce69ec0, type: 3}
+  - {fileID: 3421681301472684325, guid: 53829aecc89c2c34ab4fec9b9ce69ec0, type: 3}
+  - {fileID: 6987242978944514608, guid: e7d26b08f0c7cfd409e777ca1a9b7ecc, type: 3}
+  - {fileID: 6987242978944514608, guid: e7d26b08f0c7cfd409e777ca1a9b7ecc, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 4178104964906985293, guid: 6eb3e87d756cfb342ac2fdd0fb2fc45a, type: 3}
+  - {fileID: 4421483021947486609, guid: 7abf223763e7d1d4eae1b90ca2060e7f, type: 3}
+  - {fileID: 8585822884919717249, guid: 4afa19f868d143847874d328f5a81b76, type: 3}
+  - {fileID: 598640333220343669, guid: 0a1324e608fc57b4db7007836393f0c8, type: 3}
+  - {fileID: 7088432481883311504, guid: 1dc1c7b3671175e4ba1344eb89eabd96, type: 3}
+  - {fileID: 3977871517934573145, guid: 31eb08e0147980b48aefd0a10e8734cb, type: 3}
+  deck: []
+  hand: []
+  discard: []
+  stationNames:
+  - Tutorshire
+  - Avonbridge
+  - Dampington
+  - Moistershire
+  - Soggingham
+  - Vagueham
+  - Wet Ham
+  - Wetminster
+  - Wetterloo
+  - Winsville
+  stationRoundels:
+  - {fileID: 21300000, guid: 33cd92b10b8f39348b6fdd4c49c57bde, type: 3}
+  - {fileID: 21300000, guid: f6ebc7065039a734796be22a0c517ed5, type: 3}
+  - {fileID: 21300000, guid: 820d43524d6c6584ebd7d5d8f3f62e7e, type: 3}
+  - {fileID: 21300000, guid: 97ec4f65f9761bf41b8306315dd53ed8, type: 3}
+  - {fileID: 21300000, guid: 4545a3925704e5a44942399564dd8042, type: 3}
+  - {fileID: 21300000, guid: ae6ae8528a86e3e4b9a59e0e2cecd765, type: 3}
+  - {fileID: 21300000, guid: e675e01003ef83a4686fdae2bc2851a3, type: 3}
+  - {fileID: 21300000, guid: 9403a7ce0d2ae8a418ecfbf5ff8b8da3, type: 3}
+  - {fileID: 21300000, guid: 684189a85f6d42f4ba3538df108e7901, type: 3}
+  - {fileID: 21300000, guid: ab1a1c884a0ba0f4a868c88d49700e80, type: 3}
