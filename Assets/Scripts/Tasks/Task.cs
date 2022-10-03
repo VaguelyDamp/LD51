@@ -6,6 +6,7 @@ using UnityEngine;
 public class Task : MonoBehaviour
 {
     public string taskName = "Task Name";
+    public StaffCard.StaffType staffType;
     public KeyCode[] keys;
     public bool isOrdered = true;
 
