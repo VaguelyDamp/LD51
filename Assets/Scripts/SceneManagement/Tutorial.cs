@@ -81,6 +81,9 @@ public class Tutorial : MonoBehaviour
 
     public void DisplayTicket(string tuText)
     {
+        canvas = GameObject.Find("Canvas");
+        Debug.Log(canvas);
+        textTicket = canvas.transform.Find("TextTicket").gameObject;
         Time.timeScale = 0;
         textTicket.SetActive(true);
         textTicket.transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = tuText;
@@ -88,6 +91,8 @@ public class Tutorial : MonoBehaviour
 
     public void HideTicket()
     {
+        canvas = GameObject.Find("Canvas");
+        textTicket = canvas.transform.Find("TextTicket").gameObject;
         textTicket.SetActive(false);
         //spriteTicket.SetActive(false);
         Time.timeScale = 1;
