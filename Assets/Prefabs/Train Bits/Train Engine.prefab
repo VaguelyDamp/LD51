@@ -1160,7 +1160,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   fire: {fileID: 4751718497586858980, guid: f3b8b249bfbdfbb49a5bec28aa177d6d, type: 3}
-  killCarRadio: {fileID: 0}
   associatedTrainCar: 0
   card: {fileID: 0}
 --- !u!114 &3802464594467382690
@@ -1191,7 +1190,7 @@ AudioSource:
   m_GameObject: {fileID: 8762475957025095141}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4689271204251069900, guid: 6d45d1e7355e52c409662c260f9d1591, type: 2}
   m_audioClip: {fileID: 8300000, guid: 71fc25c94d511ac41ab8d2f84dcc9d6f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

@@ -47,6 +47,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 91ec33813c9702945b22023d588d790f, type: 2}
+    - target: {fileID: 4331303912005846380, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4689271204251069900, guid: 6d45d1e7355e52c409662c260f9d1591, type: 2}
     - target: {fileID: 6759280513728438067, guid: 632100e88c2871e45bcae48265f68628, type: 3}
       propertyPath: m_IsActive
       value: 1
