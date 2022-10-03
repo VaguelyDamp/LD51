@@ -11,8 +11,12 @@ public class Winning : MonoBehaviour
     void Start()
     {
         ticket = transform.Find("Ticket").gameObject;
-        endTicketPos = transform.Find("EndTicketPos").position;
-        ticket.transform.Find("Explanation").GetComponent<TMPro.TextMeshProUGUI>().text = "You were able to feed the engine coal every 10 seconds and delivered some stuff along the way.\n\nFinal Score: "+FindObjectOfType<DeckManager>().score;
+
+        int score = 0;
+        if(DeckManager.instance){
+            score = DeckManager.instance.score;
+        }
+        ticket.transform.Find("Explanation").GetComponent<TMPro.TextMeshProUGUI>().text = "You were able to feed the engine coal every 10 seconds and delivered some stuff along the way.\n\nFinal Score: "+score;
         StartCoroutine(MoveTicket());
     }
 
