@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class VolumeController : MonoBehaviour
 {
@@ -9,27 +10,66 @@ public class VolumeController : MonoBehaviour
 
 
     public Slider globalSlider, musicSlider, soundEffectSlider;
-    private float volumeFloat = .25f, soundEffectFloat = .75f;
 
-    // Start is called before the first frame update
-    void Awake()
+    public AudioMixer mixer;
+    
+    public void HandleGlobalSlider (float target) 
     {
-
-        PlayerPrefs.SetFloat(volumePref, volumeFloat);
-        if(PlayerPrefs.GetFloat("volumeFloat") == 0 || PlayerPrefs.GetFloat("soundEffectFloat") == 0)
-        {
-            PlayerPrefs.SetFloat("volumeFloat", volumeFloat);
-            PlayerPrefs.SetFloat("soundEffectFloat", soundEffectFloat);
-        }
+        Audio audio = FindObjectOfType<Audio>();
+        PlayerPrefs.SetFloat("globalFloat", target);
+        audio.ChangeGlobalVolume(target);
     }
 
-    public void SaveVolumeLevel(float volume)
+    public void HandleEffectsSlider (float target) 
     {
-        PlayerPrefs.SetFloat("volumeFloat", volume);
+        Audio audio = FindObjectOfType<Audio>();
+        PlayerPrefs.SetFloat("effectFloat", target);
+        audio.ChangeSoundEffectsVolume(target);
     }
     
-    public void SaveEffectLevel(float volume)
+
+    public void HandleMusicSlider (float target) 
     {
-        PlayerPrefs.SetFloat("soundEffectFloat", volume);
+        Audio audio = FindObjectOfType<Audio>();
+        PlayerPrefs.SetFloat("musicFloat", target);
+        audio.ChangeMusicVolume(target);
+    }
+    
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (PlayerPrefs.HasKey("globalFloat"))
+        {
+            globalSlider.value = PlayerPrefs.GetFloat("globalFloat");
+            mixer.SetFloat("MasterVolume", PlayerPrefs.GetFloat("globalFloat"));
+        }
+        else
+        {
+            globalSlider.value = -6f;
+            mixer.SetFloat("MasterVolume", -6f);
+        }
+
+        if (PlayerPrefs.HasKey("effectFloat"))
+        {
+            soundEffectSlider.value = PlayerPrefs.GetFloat("effectFloat");
+            mixer.SetFloat("SoundEffectsVolume", PlayerPrefs.GetFloat("effectFloat"));
+        }
+        else
+        {
+            soundEffectSlider.value = -6f;
+            mixer.SetFloat("SoundEffectsVolume", -6f);
+        }
+
+        if (PlayerPrefs.HasKey("musicFloat"))
+        {
+            musicSlider.value = PlayerPrefs.GetFloat("musicFloat");
+            mixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("musicFloat"));
+        }
+        else
+        {
+            musicSlider.value = -6f;
+            mixer.SetFloat("MusicVolume", -6f);
+        }
     }
 }

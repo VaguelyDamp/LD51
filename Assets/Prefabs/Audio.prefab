@@ -46,7 +46,7 @@ AudioSource:
   m_GameObject: {fileID: 5077210732371370178}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3379212795561216430, guid: 6d45d1e7355e52c409662c260f9d1591, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4d58e386cf7a9884ea8c73f4ac35ab4c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -142,7 +142,7 @@ AudioSource:
   m_GameObject: {fileID: 5077210732371370178}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9111510445427437346, guid: 6d45d1e7355e52c409662c260f9d1591, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2045e26e104deb649ae819a5eee64ee6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
@@ -238,10 +238,10 @@ AudioSource:
   m_GameObject: {fileID: 5077210732371370178}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4689271204251069900, guid: 6d45d1e7355e52c409662c260f9d1591, type: 2}
   m_audioClip: {fileID: 8300000, guid: bb8d9f1ec9f7af74f8ea478c18b15dad, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.85
+  m_Volume: 0.705
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -334,10 +334,10 @@ AudioSource:
   m_GameObject: {fileID: 5077210732371370178}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4689271204251069900, guid: 6d45d1e7355e52c409662c260f9d1591, type: 2}
   m_audioClip: {fileID: 8300000, guid: 08c332a8a19f92d4a81775c684ad048f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.85
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -430,7 +430,7 @@ AudioSource:
   m_GameObject: {fileID: 5077210732371370178}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4689271204251069900, guid: 6d45d1e7355e52c409662c260f9d1591, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6261aa2b24b1cff4ab4c6279431cf0ae, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -534,4 +534,4 @@ MonoBehaviour:
   departureRadio: {fileID: 5077210732371370185}
   arrivalRadio: {fileID: 5077210732371370184}
   ambientRadio: {fileID: 5077210732371370186}
-  fadeDuration: 4
+  fadeDuration: 2
