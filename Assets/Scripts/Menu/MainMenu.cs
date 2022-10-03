@@ -5,25 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private GameObject settingsMenu, menuButtons;
+    private GameObject settingsMenu, menuButtons, tutorial;
     void Start()
     {
         settingsMenu = transform.Find("SettingsMenu").gameObject;
-        //settingsMenu.SetActive(false);
+        tutorial = transform.Find("HowToPlay").gameObject;
         menuButtons = transform.Find("Buttons").gameObject;
     }
 
-    
-    public void ShowSettings()
+    public void ShowTutorial()
     {
-        settingsMenu.SetActive(true);
-        menuButtons.SetActive(false); 
+        tutorial.SetActive(true);
+        menuButtons.SetActive(false);
+        settingsMenu.SetActive(false);
     }
 
-    public void HideSettings()
+    public void HideTutorial()
     {
-        settingsMenu.SetActive(false);
+        tutorial.SetActive(false);
         menuButtons.SetActive(true);
+        settingsMenu.SetActive(true);
     }
 
     public void StartGame()
