@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
                        trainCarsText, 
                        trainOperationText,
                        staffText,
+                       textBackground,
                        scoringAndWinningText;
     void Start()
     {
@@ -25,6 +26,7 @@ public class MainMenu : MonoBehaviour
         trainCarsText = transform.Find("Train Operation Text").gameObject;
         staffText = transform.Find("Staff Text").gameObject;
         scoringAndWinningText = transform.Find("Winning Text").gameObject;
+        textBackground = transform.Find("TextBackground").gameObject;
 
         //Hide tutorial text
         overviewText.SetActive(false);
@@ -32,6 +34,7 @@ public class MainMenu : MonoBehaviour
         trainCarsText.SetActive(false);
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(false);
+        textBackground.SetActive(false);
     }
 
     public void ShowTutorial()
@@ -40,6 +43,7 @@ public class MainMenu : MonoBehaviour
         menuButtons.SetActive(false);
         settingsMenu.SetActive(false);
         overviewText.SetActive(true);
+        textBackground.SetActive(true);
     }
 
     public void HideTutorial()
@@ -48,6 +52,7 @@ public class MainMenu : MonoBehaviour
         menuButtons.SetActive(true);
         settingsMenu.SetActive(true);
         overviewText.SetActive(false);
+        textBackground.SetActive(false);
     }
 
     public void StartGame()
@@ -68,6 +73,7 @@ public class MainMenu : MonoBehaviour
         trainCarsText.SetActive(false);
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(false);
+        textBackground.SetActive(true);
     }
 
     public void ShowTrainOperationText()
@@ -77,6 +83,7 @@ public class MainMenu : MonoBehaviour
         trainCarsText.SetActive(false);
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(false);
+        textBackground.SetActive(true);
     }
 
     public void ShowTrainCarText()
@@ -86,6 +93,7 @@ public class MainMenu : MonoBehaviour
         trainCarsText.SetActive(true);
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(false);
+        textBackground.SetActive(true);
     }
 
     public void ShowStaffText()
@@ -95,6 +103,7 @@ public class MainMenu : MonoBehaviour
         trainCarsText.SetActive(false);
         staffText.SetActive(true);
         scoringAndWinningText.SetActive(false);
+        textBackground.SetActive(true);
     }
 
     public void ShowScoringAndWinningText()
@@ -104,5 +113,6 @@ public class MainMenu : MonoBehaviour
         trainCarsText.SetActive(false);
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(true);
+        textBackground.SetActive(true);
     }
 }
