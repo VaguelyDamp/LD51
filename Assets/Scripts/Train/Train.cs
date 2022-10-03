@@ -56,7 +56,10 @@ public class Train : MonoBehaviour
                 CarCard carCard = card.GetComponent<CarCard>();
                 if (carCard) {
                     GameObject car = AddCar(carCard.CarPrefab);
-                    car.GetComponent<Car>().card = carCard;
+                    Car carcar = car.GetComponent<Car>();
+                    carcar.card = carCard;
+                    carcar.hearts = carCard.carHealth;
+                    carcar.stars = carCard.value;
                 }
             }
         }
