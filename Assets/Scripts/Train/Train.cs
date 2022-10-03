@@ -36,6 +36,9 @@ public class Train : MonoBehaviour
 
     public bool spawnUITrain = false;
 
+    public GameObject gameOverTicket;
+    public GameObject endTicketPos;
+
     private void Start() {
         CurrentSpeed = this.MaxSpeed;
         hasWon = false;
@@ -148,7 +151,22 @@ public class Train : MonoBehaviour
             trainCam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = cameraNoiseGain;
             yield return null;
         }
-         trainCam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
+        trainCam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
+
+        yield return new WaitForSeconds(1);
+
+        gameOverTicket.transform.Find("Explanation").GetComponent<TMPro.TextMeshProUGUI>().text = "You failed to to feed the engine coal every 10 seconds.\nFinal Score: "+FindObjectOfType<DeckManager>().score.ToString();
+
+        float animTime = 0;
+        float animLength = 2;
+        Vector3 startTicketPos = gameOverTicket.transform.position;
+        while (animTime < animLength)
+        {
+            animTime += Time.deltaTime;
+            gameOverTicket.transform.position = Vector3.Lerp(startTicketPos, endTicketPos.transform.position, animTime/animLength);
+            yield return null;
+        }
+        
         //Transition to game over screen
     }
 
