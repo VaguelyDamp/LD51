@@ -19,6 +19,7 @@ public class Pauser : MonoBehaviour
             if (!isPaused)
             {
                 DoPause();
+
             }
             else
             {
