@@ -303,7 +303,7 @@ public class CardDealer : MonoBehaviour
             moveTimer -= Time.deltaTime;
             yield return null;
         }
-
+        if (DeckManager.instance.gameObject.GetComponent<Tutorial>() != null) DeckManager.instance.gameObject.GetComponent<Tutorial>().inStation = true;
     }
 
     private IEnumerator SendOutTrain() {
