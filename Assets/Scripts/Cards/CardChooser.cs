@@ -47,12 +47,13 @@ public class CardChooser : MonoBehaviour
         unselectPos = transform.position;
         selectPos = unselectPos + selectedMove;
 
+        transform.position = unselectPos + new Vector3(0, -500 + (cardIndex * -50), 0);
+
         animationActive = false;
 
         sauce = GetComponent<AudioSource>();
     }
 
-    
 
     public void SelectCard() {
         bool wasSelected = selected;
