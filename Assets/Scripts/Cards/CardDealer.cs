@@ -53,7 +53,11 @@ public class CardDealer : MonoBehaviour
 
     private void Start() {
         sauce = GetComponent<AudioSource>();
+        FindObjectOfType<Scoring>().StartScoring();        
+    }
 
+    public void actualStart()
+    {
         SpawnCards();
 
         acceptButton.interactable = (selectedCards.Count >= minAllowedSelection);

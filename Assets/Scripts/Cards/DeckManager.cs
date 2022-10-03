@@ -19,6 +19,8 @@ public class DeckManager : MonoBehaviour
 
     public static DeckManager instance;
 
+    public int score;
+
     private void Awake() {
         if(instance != null) {
             Destroy(gameObject);
@@ -31,6 +33,8 @@ public class DeckManager : MonoBehaviour
 
             hand = new List<GameObject>();
             discard = new List<GameObject>();
+
+            score = 0;
 
             DontDestroyOnLoad(gameObject);
         }
