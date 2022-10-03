@@ -39,6 +39,7 @@ public class MainMenu : MonoBehaviour
         tutorial.SetActive(true);
         menuButtons.SetActive(false);
         settingsMenu.SetActive(false);
+        overviewText.SetActive(true);
     }
 
     public void HideTutorial()
@@ -46,6 +47,7 @@ public class MainMenu : MonoBehaviour
         tutorial.SetActive(false);
         menuButtons.SetActive(true);
         settingsMenu.SetActive(true);
+        overviewText.SetActive(false);
     }
 
     public void StartGame()
