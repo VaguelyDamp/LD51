@@ -43,6 +43,8 @@ public class Task : MonoBehaviour
     public AudioClip[] badKeys;
     public AudioClip taskSucceed;
 
+    public bool taskEnabled = true;
+
     
     private float interval() 
     {
@@ -236,13 +238,15 @@ public class Task : MonoBehaviour
         promptPrefab = Resources.Load<GameObject>("Prefabs/TaskPrompts/"+keys.Length.ToString()+"Key"); //Find correct size prefab
     
         FindObjectOfType<Train>().CarSelectionChanged.AddListener(OnTrainSelectionChanged);
+        
+        if (gameObject.GetComponent<Car>().GetAssignedStaffTypes().Contains(staffType)) taskEnabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         timeTillStart -= Time.deltaTime;
-        if (timeTillStart <= 0 && !carDead && !taskUp) StartTask();
+        if (timeTillStart <= 0 && !carDead && !taskUp && taskEnabled) StartTask();
 
         if (taskUp)
         {
