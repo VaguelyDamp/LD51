@@ -4350,14 +4350,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2035494184}
     m_Modifications:
-    - target: {fileID: 684508813526160912, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: carWidth
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 684508813526160912, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: uiEnginePrefab
-      value: 
-      objectReference: {fileID: 8083863143607942488, guid: 2678be692bf413e4584879f5f92ed514, type: 3}
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4393,18 +4385,6 @@ PrefabInstance:
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_LocalPosition.x

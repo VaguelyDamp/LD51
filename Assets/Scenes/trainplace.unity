@@ -181,14 +181,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1929059444}
     m_Modifications:
-    - target: {fileID: 684508813526160912, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: carWidth
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 684508813526160912, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: uiEnginePrefab
-      value: 
-      objectReference: {fileID: 8083863143607942488, guid: 2678be692bf413e4584879f5f92ed514, type: 3}
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -224,18 +216,6 @@ PrefabInstance:
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -284,10 +264,6 @@ PrefabInstance:
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1548881511644452378, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_Name
@@ -2523,7 +2499,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6002215, y: 1}
+    m_SensorSize: {x: 2.0828793, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
