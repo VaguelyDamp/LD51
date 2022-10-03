@@ -158,7 +158,7 @@ public class Train : MonoBehaviour
         gameOverTicket.transform.Find("Explanation").GetComponent<TMPro.TextMeshProUGUI>().text = "You failed to to feed the engine coal every 10 seconds.\nFinal Score: "+FindObjectOfType<DeckManager>().score.ToString();
 
         float animTime = 0;
-        float animLength = 2;
+        float animLength = 1.25f;
         Vector3 startTicketPos = gameOverTicket.transform.position;
         while (animTime < animLength)
         {
