@@ -56,7 +56,7 @@ public class Scoring : MonoBehaviour
         {
             newScore += card.value;
         }
-        prevStarNum.text = newScore.ToString();
+        newStarNum.text = newScore.ToString();
         StartCoroutine(FadeInText(newStarNum, 1));
         yield return new WaitForSeconds(0.5f);
 
