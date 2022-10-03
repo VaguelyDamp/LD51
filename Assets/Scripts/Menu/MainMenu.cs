@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         FindObjectOfType<Audio>().StartGame();
-        SceneManager.LoadScene("station", LoadSceneMode.Single);
+        SceneManager.LoadScene("trainplace", LoadSceneMode.Single);
     }
 
     public void QuitGame()
