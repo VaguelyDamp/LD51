@@ -50,21 +50,18 @@ public class Audio : MonoBehaviour
     public void ChangeGlobalVolume (float target)
     {
         if (target == -64f) target = -128f;
-        PlayerPrefs.SetFloat("globalFloat", target);
         mixer.SetFloat(globalVolume, target);
     }
 
     public void ChangeSoundEffectsVolume (float target)
     {
         if (target == -64f) target = -128f;
-        PlayerPrefs.SetFloat("effectFloat", target);
         mixer.SetFloat(soundEffectsVolume, target);
     }
 
     public void ChangeMusicVolume (float target)
     {
         if (target == -64f) target = -128f;
-        PlayerPrefs.SetFloat("musicFloat", target);
         mixer.SetFloat(musicVolume, target);
     }
 

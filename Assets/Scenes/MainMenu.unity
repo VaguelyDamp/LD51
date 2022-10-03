@@ -792,18 +792,18 @@ PrefabInstance:
     - target: {fileID: 828986381529608176, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1760334145}
+      objectReference: {fileID: 1071517329}
     - target: {fileID: 828986381529608176, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 828986381529608176, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeMusicVolume
+      value: HandleMusicSlider
       objectReference: {fileID: 0}
     - target: {fileID: 828986381529608176, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Audio, Assembly-CSharp
+      value: VolumeController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 828986381529608176, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -828,18 +828,18 @@ PrefabInstance:
     - target: {fileID: 2528314614345540977, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1760334145}
+      objectReference: {fileID: 1071517329}
     - target: {fileID: 2528314614345540977, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2528314614345540977, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeSoundEffectsVolume
+      value: HandleEffectsSlider
       objectReference: {fileID: 0}
     - target: {fileID: 2528314614345540977, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Audio, Assembly-CSharp
+      value: VolumeController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2528314614345540977, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1052,14 +1052,14 @@ PrefabInstance:
     - target: {fileID: 9218690141519984557, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1760334145}
+      objectReference: {fileID: 1071517329}
     - target: {fileID: 9218690141519984557, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeGlobalVolume
+      value: HandleGlobalSlider
       objectReference: {fileID: 0}
     - target: {fileID: 9218690141519984557, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Audio, Assembly-CSharp
+      value: VolumeController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9218690141519984557, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1072,6 +1072,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4367976366789642453, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
   m_PrefabInstance: {fileID: 1071517327}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1071517329 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 225522321779473835, guid: 7131b42936d9a83478f79970de3c639e, type: 3}
+  m_PrefabInstance: {fileID: 1071517327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c6d6029b6a6c04183042d3ca4abc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1416205957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,8 +1143,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 88e2cf287e45a704a8db7a57066ca256, type: 2}
-  m_sharedMaterial: {fileID: 2586065636558689994, guid: 88e2cf287e45a704a8db7a57066ca256, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1438,17 +1449,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1760334145 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5077210732371370183, guid: 3b19cb13f8b85234b86decbb9e7189b7, type: 3}
-  m_PrefabInstance: {fileID: 946493881}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 311a63fb7e126e0458463579e3564cd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2114528879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,8 +1509,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 88e2cf287e45a704a8db7a57066ca256, type: 2}
-  m_sharedMaterial: {fileID: 2586065636558689994, guid: 88e2cf287e45a704a8db7a57066ca256, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -13,6 +13,29 @@ public class VolumeController : MonoBehaviour
 
     public AudioMixer mixer;
     
+    public void HandleGlobalSlider (float target) 
+    {
+        Audio audio = FindObjectOfType<Audio>();
+        PlayerPrefs.SetFloat("globalFloat", target);
+        audio.ChangeGlobalVolume(target);
+    }
+
+    public void HandleEffectsSlider (float target) 
+    {
+        Audio audio = FindObjectOfType<Audio>();
+        PlayerPrefs.SetFloat("effectFloat", target);
+        audio.ChangeSoundEffectsVolume(target);
+    }
+    
+
+    public void HandleMusicSlider (float target) 
+    {
+        Audio audio = FindObjectOfType<Audio>();
+        PlayerPrefs.SetFloat("musicFloat", target);
+        audio.ChangeMusicVolume(target);
+    }
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -48,20 +71,5 @@ public class VolumeController : MonoBehaviour
             musicSlider.value = -6f;
             mixer.SetFloat("MusicVolume", -6f);
         }
-    }
-
-    public void SaveGlobalVolumeLevel(float volume)
-    {
-        PlayerPrefs.SetFloat("globalFloat", volume);
-    }
-
-    public void SaveMusicLevel(float volume)
-    {
-        PlayerPrefs.SetFloat("musicFloat", volume);
-    }
-    
-    public void SaveEffectLevel(float volume)
-    {
-        PlayerPrefs.SetFloat("effectFloat", volume);
     }
 }
