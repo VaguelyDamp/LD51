@@ -54,6 +54,7 @@ public class DeckManager : MonoBehaviour
         }
         else {
             instance = this;
+            DontDestroyOnLoad(gameObject);
 
             ResetDeck();
         }
