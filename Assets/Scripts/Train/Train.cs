@@ -27,6 +27,7 @@ public class Train : MonoBehaviour
     public float initialSecondsToDestination = 60.0f;
 
     public AudioSource bigDieRadio;
+    public AudioSource smallDieRadio;
 
     public bool disableLogic = false;
 
@@ -117,10 +118,17 @@ public class Train : MonoBehaviour
         return created;
     }
 
+    public void KillSmallCar ()
+    {
+        smallDieRadio.Play();
+    }
+
     public void GameOver()
     {
-        StartCoroutine(DoGameOver());
         bigDieRadio.Play();
+        GameObject audio = GameObject.FindWithTag("Audio");
+        audio.GetComponent<Audio>().Die();
+        StartCoroutine(DoGameOver());
         ded = true;
     }
     private IEnumerator DoGameOver()

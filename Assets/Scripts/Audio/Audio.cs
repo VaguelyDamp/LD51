@@ -13,8 +13,11 @@ public class Audio : MonoBehaviour
 
     public float fadeDuration;
 
+    private bool ded = false;
+
     public void Die ()
     {
+        ded = true;
         ambientRadio.Stop();
         trainRadio.Stop();
         stationRadio.Stop();
@@ -40,6 +43,7 @@ public class Audio : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadType)
     {
+        ded = false;
         if (scene.name == "Station" && stationRadio.volume == 0)
         {
             ArriveAtStation();
@@ -56,7 +60,7 @@ public class Audio : MonoBehaviour
 
     void Update ()
     {
-        if (!departureRadio.isPlaying && stationRadio.volume == 0 && !ambientRadio.isPlaying) 
+        if (!departureRadio.isPlaying && stationRadio.volume == 0 && !ambientRadio.isPlaying && !ded) 
         {
             ambientRadio.Play();
         }

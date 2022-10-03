@@ -8,6 +8,7 @@ TagManager:
   - Engine
   - PromptSpot
   - Audio
+  - Train
   layers:
   - Default
   - TransparentFX

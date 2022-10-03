@@ -1144,7 +1144,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6439552, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1531,6 +1531,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8793271787732078753, guid: 116dc14a7dd98f24c854901046a80dc9, type: 3}
       propertyPath: m_Name
+      value: Train
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793271787732078753, guid: 116dc14a7dd98f24c854901046a80dc9, type: 3}
+      propertyPath: m_TagString
       value: Train
       objectReference: {fileID: 0}
     - target: {fileID: 8793271787732078759, guid: 116dc14a7dd98f24c854901046a80dc9, type: 3}

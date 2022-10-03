@@ -25,8 +25,6 @@ public class Car : MonoBehaviour
 
     private bool shakinBakin = false;
 
-    public AudioSource killCarRadio;
-
     private bool selected = false;
     public int associatedTrainCar = 0;
 
@@ -68,8 +66,8 @@ public class Car : MonoBehaviour
         stars = 0;
         hearts = 0;
         carDead = true;
+        FindObjectOfType<Train>().KillSmallCar();
         foreach (Task task in gameObject.GetComponents<Task>()) task.KillCar();
-        killCarRadio.Play();
         StartCoroutine(CarFall());
 
         DeckManager.instance.RemoveCardFromHand(card.gameObject);
@@ -133,7 +131,6 @@ public class Car : MonoBehaviour
 
         if (fire == null) Debug.LogError("No fire prefab!");
 
-        killCarRadio = this.gameObject.GetComponent<AudioSource>();
     }
 
     void Start()
