@@ -231,7 +231,7 @@ public class Task : MonoBehaviour
     {
         audioS = gameObject.GetComponent<AudioSource>();
         ResetTask();
-        timeTillStart = offset;
+        timeTillStart = Random.Range(minInterval * 0.5f, maxInterval);
         timeTillFail = failTime;
 
         if (keys.Length > 5) Debug.LogError("Too many keys!");

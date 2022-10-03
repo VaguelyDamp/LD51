@@ -35,6 +35,9 @@ public class UI_Car : MonoBehaviour {
             uiSpot.slotGameObject = realCardStaffSlots[i];
             string spotTypeStr = realCardStaffSlots[i].name.Substring(staffSpotPredicate.Length);
 
+            uiSpot.filled = realCardStaffSlots[i].GetComponentInChildren<StaffCard>() != null;
+            uiSpot.RefreshSprite();
+
             if(spotTypeStr == "Janitor") {
                 uiSpot.staffType = StaffCard.StaffType.Janitor;
             }

@@ -227,15 +227,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 985138173015089408, guid: 39aaa886991113246a0284cff2a7ea37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -923,7 +923,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5997783, y: 1}
+    m_SensorSize: {x: 1.6439552, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

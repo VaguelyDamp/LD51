@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class PauseMenu : MonoBehaviour
+public class PauseController : MonoBehaviour
 {
     void Awake()
     {
@@ -24,17 +24,17 @@ public class PauseMenu : MonoBehaviour
 
     GameObject menuText = new GameObject();
 
-    public void PauseButton()
-    {
-        Time.timeScale = 0.0f;
-        _pauseMenu.SetActive(true);
-        _pauseButton.SetActive(false);
-    }
+    // public void PauseButton()
+    // {
+    //     Time.timeScale = 0.0f;
+    //     _pauseMenu.SetActive(true);
+    //     _pauseButton.SetActive(false);
+    // }
 
-    public void ResumeButton()
-    {
-        Time.timeScale = 1.0f;
-        _pauseMenu.SetActive(false);
-        _pauseButton.SetActive(true);
-    }
+    // public void ResumeButton()
+    // {
+    //     Time.timeScale = 1.0f;
+    //     _pauseMenu.SetActive(false);
+    //     _pauseButton.SetActive(true);
+    // }
 }

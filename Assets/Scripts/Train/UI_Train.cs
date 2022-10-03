@@ -16,16 +16,18 @@ public class UI_Train : MonoBehaviour
     public void SpawnTrain() {
         deck = FindObjectOfType<DeckManager>();
 
-        int numCars = deck.GetCarCardCountInHand() + 1;
-        Vector3 spawnPos = new Vector3((numCars / -2.0f) * carWidth, 0, 0);    
+        int numCars = deck.GetCarCardCountInHand();
+        Vector3 spawnPos = new Vector3((numCars / 2.0f) * carWidth, 0, 0);    
         
         if (SceneManager.GetActiveScene().name == "trainplace")
         {
             GameObject ui_engine = Instantiate(uiEnginePrefab, transform);
             UI_Flasher flash = ui_engine.AddComponent<UI_Flasher>();
             flash.actualCarNum = 0;
+            ui_engine.transform.localPosition = spawnPos;
+            spawnPos += new Vector3(-carWidth, 0, 0);
             ui_cars.Add(ui_engine);
-        } 
+        }
         
 
         if(deck) {
@@ -34,7 +36,7 @@ public class UI_Train : MonoBehaviour
                 if(cc) {
                     GameObject uiCar = Instantiate(uiCarPrefab, transform);
                     uiCar.transform.localPosition = spawnPos;
-                    spawnPos += new Vector3(carWidth, 0, 0);
+                    spawnPos += new Vector3(-carWidth, 0, 0);
 
                     uiCar.GetComponent<UI_Car>().realCard = card;
                     

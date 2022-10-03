@@ -597,7 +597,7 @@ MonoBehaviour:
   CarPrefab: {fileID: 2049346420864790401, guid: 772946cfbe6b5b24fb57cb3c8e232553, type: 3}
   carHealth: 1
   value: 3
-  staffSlots: 0000000002000000
+  staffSlots: 0000000003000000
   uiSprite: {fileID: 0}
 --- !u!1 &6514974707001767118
 GameObject:

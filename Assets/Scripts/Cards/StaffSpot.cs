@@ -39,10 +39,16 @@ public class StaffSpot : MonoBehaviour
     }
 
     public void RefreshSprite() {
-        transform.Find("Icon").GetComponent<UnityEngine.UI.Image>().sprite 
-            = GetSpriteForStaff(staffType, filled);
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "trainplace" && !filled) {
+            gameObject.SetActive(false);
+        }
+        else {
+            transform.Find("Icon").GetComponent<UnityEngine.UI.Image>().sprite 
+                = GetSpriteForStaff(staffType, filled);
 
-        transform.Find("Frame").GetComponent<UnityEngine.UI.Image>().enabled = !filled;
+            transform.Find("Frame").GetComponent<UnityEngine.UI.Image>().enabled = !filled;
+        }
+        
     }
 
     public void OnDrop(UnityEngine.EventSystems.BaseEventData eventData) {
