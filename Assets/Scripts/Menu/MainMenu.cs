@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         settingsMenu = transform.Find("SettingsMenu").gameObject;
-        settingsMenu.SetActive(false);
+        //settingsMenu.SetActive(false);
         menuButtons = transform.Find("Buttons").gameObject;
     }
 

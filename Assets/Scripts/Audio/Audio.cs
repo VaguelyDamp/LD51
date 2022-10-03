@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class Audio : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class Audio : MonoBehaviour
     public AudioSource departureRadio;
     public AudioSource arrivalRadio;
     public AudioSource ambientRadio;
+
+    public AudioMixer mixer;
+    public string globalVolume = "MasterVolume";
+    public string musicVolume = "MusicVolume";
+    public string soundEffectsVolume = "SoundEffectsVolume";
 
     public float fadeDuration;
 
@@ -41,6 +47,27 @@ public class Audio : MonoBehaviour
         }
     }
 
+    public void ChangeGlobalVolume (float target)
+    {
+        if (target == -64f) target = -128f;
+        PlayerPrefs.SetFloat("globalFloat", target);
+        mixer.SetFloat(globalVolume, target);
+    }
+
+    public void ChangeSoundEffectsVolume (float target)
+    {
+        if (target == -64f) target = -128f;
+        PlayerPrefs.SetFloat("effectFloat", target);
+        mixer.SetFloat(soundEffectsVolume, target);
+    }
+
+    public void ChangeMusicVolume (float target)
+    {
+        if (target == -64f) target = -128f;
+        PlayerPrefs.SetFloat("musicFloat", target);
+        mixer.SetFloat(musicVolume, target);
+    }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode loadType)
     {
         ded = false;
@@ -52,7 +79,7 @@ public class Audio : MonoBehaviour
         {
             DepartStation();
         }
-        else if (scene.name == "MainMenu")
+        else if (scene.name == "MainMenu" && !stationRadio.isPlaying)
         {
             ArriveAtStation();
         }

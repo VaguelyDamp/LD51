@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class VolumeController : MonoBehaviour
 {
@@ -9,27 +10,58 @@ public class VolumeController : MonoBehaviour
 
 
     public Slider globalSlider, musicSlider, soundEffectSlider;
-    private float volumeFloat = .25f, soundEffectFloat = .75f;
 
+    public AudioMixer mixer;
+    
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-
-        PlayerPrefs.SetFloat(volumePref, volumeFloat);
-        if(PlayerPrefs.GetFloat("volumeFloat") == 0 || PlayerPrefs.GetFloat("soundEffectFloat") == 0)
+        if (PlayerPrefs.HasKey("globalFloat"))
         {
-            PlayerPrefs.SetFloat("volumeFloat", volumeFloat);
-            PlayerPrefs.SetFloat("soundEffectFloat", soundEffectFloat);
+            globalSlider.value = PlayerPrefs.GetFloat("globalFloat");
+            mixer.SetFloat("MasterVolume", PlayerPrefs.GetFloat("globalFloat"));
+        }
+        else
+        {
+            globalSlider.value = -6f;
+            mixer.SetFloat("MasterVolume", -6f);
+        }
+
+        if (PlayerPrefs.HasKey("effectFloat"))
+        {
+            soundEffectSlider.value = PlayerPrefs.GetFloat("effectFloat");
+            mixer.SetFloat("SoundEffectsVolume", PlayerPrefs.GetFloat("effectFloat"));
+        }
+        else
+        {
+            soundEffectSlider.value = -6f;
+            mixer.SetFloat("SoundEffectsVolume", -6f);
+        }
+
+        if (PlayerPrefs.HasKey("musicFloat"))
+        {
+            musicSlider.value = PlayerPrefs.GetFloat("musicFloat");
+            mixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("musicFloat"));
+        }
+        else
+        {
+            musicSlider.value = -6f;
+            mixer.SetFloat("MusicVolume", -6f);
         }
     }
 
-    public void SaveVolumeLevel(float volume)
+    public void SaveGlobalVolumeLevel(float volume)
     {
-        PlayerPrefs.SetFloat("volumeFloat", volume);
+        PlayerPrefs.SetFloat("globalFloat", volume);
+    }
+
+    public void SaveMusicLevel(float volume)
+    {
+        PlayerPrefs.SetFloat("musicFloat", volume);
     }
     
     public void SaveEffectLevel(float volume)
     {
-        PlayerPrefs.SetFloat("soundEffectFloat", volume);
+        PlayerPrefs.SetFloat("effectFloat", volume);
     }
 }
