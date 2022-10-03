@@ -13,7 +13,7 @@ public class UI_Car : MonoBehaviour {
     private string staffSpotPredicate = "StaffSpot:";
 
     private void Start() {
-        transform.Find("CarSprite").GetComponent<UnityEngine.UI.Image>().sprite = carSprite;
+        //transform.Find("CarSprite").GetComponent<UnityEngine.UI.Image>().sprite = carSprite;
 
         uiCardSlots = new List<GameObject>();
         foreach(Transform child in transform) {

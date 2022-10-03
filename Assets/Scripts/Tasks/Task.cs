@@ -139,7 +139,9 @@ public class Task : MonoBehaviour
         prompt = Instantiate(promptPrefab, actualSpot.transform);
         Transform promptCanvas = prompt.transform.Find("Canvas");
         promptCanvas.Find("Name").GetComponent<TextMeshPro>().text = taskName;
-        promptCanvas.Find("StaffSprite").GetComponent<UnityEngine.UI.Image>().sprite = DeckManager.instance.GetSpriteForStaff(staffType, false);
+        if(staffType != StaffCard.StaffType.None) promptCanvas.Find("StaffSprite").GetComponent<UnityEngine.UI.Image>().sprite = DeckManager.instance.GetSpriteForStaff(staffType, false);
+        else promptCanvas.Find("StaffSprite").gameObject.SetActive(false);
+        
         for (int i = 0; i < keys.Length; i++)
         {
             //Assigne the correct sprites to the prefab

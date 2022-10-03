@@ -131,11 +131,24 @@ public class CardDealer : MonoBehaviour
         return totalSlots - totalStaff;
     }
 
+    private int SelectedCarCardCount() {
+        int count = 0;
+        foreach(int selected in selectedCards) {
+            CarCard cc = dealtCards[selected].GetComponent<CarCard>();
+            if(cc) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     /*
         Returns a boolean for if the card should be selected after the operation
     */
     public bool RegisterCardSelection(int selection) {
         if(!choosingCards) return true;
+
+        
 
         bool isSelected = false;
         if(selectedCards.Contains(selection)) {
@@ -173,8 +186,13 @@ public class CardDealer : MonoBehaviour
                     }
                 }
                 else {
-                    selectedCards.Add(selection);
-                    isSelected = true;
+                    int currentTrainLength = DeckManager.instance.GetCarCardCountInHand();
+                    int addedTrainLength = SelectedCarCardCount();
+
+                    if(currentTrainLength + addedTrainLength < 9) {
+                        selectedCards.Add(selection);
+                        isSelected = true;
+                    }
                 }
             }
         }
