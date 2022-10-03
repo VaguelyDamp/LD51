@@ -51,6 +51,7 @@ public class Task : MonoBehaviour
     public void KillCar()
     {
         carDead = true;
+        StopAllCoroutines();
         Destroy(prompt);
     }
 
@@ -58,6 +59,7 @@ public class Task : MonoBehaviour
     {
         timeTillStart = interval();
         taskUp = false;
+        StopAllCoroutines();
         Destroy(prompt);
     }
 
@@ -178,19 +180,21 @@ public class Task : MonoBehaviour
     {
         //Debug.Log("Correct Key");
         //Do positive feedback here
-        audioS.PlayOneShot(goodKeys[Random.Range(0, goodKeys.Length)], 0.5f);
+        audioS.PlayOneShot(goodKeys[Random.Range(0, goodKeys.Length - 1)], 0.5f);
         prompt.transform.Find((keyIndex+1).ToString()).gameObject.GetComponent<SpriteRenderer>().color = successColor;
         keyIndex++;
         if (keyIndex >= keys.Length) SucceedTask();
     }
 
-    private void KeyFail()
+    public void KeyFail()
     {
         //Debug.Log("Incorrect Key");
         //Do negative feedback here
-        audioS.PlayOneShot(badKeys[Random.Range(0, badKeys.Length)]);
-        StartCoroutine(KeyFailAnim(keyIndex));
-
+        if (taskUp)
+        {
+            audioS.PlayOneShot(badKeys[Random.Range(0, badKeys.Length - 1)]);
+            StartCoroutine(KeyFailAnim(keyIndex));
+        }
     }
     private IEnumerator KeyFailAnim(int k)
     {
@@ -239,10 +243,24 @@ public class Task : MonoBehaviour
             if (timeTillFail <= 0) FailTask();
 
             if (selected) {
-                if (Input.GetKeyDown(keys[keyIndex])) KeySuccess();
-                else if (Input.anyKeyDown) KeyFail();
+                //if (Input.GetKeyDown(keys[keyIndex])) KeySuccess();
+                //else if (Input.anyKeyDown) KeyFail();
             }
         }     
+    }
+
+    public bool TryKey()
+    {
+        if (taskUp)
+        {
+            if (Input.GetKeyDown(keys[keyIndex]))
+            {
+                KeySuccess();
+                return true;
+            }
+            else return false;
+        }
+        else return false;
     }
 
     private void OnTrainSelectionChanged(int newSelection) {

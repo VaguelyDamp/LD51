@@ -19,10 +19,17 @@ public class Car : MonoBehaviour
     private CarWobble carWobble;
     private Transform car;
 
+    private Task[] tasks;
+
     public GameObject fire;
 
     private bool shakinBakin = false;
 
+    private bool selected = false;
+    public int associatedTrainCar = 0;
+
+    private static KeyCode[] nonKeys = new KeyCode[] {KeyCode.Alpha0, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, 
+    KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Space, KeyCode.Return, KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.Mouse0};
     public CarCard card;
 
     public void TaskFailed()
@@ -93,10 +100,6 @@ public class Car : MonoBehaviour
         return card.GetStaffTypes();
     }
 
-    private void Start() {
-        if(card) Debug.LogFormat("Associated Card: {0} - has {1} staff", card.gameObject.name, card.GetAttachedStaff().Length);
-    }
-
     private void Awake()
     {
         heartMeter = transform.Find("Car").Find("CarCanvas").Find("HeartMeter").GetComponent<ChunkMeter>();
@@ -118,9 +121,44 @@ public class Car : MonoBehaviour
         if (fire == null) Debug.LogError("No fire prefab!");
     }
 
+    void Start()
+    {
+        tasks = gameObject.GetComponents<Task>();
+        FindObjectOfType<Train>().CarSelectionChanged.AddListener(OnTrainSelectionChanged);
+        if(card) Debug.LogFormat("Associated Card: {0} - has {1} staff", card.gameObject.name, card.GetAttachedStaff().Length);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (Input.anyKeyDown && selected && isValidKey())
+        {
+            bool goodkey = false;
+            foreach (Task task in tasks)
+            {
+                if (task.TryKey())
+                {
+                    goodkey = true;
+                    break;
+                }
+            }
+            if (!goodkey)
+            {
+                foreach (Task task in tasks) task.KeyFail();
+            }
+        }
+    }
 
+    private bool isValidKey()
+    {
+        foreach ( KeyCode key in nonKeys)
+        {
+            if (Input.GetKeyDown(key)) return false;
+        }
+        return true;
+    }
+
+    private void OnTrainSelectionChanged(int newSelection) {
+        selected = (newSelection == associatedTrainCar);
     }
 }
