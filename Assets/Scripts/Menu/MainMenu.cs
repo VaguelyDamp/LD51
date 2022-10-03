@@ -17,8 +17,7 @@ public class MainMenu : MonoBehaviour
     public void ShowSettings()
     {
         settingsMenu.SetActive(true);
-        menuButtons.SetActive(false);
-        
+        menuButtons.SetActive(false); 
     }
 
     public void HideSettings()
@@ -30,7 +29,6 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("station", LoadSceneMode.Single);
-
     }
 
     public void QuitGame()
