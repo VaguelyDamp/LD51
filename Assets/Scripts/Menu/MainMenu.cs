@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        FindObjectOfType<Audio>().StartGame();
         SceneManager.LoadScene("station", LoadSceneMode.Single);
     }
 

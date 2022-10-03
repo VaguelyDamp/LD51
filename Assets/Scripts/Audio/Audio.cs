@@ -12,6 +12,7 @@ public class Audio : MonoBehaviour
     public AudioSource arrivalRadio;
     public AudioSource ambientRadio;
     public AudioSource winRadio;
+    public AudioSource startGameRadio;
 
     public AudioMixer mixer;
     public string globalVolume = "MasterVolume";
@@ -26,7 +27,7 @@ public class Audio : MonoBehaviour
     {
         ded = true;
         ambientRadio.Stop();
-        trainRadio.Stop();
+        Fade(trainRadio, 0);
         Fade(stationRadio, 0);
         arrivalRadio.Stop();
         departureRadio.Stop();
@@ -46,6 +47,11 @@ public class Audio : MonoBehaviour
         {
             DepartStation();
         }
+    }
+
+    public void StartGame ()
+    {
+        startGameRadio.Play();
     }
 
     public void ChangeGlobalVolume (float target)
@@ -77,9 +83,9 @@ public class Audio : MonoBehaviour
         {
             DepartStation();
         }
-        else if (scene.name == "MainMenu" && !stationRadio.isPlaying)
+        else if (scene.name == "MainMenu" && trainRadio.isPlaying)
         {
-            ArriveAtStation();
+            Fade(stationRadio, 1);
         }
         else if (scene.name == "Winsville")
         {
@@ -90,7 +96,11 @@ public class Audio : MonoBehaviour
 
     void Update ()
     {
-        if (!departureRadio.isPlaying && stationRadio.volume == 0 && !ambientRadio.isPlaying && !ded) 
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            ambientRadio.Stop();
+        }
+        else if (!departureRadio.isPlaying && stationRadio.volume == 0 && !ambientRadio.isPlaying && !ded) 
         {
             ambientRadio.Play();
         }
