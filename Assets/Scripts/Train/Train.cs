@@ -97,6 +97,7 @@ public class Train : MonoBehaviour
             foreach(Task t in created.GetComponents<Task>()) {
                 t.associatedTrainCar = cars.Count;
             }
+            created.GetComponent<Car>().associatedTrainCar = cars.Count;
         }
 
         created.transform.Find("NumberText").GetComponent<TextMeshPro>().text = (10 - cars.Count).ToString();
