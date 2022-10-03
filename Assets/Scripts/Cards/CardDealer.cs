@@ -53,7 +53,8 @@ public class CardDealer : MonoBehaviour
 
     private void Start() {
         sauce = GetComponent<AudioSource>();
-        FindObjectOfType<Scoring>().StartScoring();        
+        if (DeckManager.instance.stationIndex == 0) actualStart();
+        else FindObjectOfType<Scoring>().StartScoring();        
     }
 
     public void actualStart()

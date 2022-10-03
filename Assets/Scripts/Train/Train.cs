@@ -46,9 +46,7 @@ public class Train : MonoBehaviour
 
         secsToDest = initialSecondsToDestination;
 
-        gameOverTicket = GameObject.FindGameObjectWithTag("Canvas").transform.Find("GameOver").Find("Ticket").gameObject;
-        endTicketPos = GameObject.FindGameObjectWithTag("Canvas").transform.Find("GameOver").Find("EndTicketPos").gameObject;
-        mainMenuButton = GameObject.FindGameObjectWithTag("Canvas").transform.Find("MainMenu").gameObject;
+        
 
         if(disableLogic) { 
             foreach(CarWobble w in GetComponentsInChildren<CarWobble>()) {
@@ -139,6 +137,10 @@ public class Train : MonoBehaviour
 
     public void GameOver()
     {
+        gameOverTicket = GameObject.FindGameObjectWithTag("Canvas").transform.Find("GameOver").Find("Ticket").gameObject;
+        endTicketPos = GameObject.FindGameObjectWithTag("Canvas").transform.Find("GameOver").Find("EndTicketPos").gameObject;
+        mainMenuButton = GameObject.FindGameObjectWithTag("Canvas").transform.Find("MainMenu").gameObject;
+        
         bigDieRadio.Play();
         GameObject audio = GameObject.FindWithTag("Audio");
         audio.GetComponent<Audio>().Die();

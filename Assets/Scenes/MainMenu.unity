@@ -1454,7 +1454,7 @@ MonoBehaviour:
   nextSceneName: 
   fadeInTime: 1
   fadeOutTime: 1
-  fadeOutPrefab: {fileID: 0}
+  fadeOutPrefab: {fileID: 4528036844759529282, guid: f8d8a26cb42914347bb91dc9c8812b38, type: 3}
 --- !u!1 &1663921811
 GameObject:
   m_ObjectHideFlags: 0

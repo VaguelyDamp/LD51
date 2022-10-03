@@ -10,7 +10,7 @@ public class Scoring : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dm = FindObjectOfType<DeckManager>();
+        
     }
 
     // Update is called once per frame
@@ -25,6 +25,7 @@ public class Scoring : MonoBehaviour
     }
     private IEnumerator DoScoring()
     {
+        dm = DeckManager.instance;
         //Fly in ticket
         Vector3 endTicketPos = transform.Find("EndTicketPos").position;
         Vector3 startTicketPos = scoreTicket.transform.position;

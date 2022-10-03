@@ -43,6 +43,8 @@ public class SceneTransition : MonoBehaviour
     }
 
     private IEnumerator SceneFadeOut(string sceneName) {
+        if (Time.timeScale == 0) Time.timeScale = 1;
+
         float timer = fadeOutTime;
 
         while(timer > 0) {

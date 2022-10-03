@@ -67,6 +67,7 @@ MonoBehaviour:
   spawnUITrain: 0
   gameOverTicket: {fileID: 0}
   endTicketPos: {fileID: 0}
+  mainMenuButton: {fileID: 0}
 --- !u!82 &-7054936856503669105
 AudioSource:
   m_ObjectHideFlags: 0
