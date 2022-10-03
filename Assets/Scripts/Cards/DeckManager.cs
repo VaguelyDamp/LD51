@@ -10,6 +10,8 @@ public class DeckManager : MonoBehaviour
 
     public List<GameObject> hand;
 
+    public List<GameObject> discard;
+
     private void Awake() {
         if(FindObjectOfType<DeckManager>() != this) {
             Destroy(gameObject);
@@ -17,6 +19,9 @@ public class DeckManager : MonoBehaviour
 
         deck = new List<GameObject>();
         deck.AddRange(baseDeck);
+
+        hand = new List<GameObject>();
+        discard = new List<GameObject>();
 
         DontDestroyOnLoad(gameObject);
     }
@@ -39,6 +44,17 @@ public class DeckManager : MonoBehaviour
 
     public void AddToDeck(GameObject card) {
         deck.Add(card);
+    }
+
+    public void RemoveCardFromHand(GameObject card) {
+        CarCard cc = card.GetComponent<CarCard>();
+        if(cc) {
+            foreach(StaffCard sc in cc.GetAttachedStaff()) {
+                hand.Remove(sc.gameObject);
+            }
+        }
+        hand.Remove(card);
+        Destroy(card);
     }
 
     public GameObject AddToHand(GameObject card) {

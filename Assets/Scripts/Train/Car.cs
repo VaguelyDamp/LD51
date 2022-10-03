@@ -30,6 +30,7 @@ public class Car : MonoBehaviour
 
     private static KeyCode[] nonKeys = new KeyCode[] {KeyCode.Alpha0, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, 
     KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Space, KeyCode.Return, KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.Mouse0};
+    public CarCard card;
 
     public void TaskFailed()
     {
@@ -67,6 +68,8 @@ public class Car : MonoBehaviour
         carDead = true;
         foreach (Task task in gameObject.GetComponents<Task>()) task.KillCar();
         StartCoroutine(CarFall());
+
+        FindObjectOfType<DeckManager>().RemoveCardFromHand(card.gameObject);
     }
     protected IEnumerator CarFall()
     {
@@ -91,6 +94,10 @@ public class Car : MonoBehaviour
         iFire.transform.localPosition = Vector3.zero;
         gameObject.GetComponent<CarWobble>().resetRot(endPos);
         gameObject.GetComponent<CarWobble>().iBeWobblin = true;
+    }
+
+    public List<StaffCard.StaffType> GetAssignedStaffTypes() {
+        return card.GetStaffTypes();
     }
 
     private void Awake()
@@ -118,6 +125,7 @@ public class Car : MonoBehaviour
     {
         tasks = gameObject.GetComponents<Task>();
         FindObjectOfType<Train>().CarSelectionChanged.AddListener(OnTrainSelectionChanged);
+        if(card) Debug.LogFormat("Associated Card: {0} - has {1} staff", card.gameObject.name, card.GetAttachedStaff().Length);
     }
 
     // Update is called once per frame
