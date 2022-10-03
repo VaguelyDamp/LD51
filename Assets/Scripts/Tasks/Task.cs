@@ -30,7 +30,7 @@ public class Task : MonoBehaviour
     private FillMeter timerMeter;
     private bool carDead = false;
 
-    private bool selected = false;
+    public bool selected = false;
     private bool otherSelected = false;
 
     public Color successColor = Color.green;
@@ -104,7 +104,7 @@ public class Task : MonoBehaviour
         EndTask();
     }
 
-    private void StartTask() 
+    public void StartTask() 
     {
         //Debug.Log("Task Started");
         //Display Task
