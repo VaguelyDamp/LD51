@@ -5,23 +5,15 @@ using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
-    void Awake()
-    {
-        TextMeshPro myTextMesh = GetComponent<TextMeshPro>();
-        myTextMesh.text = "TEXT on a screen!!";
 
-    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Resume()
     {
-        
+        FindObjectOfType<Pauser>().DoUnPause();
     }
-
-    GameObject menuText = new GameObject();
 }

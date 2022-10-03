@@ -44,10 +44,10 @@ public class PauseController : MonoBehaviour
         _pauseButton.SetActive(false);
     }
 
-    // public void ResumeButton()
-    // {
-    //     Time.timeScale = 1.0f;
-    //     _pauseMenu.SetActive(false);
-    //     _pauseButton.SetActive(true);
-    // }
+    public void ResumeButton()
+    {
+        Time.timeScale = 1.0f;
+        _pauseMenu.SetActive(false);
+        _pauseButton.SetActive(true);
+    }
 }
