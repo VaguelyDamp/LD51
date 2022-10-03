@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &655498731498504435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: failTime
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: taskName
+      value: Secure Load
+      objectReference: {fileID: 0}
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: staffType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: maxInterval
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: minInterval
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: keys.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: keys.Array.data[0]
+      value: 114
+      objectReference: {fileID: 0}
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: keys.Array.data[1]
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: keys.Array.data[2]
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: keys.Array.data[3]
+      value: 109
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613017408992627517, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3603038326727033447, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f58b0b65e6291c3458fb69065ca095fb, type: 2}
+    - target: {fileID: 6759280513728438067, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733176, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_Name
+      value: Mail
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -473.23688
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1430.261
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.28933
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814490443448733177, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901749826468697628, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9c8c503e25efe68418bf8bfe586a208a, type: 2}
+    m_RemovedComponents:
+    - {fileID: 24836795823926004, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+--- !u!1 &7307769036073487627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7814490443448733176, guid: 632100e88c2871e45bcae48265f68628, type: 3}
+  m_PrefabInstance: {fileID: 655498731498504435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1693203474257164108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7307769036073487627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38ae1b191c0e0a4f9bac635cdefbe28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskName: Stowaway Check
+  staffType: 2
+  keys: 710000007000000062000000
+  isOrdered: 1
+  associatedTrainCar: 0
+  minInterval: 15
+  maxInterval: 25
+  offset: 1
+  failTime: 5
+  otherSelectedTimeMult: 0.5
+  timeTillFail: 0
+  taskUp: 0
+  successColor: {r: 0, g: 1, b: 0, a: 1}
+  failColor: {r: 1, g: 0, b: 0, a: 1}
+  taskPopUp: {fileID: 8300000, guid: 71fc25c94d511ac41ab8d2f84dcc9d6f, type: 3}
+  taskFailNoise: {fileID: 8300000, guid: 8249cf48e6251344abd2bf2bdabb99e4, type: 3}
+  goodKeys:
+  - {fileID: 8300000, guid: 85d0c67178db14d48ac3cb9b9b17fd92, type: 3}
+  badKeys:
+  - {fileID: 8300000, guid: cff02d13b7e6cf94992b14c0e22be6ec, type: 3}
+  taskSucceed: {fileID: 8300000, guid: dd8439498710dbe48941640c1b9f1f6d, type: 3}
+  taskEnabled: 1

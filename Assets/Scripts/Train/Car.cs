@@ -112,21 +112,20 @@ public class Car : MonoBehaviour
 
     private void Awake()
     {
+        carWobble = gameObject.GetComponent<CarWobble>();
+        car = transform.Find("Car");
+
         heartMeter = transform.Find("Car").Find("CarCanvas").Find("HeartMeter").GetComponent<ChunkMeter>();
         heartMeter.maxVal = hearts;
         heartMeter.numChunks = hearts;
         heartMeter.Value = hearts;
 
-        if (gameObject.tag == "Car")
-        {
+        if (gameObject.tag == "Car") {
             starMeter = transform.Find("Car").Find("CarCanvas").Find("StarMeter").GetComponent<ChunkMeter>();
             starMeter.maxVal = stars;
             starMeter.numChunks = stars;
             starMeter.Value = stars;
         }
-
-        carWobble = gameObject.GetComponent<CarWobble>();
-        car = transform.Find("Car");
 
         if (fire == null) Debug.LogError("No fire prefab!");
     }
@@ -136,6 +135,27 @@ public class Car : MonoBehaviour
         tasks = gameObject.GetComponents<Task>();
         FindObjectOfType<Train>().CarSelectionChanged.AddListener(OnTrainSelectionChanged);
         if(card) Debug.LogFormat("Associated Card: {0} - has {1} staff", card.gameObject.name, card.GetAttachedStaff().Length);
+    
+        heartMeter.Value = hearts;
+
+        if (gameObject.tag == "Car")
+        {
+            starMeter.Value = stars;
+        }
+
+        Debug.LogFormat("hearts {0} - stars {1}", hearts, stars);
+    }
+
+    public void RefreshCounters() {
+        heartMeter.maxVal = hearts;
+        heartMeter.numChunks = hearts;
+        heartMeter.Value = hearts;
+
+        if (gameObject.tag == "Car") {
+            starMeter.maxVal = stars;
+            starMeter.numChunks = stars;
+            starMeter.Value = stars;
+        }
     }
 
     // Update is called once per frame

@@ -60,6 +60,8 @@ public class Train : MonoBehaviour
                     carcar.card = carCard;
                     carcar.hearts = carCard.carHealth;
                     carcar.stars = carCard.value;
+
+                    carcar.RefreshCounters();
                 }
             }
         }
