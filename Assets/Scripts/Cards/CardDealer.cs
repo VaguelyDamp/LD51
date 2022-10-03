@@ -32,6 +32,9 @@ public class CardDealer : MonoBehaviour
 
     private int staffToAssign;
 
+    private Vector3 selectedCardShoop = new Vector3(-2000, 1000, 0);
+    private Vector3 discardedCardShoop = new Vector3(0, -2000, 0);
+
     public TMPro.TextMeshProUGUI janitorVacancyUi;
     public TMPro.TextMeshProUGUI engineerVacancyUi;
     public TMPro.TextMeshProUGUI cookVacancyUi;
@@ -170,6 +173,10 @@ public class CardDealer : MonoBehaviour
     private IEnumerator DropOutCard(GameObject card, Vector3 motion) {
         float timer = 0;
 
+        Vector3 initialScale = card.transform.localScale;
+
+        Debug.LogFormat("Shoopin card {0} which is a child of {1}", card.name, card.transform.parent.name);
+
         CardChooser cc = card.GetComponent<CardChooser>();
         if(cc) Destroy(cc);
         CardDrag cd = card.GetComponent<CardDrag>();
@@ -179,6 +186,8 @@ public class CardDealer : MonoBehaviour
             timer += Time.deltaTime;
 
             card.transform.position += motion * Time.deltaTime;
+            card.transform.localScale = Vector3.Lerp(initialScale, Vector3.zero, timer);
+            
             yield return null;
         }
 
@@ -188,7 +197,7 @@ public class CardDealer : MonoBehaviour
     public void MarkStaffCardAssigned(GameObject staffCard) {
         staffToAssign--;
 
-        DropOutCard(staffCard, Vector3.left * 2000);
+        StartCoroutine(DropOutCard(staffCard, selectedCardShoop));
 
         if(staffToAssign <= 0) {
             FindObjectOfType<SceneTransition>().StartSceneTransition();
@@ -210,7 +219,7 @@ public class CardDealer : MonoBehaviour
                         staffToAssign++;
                     }
                     else {
-                        StartCoroutine(DropOutCard(dealtCardObjs[i], Vector3.left * 2000));
+                        StartCoroutine(DropOutCard(dealtCardObjs[i], selectedCardShoop));
                         dealtCardObjs[i] = null;
                         deck.AddToHand(dealtCards[i]);
                     }
@@ -218,7 +227,7 @@ public class CardDealer : MonoBehaviour
                 else {
                     // Return unchosen to deck
                     deck.AddToDeck(dealtCards[i]); 
-                    StartCoroutine(DropOutCard(dealtCardObjs[i], Vector3.down * 1000));
+                    StartCoroutine(DropOutCard(dealtCardObjs[i], discardedCardShoop));
                     dealtCardObjs[i] = null;
                 }
             }
