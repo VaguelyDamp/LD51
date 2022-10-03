@@ -11,6 +11,7 @@ public class Audio : MonoBehaviour
     public AudioSource departureRadio;
     public AudioSource arrivalRadio;
     public AudioSource ambientRadio;
+    public AudioSource winRadio;
 
     public AudioMixer mixer;
     public string globalVolume = "MasterVolume";
@@ -79,6 +80,11 @@ public class Audio : MonoBehaviour
         else if (scene.name == "MainMenu" && !stationRadio.isPlaying)
         {
             ArriveAtStation();
+        }
+        else if (scene.name == "Winsville")
+        {
+            Die();
+            winRadio.Play();
         }
     }
 
