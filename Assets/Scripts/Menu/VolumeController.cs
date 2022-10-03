@@ -6,9 +6,6 @@ using UnityEngine.Audio;
 
 public class VolumeController : MonoBehaviour
 {
-    private static string volumePref = "volumePref"; // initializnign to 
-
-
     public Slider globalSlider, musicSlider, soundEffectSlider;
 
     public AudioMixer mixer;
