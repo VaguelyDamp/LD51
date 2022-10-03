@@ -32,6 +32,11 @@ public class CardChooser : MonoBehaviour
 
     private IEnumerator rejectionCoroutine;
 
+    public AudioClip selectBoop;
+    public AudioClip rejectBoop;
+
+    private AudioSource sauce;
+
     private void Start() {
         dealer = FindObjectOfType<CardDealer>();
 
@@ -43,6 +48,8 @@ public class CardChooser : MonoBehaviour
         selectPos = unselectPos + selectedMove;
 
         animationActive = false;
+
+        sauce = GetComponent<AudioSource>();
     }
 
     
@@ -56,6 +63,10 @@ public class CardChooser : MonoBehaviour
             }
             rejectionCoroutine = RejectionShake();
             StartCoroutine(rejectionCoroutine);
+            sauce.PlayOneShot(rejectBoop);
+        }
+        else if(selected) {
+            sauce.PlayOneShot(selectBoop);
         }
     }
 

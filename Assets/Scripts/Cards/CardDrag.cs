@@ -9,8 +9,14 @@ public class CardDrag : MonoBehaviour
 
     public static StaffCard selectedCard;
 
+    public AudioClip dragBoop;
+
+    private AudioSource sauce;
+
     private void Start()
     {
+        sauce = GetComponent<AudioSource>();
+
         EventTrigger trigger = gameObject.AddComponent<EventTrigger>();
 
         EventTrigger.Entry onDragEntry = new EventTrigger.Entry();
@@ -35,6 +41,8 @@ public class CardDrag : MonoBehaviour
         GetComponent<CardChooser>().enabled = false;
         Debug.LogFormat("Now draggin {0}", gameObject.name);
         selectedCard = GetComponent<StaffCard>();
+
+        sauce.PlayOneShot(dragBoop);
     }
 
     private void OnDragEnd(BaseEventData eventData) {

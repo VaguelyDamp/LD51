@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CardDealer : MonoBehaviour
 {
@@ -40,6 +41,13 @@ public class CardDealer : MonoBehaviour
     public TMPro.TextMeshProUGUI cookVacancyUi;
     public TMPro.TextMeshProUGUI conductorVacancyUi;
 
+    public AudioClip dragBoop;
+    public AudioClip dropBoop;
+
+    public AudioClip readyBoop;
+
+    private AudioSource sauce;
+
     private void Awake() {
         selectedCards = new HashSet<int>();
         deck = FindObjectOfType<DeckManager>();
@@ -47,6 +55,8 @@ public class CardDealer : MonoBehaviour
     }
 
     private void Start() {
+        sauce = GetComponent<AudioSource>();
+
         SpawnCards();
 
         acceptButton.interactable = (selectedCards.Count >= minAllowedSelection);
@@ -197,9 +207,12 @@ public class CardDealer : MonoBehaviour
     public void MarkStaffCardAssigned(GameObject staffCard) {
         staffToAssign--;
 
+        sauce.PlayOneShot(dropBoop);
+
         StartCoroutine(DropOutCard(staffCard, selectedCardShoop));
 
         if(staffToAssign <= 0) {
+            sauce.PlayOneShot(readyBoop);
             FindObjectOfType<SceneTransition>().StartSceneTransition();
             StartCoroutine(SendOutTrain());
         }
@@ -212,7 +225,9 @@ public class CardDealer : MonoBehaviour
             for (int i = 0; i < dealCount; ++i) {
                 if (selectedCards.Contains(i)) {
                     if(dealtCards[i].GetComponent<StaffCard>()) {
-                        dealtCardObjs[i].AddComponent<CardDrag>();
+                        CardDrag cd = dealtCardObjs[i].AddComponent<CardDrag>();
+                        cd.dragBoop = dragBoop;
+
                         CardChooser cc = dealtCardObjs[i].GetComponent<CardChooser>();
                         cc.Selected = true;
                         cc.GetComponent<UnityEngine.UI.Button>().enabled = false;
@@ -234,7 +249,7 @@ public class CardDealer : MonoBehaviour
 
             Destroy(acceptButton.gameObject);
 
-            
+            sauce.PlayOneShot(readyBoop);
 
             if(staffToAssign > 0) {
                 FindObjectOfType<UI_Train>().SpawnTrain();
