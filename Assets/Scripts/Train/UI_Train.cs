@@ -42,7 +42,8 @@ public class UI_Train : MonoBehaviour
                     {
                         UI_Flasher flash = uiCar.AddComponent<UI_Flasher>();
                         flash.actualCarNum = ui_cars.Count - 1;
-                    }
+                    }  
+                    uiCar.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = (10 - (ui_cars.Count - 1)).ToString();                 
                 }
             }
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Winning : MonoBehaviour
 {
@@ -30,9 +31,8 @@ public class Winning : MonoBehaviour
         transform.Find("MainMenu").gameObject.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GoToMenu ()
     {
-        
+        SceneManager.LoadScene(1);
     }
 }

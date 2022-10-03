@@ -139,6 +139,9 @@ public class Task : MonoBehaviour
         prompt = Instantiate(promptPrefab, actualSpot.transform);
         Transform promptCanvas = prompt.transform.Find("Canvas");
         promptCanvas.Find("Name").GetComponent<TextMeshPro>().text = taskName;
+        if(staffType != StaffCard.StaffType.None) promptCanvas.Find("StaffSprite").GetComponent<UnityEngine.UI.Image>().sprite = DeckManager.instance.GetSpriteForStaff(staffType, false);
+        else promptCanvas.Find("StaffSprite").gameObject.SetActive(false);
+        
         for (int i = 0; i < keys.Length; i++)
         {
             //Assigne the correct sprites to the prefab
@@ -246,7 +249,7 @@ public class Task : MonoBehaviour
     void Update()
     {
         timeTillStart -= Time.deltaTime;
-        if (timeTillStart <= 0 && !carDead && !taskUp && taskEnabled) StartTask();
+        if (timeTillStart <= 0 && !carDead && !taskUp && taskEnabled && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "trainplace") StartTask();
 
         if (taskUp)
         {
