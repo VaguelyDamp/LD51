@@ -327,4 +327,9 @@ public class CardDealer : MonoBehaviour
         }
 
     }
+
+    public void TutorialButton()
+    {
+        DeckManager.instance.gameObject.GetComponent<Tutorial>().HideTicket();
+    }
 }
