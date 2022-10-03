@@ -38,12 +38,17 @@ public class Train : MonoBehaviour
 
     public GameObject gameOverTicket;
     public GameObject endTicketPos;
+    public GameObject mainMenuButton;
 
     private void Start() {
         CurrentSpeed = this.MaxSpeed;
         hasWon = false;
 
         secsToDest = initialSecondsToDestination;
+
+        gameOverTicket = GameObject.FindGameObjectWithTag("Canvas").transform.Find("GameOver").Find("Ticket").gameObject;
+        endTicketPos = GameObject.FindGameObjectWithTag("Canvas").transform.Find("GameOver").Find("EndTicketPos").gameObject;
+        mainMenuButton = GameObject.FindGameObjectWithTag("Canvas").transform.Find("MainMenu").gameObject;
 
         if(disableLogic) { 
             foreach(CarWobble w in GetComponentsInChildren<CarWobble>()) {
@@ -166,7 +171,7 @@ public class Train : MonoBehaviour
             gameOverTicket.transform.position = Vector3.Lerp(startTicketPos, endTicketPos.transform.position, animTime/animLength);
             yield return null;
         }
-        
+        mainMenuButton.SetActive(true);
         //Transition to game over screen
     }
 
