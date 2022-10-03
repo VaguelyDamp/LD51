@@ -9,6 +9,7 @@ TagManager:
   - PromptSpot
   - Audio
   - Train
+  - Canvas
   layers:
   - Default
   - TransparentFX
