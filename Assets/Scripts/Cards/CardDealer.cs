@@ -54,7 +54,9 @@ public class CardDealer : MonoBehaviour
     private void Start() {
         sauce = GetComponent<AudioSource>();
         if (DeckManager.instance.stationIndex == 0) actualStart();
-        else FindObjectOfType<Scoring>().StartScoring();        
+        else FindObjectOfType<Scoring>().StartScoring();    
+
+        acceptButton.interactable = false;    
     }
 
     public void actualStart()
