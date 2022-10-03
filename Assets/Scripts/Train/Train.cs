@@ -51,6 +51,7 @@ public class Train : MonoBehaviour
         }
 
         if(deck) {
+            FindObjectOfType<UI_Train>().SpawnTrain();
             foreach(GameObject card in deck.GetHand()){
                 CarCard carCard = card.GetComponent<CarCard>();
                 if (carCard) {

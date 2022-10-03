@@ -58,4 +58,9 @@ public class UI_Car : MonoBehaviour {
             uiCardSlots[i].SetActive(false);
         }
     }
+
+    void Update()
+    {
+        
+    }
 }

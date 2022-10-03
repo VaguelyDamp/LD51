@@ -1270,6 +1270,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   fire: {fileID: 4751718497586858980, guid: f3b8b249bfbdfbb49a5bec28aa177d6d, type: 3}
+  associatedTrainCar: 0
+  card: {fileID: 0}
 --- !u!114 &2650622867063909999
 MonoBehaviour:
   m_ObjectHideFlags: 0

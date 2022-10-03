@@ -20,7 +20,7 @@ public class Task : MonoBehaviour
     public float otherSelectedTimeMult = 0.75f;
 
     private float timeTillStart = 0;
-    private float timeTillFail;
+    public float timeTillFail;
     public bool taskUp = false;
     private int keyIndex = 0;
 
@@ -181,10 +181,18 @@ public class Task : MonoBehaviour
     {
         //Debug.Log("Correct Key");
         //Do positive feedback here
+        audioS.pitch = Helpers.Remap(keyIndex, 0, keys.Length - 1, 0.2f, 1.8f);
         audioS.PlayOneShot(goodKeys[Random.Range(0, goodKeys.Length - 1)], 0.5f);
         prompt.transform.Find((keyIndex+1).ToString()).gameObject.GetComponent<SpriteRenderer>().color = successColor;
         keyIndex++;
         if (keyIndex >= keys.Length) SucceedTask();
+    }
+    private IEnumerator playKeySound()
+    {
+        audioS.pitch = Helpers.Remap(keyIndex, 0, keys.Length - 1, 0.8f, 1.2f);
+        audioS.PlayOneShot(goodKeys[Random.Range(0, goodKeys.Length - 1)], 0.5f);
+        while(audioS.isPlaying) yield return null;
+        audioS.pitch = 1;
     }
 
     public void KeyFail()

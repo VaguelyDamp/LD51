@@ -100,6 +100,16 @@ public class Car : MonoBehaviour
         return card.GetStaffTypes();
     }
 
+    public float GetMostUrgentTaskTime()
+    {
+        float time = 1000;
+        foreach (Task task in tasks)
+        {
+            if (task.taskUp && task.timeTillFail < time) time = task.timeTillFail;
+        }
+        return time;
+    }
+
     private void Awake()
     {
         heartMeter = transform.Find("Car").Find("CarCanvas").Find("HeartMeter").GetComponent<ChunkMeter>();
