@@ -22,8 +22,6 @@ public class Train : MonoBehaviour
 
     public Cinemachine.CinemachineTargetGroup camTargetGroup;
 
-    private DeckManager deck;
-
     public float secsToDest;
     private bool ded = false;
     public float initialSecondsToDestination = 60.0f;
@@ -32,10 +30,13 @@ public class Train : MonoBehaviour
 
     public bool disableLogic = false;
 
+    private bool hasWon;
+
+    public bool spawnUITrain = false;
+
     private void Start() {
         CurrentSpeed = this.MaxSpeed;
-
-        deck = FindObjectOfType<DeckManager>();
+        hasWon = false;
 
         secsToDest = initialSecondsToDestination;
 
@@ -52,9 +53,10 @@ public class Train : MonoBehaviour
             Meter.Get(ValueChannel.Progress).maxVal = initialSecondsToDestination;
         }
 
-        if(deck) {
-            FindObjectOfType<UI_Train>().SpawnTrain();
-            foreach(GameObject card in deck.GetHand()){
+        if(DeckManager.instance) {
+            if(spawnUITrain) FindObjectOfType<UI_Train>().SpawnTrain();
+
+            foreach(GameObject card in DeckManager.instance.GetHand()){
                 CarCard carCard = card.GetComponent<CarCard>();
                 if (carCard) {
                     GameObject car = AddCar(carCard.CarPrefab);
@@ -147,7 +149,16 @@ public class Train : MonoBehaviour
         secsToDest -= Time.deltaTime;
 
         if(secsToDest <= 0) {
-            FindObjectOfType<SceneTransition>().StartSceneTransition();
+            if (!hasWon) {
+                DeckManager.instance.stationIndex++;
+                if(DeckManager.instance.stationIndex >= DeckManager.instance.stationRoundels.Length - 1) {
+                    FindObjectOfType<SceneTransition>().StartSceneTransition("Winsville");
+                }
+                else {
+                    FindObjectOfType<SceneTransition>().StartSceneTransition();
+                }
+                hasWon = true;
+            }
         }
         else {
             if(Meter.Get(ValueChannel.Progress) != null) {

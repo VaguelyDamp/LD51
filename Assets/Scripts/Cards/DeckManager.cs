@@ -12,18 +12,28 @@ public class DeckManager : MonoBehaviour
 
     public List<GameObject> discard;
 
+    public string[] stationNames;
+    public Sprite[] stationRoundels;
+
+    public int stationIndex = 0;
+
+    public static DeckManager instance;
+
     private void Awake() {
-        if(FindObjectOfType<DeckManager>() != this) {
+        if(instance != null) {
             Destroy(gameObject);
         }
+        else {
+            instance = this;
 
-        deck = new List<GameObject>();
-        deck.AddRange(baseDeck);
+            deck = new List<GameObject>();
+            deck.AddRange(baseDeck);
 
-        hand = new List<GameObject>();
-        discard = new List<GameObject>();
+            hand = new List<GameObject>();
+            discard = new List<GameObject>();
 
-        DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public GameObject Draw() {
@@ -58,6 +68,7 @@ public class DeckManager : MonoBehaviour
     }
 
     public GameObject AddToHand(GameObject card) {
+        Debug.LogFormat("Added card {0} to hand", card.name);
         GameObject instance = Instantiate(card, transform);
         CardChooser cc = instance.GetComponent<CardChooser>();
         if(cc) {

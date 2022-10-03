@@ -7,16 +7,13 @@ using UnityEngine;
 public class UI_Train : MonoBehaviour
 {
     public float carWidth = 120;
-    private DeckManager deck;
     private List<GameObject> ui_cars = new List<GameObject>();
 
     public GameObject uiCarPrefab;
     public GameObject uiEnginePrefab;
 
     public void SpawnTrain() {
-        deck = FindObjectOfType<DeckManager>();
-
-        int numCars = deck.GetCarCardCountInHand();
+        int numCars = DeckManager.instance.GetCarCardCountInHand();
         Vector3 spawnPos = new Vector3((numCars / 2.0f) * carWidth, 0, 0);    
         
         if (SceneManager.GetActiveScene().name == "trainplace")
@@ -30,8 +27,8 @@ public class UI_Train : MonoBehaviour
         }
         
 
-        if(deck) {
-            foreach(GameObject card in deck.GetHand()){
+        if(DeckManager.instance) {
+            foreach(GameObject card in DeckManager.instance.GetHand()){
                 CarCard cc = card.GetComponent<CarCard>();
                 if(cc) {
                     GameObject uiCar = Instantiate(uiCarPrefab, transform);

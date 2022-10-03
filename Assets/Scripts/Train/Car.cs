@@ -72,7 +72,7 @@ public class Car : MonoBehaviour
         killCarRadio.Play();
         StartCoroutine(CarFall());
 
-        FindObjectOfType<DeckManager>().RemoveCardFromHand(card.gameObject);
+        DeckManager.instance.RemoveCardFromHand(card.gameObject);
     }
     protected IEnumerator CarFall()
     {
