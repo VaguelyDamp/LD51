@@ -28,6 +28,7 @@ public class Train : MonoBehaviour
 
     public AudioSource bigDieRadio;
     public AudioSource smallDieRadio;
+    public AudioSource alertRadio;
 
     public bool disableLogic = false;
 
@@ -121,6 +122,11 @@ public class Train : MonoBehaviour
     public void KillSmallCar ()
     {
         smallDieRadio.Play();
+    }
+
+    public void PlayAlertWhistle ()
+    {
+        alertRadio.Play();
     }
 
     public void GameOver()

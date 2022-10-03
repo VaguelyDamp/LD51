@@ -36,6 +36,7 @@ public class Car : MonoBehaviour
     {
         hearts -= 1;
         Debug.Log("Car: "+name+" has "+hearts+" hearts");
+        if (hearts == 1)FindObjectOfType<Train>().PlayAlertWhistle();
         heartMeter.Value = hearts;
         StartCoroutine(DamageShake());
         if (hearts <= 0) KillCar();
