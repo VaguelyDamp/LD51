@@ -15,6 +15,8 @@ public class Train : MonoBehaviour
 
     // Value of -1 means none
     public int SelectedCar = -1;
+    
+    public int previouslySelectedTrain = -1;
 
     public List<GameObject> cars;
 
@@ -39,6 +41,7 @@ public class Train : MonoBehaviour
     public GameObject gameOverTicket;
     public GameObject endTicketPos;
     public GameObject mainMenuButton;
+
 
     private void Start() {
         CurrentSpeed = this.MaxSpeed;
@@ -80,6 +83,7 @@ public class Train : MonoBehaviour
     }
 
     public void SelectCar(int index) {
+
         if(SelectedCar == index) index = -1;
         if(index >= cars.Count) index = -1;
 
@@ -96,7 +100,7 @@ public class Train : MonoBehaviour
         
 
         SelectedCar = index;
-
+        if (index != -1) previouslySelectedTrain = index;
         CarSelectionChanged.Invoke(SelectedCar);
     }
 
@@ -248,6 +252,14 @@ public class Train : MonoBehaviour
         }
         else if (SelectedCar != -1 && SelectedCar < 9 && Input.GetKeyDown(KeyCode.LeftArrow)) {
             SelectCar(SelectedCar + 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (SelectedCar == -1 && previouslySelectedTrain != -1);
+            {
+                SelectCar(previouslySelectedTrain);
+            }
         }
     }
 
