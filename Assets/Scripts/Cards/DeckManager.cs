@@ -21,6 +21,33 @@ public class DeckManager : MonoBehaviour
 
     public int score;
 
+    public Sprite janitorSpriteFull;
+    public Sprite janitorSpriteEmpty;
+    public Sprite engineerSpriteFull;
+    public Sprite engineerSpriteEmpty;
+    public Sprite conductorSpriteFull;
+    public Sprite conductorSpriteEmpty;
+    public Sprite cookSpriteFull;
+    public Sprite cookSpriteEmpty;
+
+    public StaffCard.StaffType staffType;
+
+
+    public Sprite GetSpriteForStaff(StaffCard.StaffType staffType, bool full) {
+        switch(staffType) {
+            case StaffCard.StaffType.Janitor:
+                return full ? janitorSpriteFull : janitorSpriteEmpty;
+            case StaffCard.StaffType.Engineer:
+                return full ? engineerSpriteFull : engineerSpriteEmpty;
+            case StaffCard.StaffType.Conductor:
+                return full ? conductorSpriteFull : conductorSpriteEmpty;
+            case StaffCard.StaffType.Cook:
+                return full ? cookSpriteFull : cookSpriteEmpty;
+            default:
+                return null;
+        }
+    }
+
     private void Awake() {
         if(instance != null) {
             Destroy(gameObject);

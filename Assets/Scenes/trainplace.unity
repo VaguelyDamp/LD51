@@ -1192,6 +1192,38 @@ PrefabInstance:
       propertyPath: stationIndex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: cookSpriteFull
+      value: 
+      objectReference: {fileID: 21300000, guid: e08f3674790399e4ea7da886b3927c89, type: 3}
+    - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: cookSpriteEmpty
+      value: 
+      objectReference: {fileID: 21300000, guid: 5ce49cfcfc06905499c20f54e8f18ad8, type: 3}
+    - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: janitorSpriteFull
+      value: 
+      objectReference: {fileID: 21300000, guid: 097f51948c667154b9bbced6380b4ea3, type: 3}
+    - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: engineerSpriteFull
+      value: 
+      objectReference: {fileID: 21300000, guid: 7b47a38253e38764e8d7dc2582681ff2, type: 3}
+    - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: janitorSpriteEmpty
+      value: 
+      objectReference: {fileID: 21300000, guid: 03a667eff219a0a41a58f41106c3b3d0, type: 3}
+    - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: conductorSpriteFull
+      value: 
+      objectReference: {fileID: 21300000, guid: 5986879fee9294f48b28acba947b876b, type: 3}
+    - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: engineerSpriteEmpty
+      value: 
+      objectReference: {fileID: 21300000, guid: 94f75f5f59a69a345a92eb516dd0ae60, type: 3}
+    - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: conductorSpriteEmpty
+      value: 
+      objectReference: {fileID: 21300000, guid: 90e3dd1bab844f94f99c5d334cf84481, type: 3}
     - target: {fileID: 9091689064682213661, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
       propertyPath: m_RootOrder
       value: 8
