@@ -27,7 +27,7 @@ public class Audio : MonoBehaviour
         ded = true;
         ambientRadio.Stop();
         trainRadio.Stop();
-        stationRadio.Stop();
+        Fade(stationRadio, 0);
         arrivalRadio.Stop();
         departureRadio.Stop();
     }
