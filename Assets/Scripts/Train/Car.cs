@@ -97,6 +97,7 @@ public class Car : MonoBehaviour
     }
 
     public List<StaffCard.StaffType> GetAssignedStaffTypes() {
+        if(!card) return new List<StaffCard.StaffType>();
         return card.GetStaffTypes();
     }
 
