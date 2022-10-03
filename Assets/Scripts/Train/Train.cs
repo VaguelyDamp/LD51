@@ -140,7 +140,7 @@ public class Train : MonoBehaviour
         gameOverTicket = GameObject.FindGameObjectWithTag("Canvas").transform.Find("GameOver").Find("Ticket").gameObject;
         endTicketPos = GameObject.FindGameObjectWithTag("Canvas").transform.Find("GameOver").Find("EndTicketPos").gameObject;
         mainMenuButton = GameObject.FindGameObjectWithTag("Canvas").transform.Find("MainMenu").gameObject;
-        
+
         bigDieRadio.Play();
         GameObject audio = GameObject.FindWithTag("Audio");
         audio.GetComponent<Audio>().Die();
@@ -162,6 +162,7 @@ public class Train : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
+        gameOverTicket.SetActive(true);
         gameOverTicket.transform.Find("Explanation").GetComponent<TMPro.TextMeshProUGUI>().text = "You failed to to feed the engine coal every 10 seconds.\nFinal Score: "+FindObjectOfType<DeckManager>().score.ToString();
 
         float animTime = 0;

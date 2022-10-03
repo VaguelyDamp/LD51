@@ -10,7 +10,7 @@ public class Scoring : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -38,6 +38,8 @@ public class Scoring : MonoBehaviour
         prevStarNum.color = new Color(prevStarNum.color.r, prevStarNum.color.g, prevStarNum.color.b, 0);
         newStarNum.color = new Color(newStarNum.color.r, newStarNum.color.g, newStarNum.color.b, 0);
         totalStarNum.color = new Color(totalStarNum.color.r, totalStarNum.color.g, totalStarNum.color.b, 0);
+
+        scoreTicket.SetActive(true);
 
         while (animTime < animLength)
         {

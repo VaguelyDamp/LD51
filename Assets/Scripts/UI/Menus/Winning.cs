@@ -17,6 +17,7 @@ public class Winning : MonoBehaviour
 
     private IEnumerator MoveTicket()
     {
+        ticket.SetActive(true);
         Vector3 startPos = ticket.transform.position;
         float curTime = 0;
         float animTime = 4;
