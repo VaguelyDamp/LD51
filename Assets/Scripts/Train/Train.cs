@@ -148,7 +148,12 @@ public class Train : MonoBehaviour
         if(secsToDest <= 0) {
             if (!hasWon) {
                 DeckManager.instance.stationIndex++;
-                FindObjectOfType<SceneTransition>().StartSceneTransition();
+                if(DeckManager.instance.stationIndex >= DeckManager.instance.stationRoundels.Length - 1) {
+                    FindObjectOfType<SceneTransition>().StartSceneTransition("Winsville");
+                }
+                else {
+                    FindObjectOfType<SceneTransition>().StartSceneTransition();
+                }
                 hasWon = true;
             }
         }

@@ -120,3 +120,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9403a7ce0d2ae8a418ecfbf5ff8b8da3, type: 3}
   - {fileID: 21300000, guid: 684189a85f6d42f4ba3538df108e7901, type: 3}
   - {fileID: 21300000, guid: ab1a1c884a0ba0f4a868c88d49700e80, type: 3}
+  stationIndex: 0
