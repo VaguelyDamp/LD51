@@ -12,9 +12,16 @@ public class Winning : MonoBehaviour
     {
         ticket = transform.Find("Ticket").gameObject;
 
+        endTicketPos = ticket.transform.parent.Find("EndTicketPos").position;
+
         int score = 0;
+        int newScore = 0;
+        foreach (CarCard card in DeckManager.instance.GetComponentsInChildren<CarCard>())
+        {
+            newScore += card.value;
+        }
         if(DeckManager.instance){
-            score = DeckManager.instance.score;
+            score = DeckManager.instance.score + newScore;
         }
         ticket.transform.Find("Explanation").GetComponent<TMPro.TextMeshProUGUI>().text = "You were able to feed the engine coal every 10 seconds and delivered some stuff along the way.\n\nFinal Score: "+score;
         StartCoroutine(MoveTicket());
@@ -33,6 +40,9 @@ public class Winning : MonoBehaviour
             yield return null;
         }
         transform.Find("MainMenu").gameObject.SetActive(true);
+        foreach (Transform child in DeckManager.instance.transform){
+            Destroy(child.gameObject);
+        }
     }
 
     public void GoToMenu ()
