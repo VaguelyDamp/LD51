@@ -16,7 +16,7 @@ public class Train : MonoBehaviour
     // Value of -1 means none
     public int SelectedCar = -1;
     
-    public int previouslySelectedTrain = -1;
+    public int previouslySelectedTrain = 0;
 
     public List<GameObject> cars;
 
