@@ -44,6 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be73c76a8702c7544b3668d55d30b641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allCardPrefabs:
+  - {fileID: 8585822884919717249, guid: 4afa19f868d143847874d328f5a81b76, type: 3}
+  - {fileID: 5876269917000528910, guid: 7c3a1b4223f0f124f9c158473195f89b, type: 3}
+  - {fileID: 3421681301472684325, guid: 53829aecc89c2c34ab4fec9b9ce69ec0, type: 3}
+  - {fileID: 6987242978944514608, guid: e7d26b08f0c7cfd409e777ca1a9b7ecc, type: 3}
+  - {fileID: 598640333220343669, guid: 0a1324e608fc57b4db7007836393f0c8, type: 3}
+  - {fileID: 3747920743957579299, guid: 7bab8713074adca4085c4ea9da1ca489, type: 3}
+  - {fileID: 4178104964906985293, guid: 6eb3e87d756cfb342ac2fdd0fb2fc45a, type: 3}
+  - {fileID: 4421483021947486609, guid: 7abf223763e7d1d4eae1b90ca2060e7f, type: 3}
   baseDeck:
   - {fileID: 8585822884919717249, guid: 4afa19f868d143847874d328f5a81b76, type: 3}
   - {fileID: 8585822884919717249, guid: 4afa19f868d143847874d328f5a81b76, type: 3}

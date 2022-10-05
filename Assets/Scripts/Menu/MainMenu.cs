@@ -13,7 +13,10 @@ public class MainMenu : MonoBehaviour
                        trainOperationText,
                        staffText,
                        textBackground,
+                       starsTicket,
                        scoringAndWinningText;
+
+    public GameObject dampBoiCard;
     void Start()
     {
         settingsMenu = transform.Find("SettingsMenu").gameObject;
@@ -35,6 +38,24 @@ public class MainMenu : MonoBehaviour
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(false);
         textBackground.SetActive(false);
+
+        //Find Stars
+        starsTicket = transform.Find("StarsTicket").gameObject;
+
+        starsTicket.transform.Find("HighScore").Find("Num").GetComponent<TMPro.TextMeshProUGUI>().text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        starsTicket.transform.Find("TotalStars").Find("Num").GetComponent<TMPro.TextMeshProUGUI>().text = PlayerPrefs.GetInt("TotalStars", 0).ToString();
+        starsTicket.transform.Find("BuyButton").GetComponent<UnityEngine.UI.Button>().interactable = PlayerPrefs.GetInt("TotalStars", 0) > 50;
+    }
+
+    public void BuyDampBoi()
+    {
+        int totalStars = PlayerPrefs.GetInt("TotalStars", 0);
+        if (totalStars >= 50)
+        {
+            totalStars -= 50;
+            PlayerPrefs.SetInt(dampBoiCard.name, PlayerPrefs.GetInt(dampBoiCard.name, 0) + 1);
+            starsTicket.transform.Find("BuyButton").GetComponent<UnityEngine.UI.Button>().interactable = PlayerPrefs.GetInt("TotalStars", 0) > 50;
+        }
     }
 
     public void ShowTutorial()
@@ -44,6 +65,7 @@ public class MainMenu : MonoBehaviour
         settingsMenu.SetActive(false);
         overviewText.SetActive(true);
         textBackground.SetActive(true);
+        starsTicket.SetActive(false);
     }
 
     public void HideTutorial()
@@ -53,6 +75,7 @@ public class MainMenu : MonoBehaviour
         settingsMenu.SetActive(true);
         overviewText.SetActive(false);
         textBackground.SetActive(false);
+        starsTicket.SetActive(true);
     }
 
     public void StartGame()
@@ -74,6 +97,7 @@ public class MainMenu : MonoBehaviour
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(false);
         textBackground.SetActive(true);
+        starsTicket.SetActive(false);
     }
 
     public void ShowTrainOperationText()
@@ -84,6 +108,7 @@ public class MainMenu : MonoBehaviour
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(false);
         textBackground.SetActive(true);
+        starsTicket.SetActive(false);
     }
 
     public void ShowTrainCarText()
@@ -94,6 +119,7 @@ public class MainMenu : MonoBehaviour
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(false);
         textBackground.SetActive(true);
+        starsTicket.SetActive(false);
     }
 
     public void ShowStaffText()
@@ -104,6 +130,7 @@ public class MainMenu : MonoBehaviour
         staffText.SetActive(true);
         scoringAndWinningText.SetActive(false);
         textBackground.SetActive(true);
+        starsTicket.SetActive(false);
     }
 
     public void ShowScoringAndWinningText()
@@ -114,5 +141,6 @@ public class MainMenu : MonoBehaviour
         staffText.SetActive(false);
         scoringAndWinningText.SetActive(true);
         textBackground.SetActive(true);
+        starsTicket.SetActive(false);
     }
 }
