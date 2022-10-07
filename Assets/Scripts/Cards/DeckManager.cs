@@ -33,6 +33,9 @@ public class DeckManager : MonoBehaviour
 
     public StaffCard.StaffType staffType;
 
+    public bool UseSet = false;
+    public GameObject[] set;
+
 
     public Sprite GetSpriteForStaff(StaffCard.StaffType staffType, bool full) {
         switch(staffType) {
@@ -110,11 +113,18 @@ public class DeckManager : MonoBehaviour
 
     public GameObject[] Draw(int count) {
         int toDraw = Mathf.Min(count, deck.Count);
-        GameObject[] deal = new GameObject[toDraw];
-        for(int i = 0; i < toDraw; ++i) {
-            deal[i] = Draw();
+        if (UseSet)
+        {
+           return set;
         }
-        return deal;
+        else 
+        {
+            GameObject[] deal = new GameObject[toDraw];
+                for(int i = 0; i < toDraw; ++i) {
+                    deal[i] = Draw();
+            }
+            return deal;
+        }
     }
 
     public void AddToDeck(GameObject card, int count = 1) {

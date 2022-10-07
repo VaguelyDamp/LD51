@@ -212,10 +212,24 @@ public class CardDealer : MonoBehaviour
                     var staffType = staff.staffType;
                     int curVacancies = CalculateVacanciesForJobType(staffType);
 
-                    if(curVacancies > 0 || CalculateAllJobVacancies() > CountSelectedDampBois()){
+                    if (CountSelectedDampBois() > 0)
+                    {    
+                        int curVacanciesSansDamp = CalculateVacanciesForJobType(staffType, false);
+                        if(curVacanciesSansDamp > Mathf.Max(0, curVacancies))
+                        {
+                            if ((CalculateAllJobVacancies() > CountSelectedDampBois()))
+                            {
+                                selectedCards.Add(selection);
+                                isSelected = true;
+                            }   
+                        }
+                    }
+                    else if (curVacancies > 0)
+                    {
                         selectedCards.Add(selection);
                         isSelected = true;
                     }
+
                 }
                 else {
                     int currentTrainLength = DeckManager.instance.GetCarCardCountInHand();
