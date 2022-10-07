@@ -9,8 +9,10 @@ public class StaffCard : MonoBehaviour
         Engineer,
         Conductor,
         Cook,
+        DampBoi,
         None,
     }
 
     public StaffType staffType;
+    public StaffType assignedStaffType;
 }

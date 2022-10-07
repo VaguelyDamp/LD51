@@ -82,7 +82,7 @@ public class Tutorial : MonoBehaviour
     public void DisplayTicket(string tuText)
     {
         canvas = GameObject.Find("Canvas");
-        Debug.Log(canvas);
+        //Debug.Log(canvas);
         textTicket = canvas.transform.Find("TextTicket").gameObject;
         Time.timeScale = 0;
         textTicket.SetActive(true);

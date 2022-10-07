@@ -242,7 +242,7 @@ public class Task : MonoBehaviour
     
         FindObjectOfType<Train>().CarSelectionChanged.AddListener(OnTrainSelectionChanged);
         
-        if (gameObject.GetComponent<Car>().GetAssignedStaffTypes().Contains(staffType)) taskEnabled = false;
+        if (gameObject.GetComponent<Car>().GetAssignedStaffTypes().Contains(staffType) || gameObject.GetComponent<Car>().GetAssignedStaffTypes().Contains(StaffCard.StaffType.DampBoi)) taskEnabled = false;
     }
 
     // Update is called once per frame

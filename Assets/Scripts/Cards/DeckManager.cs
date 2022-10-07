@@ -158,7 +158,8 @@ public class DeckManager : MonoBehaviour
         foreach(GameObject card in hand) {
             CarCard cc = card.GetComponent<CarCard>();
             if(cc) {
-                count += cc.GetSlotCountOfType(staffType);
+                if (staffType == StaffCard.StaffType.DampBoi) count += cc.staffSlots.Length;
+                else count += cc.GetSlotCountOfType(staffType);
             }
         }
 
@@ -172,6 +173,7 @@ public class DeckManager : MonoBehaviour
             StaffCard sc = card.GetComponent<StaffCard>();
             if(sc) {
                 if(sc.staffType == staffType) ++count;
+                if(sc.staffType == StaffCard.StaffType.DampBoi) if(sc.assignedStaffType == staffType) ++count;
             }
         }
         return count;

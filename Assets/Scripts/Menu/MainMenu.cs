@@ -54,6 +54,8 @@ public class MainMenu : MonoBehaviour
         {
             totalStars -= 50;
             PlayerPrefs.SetInt(dampBoiCard.name, PlayerPrefs.GetInt(dampBoiCard.name, 0) + 1);
+            PlayerPrefs.SetInt("TotalStars", totalStars);
+            starsTicket.transform.Find("TotalStars").Find("Num").GetComponent<TMPro.TextMeshProUGUI>().text = totalStars.ToString();
             starsTicket.transform.Find("BuyButton").GetComponent<UnityEngine.UI.Button>().interactable = PlayerPrefs.GetInt("TotalStars", 0) > 50;
         }
     }
