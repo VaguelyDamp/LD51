@@ -282,6 +282,17 @@ public class CardDealer : MonoBehaviour
 
         StartCoroutine(DropOutCard(staffCard, selectedCardShoop));
 
+        CheckDampEnable();
+
+        if(staffToAssign <= 0) {
+            sauce.PlayOneShot(readyBoop);
+            FindObjectOfType<SceneTransition>().StartSceneTransition();
+            StartCoroutine(SendOutTrain());
+        }
+    }
+
+    public void CheckDampEnable()
+    {
         if (nonDampBois <= 0)
         {
             foreach (Transform card in transform.Find("CardRow"))
@@ -289,13 +300,7 @@ public class CardDealer : MonoBehaviour
                 if (card.GetComponent<CardDrag>()) card.GetComponent<CardDrag>().draggable = true;
                 card.GetComponent<UnityEngine.UI.Image>().color = Color.white;
             }
-        }
-
-        if(staffToAssign <= 0) {
-            sauce.PlayOneShot(readyBoop);
-            FindObjectOfType<SceneTransition>().StartSceneTransition();
-            StartCoroutine(SendOutTrain());
-        }
+        }  
     }
 
     public void AcceptDeal() {
@@ -337,6 +342,16 @@ public class CardDealer : MonoBehaviour
             sauce.PlayOneShot(readyBoop);
 
             if(staffToAssign > 0) {
+                if (nonDampBois == 0)
+                {
+                    Debug.Log("All Damp Bois");
+                    foreach (Transform card in transform.Find("CardRow"))
+                    {
+                        Debug.Log("Card Row:"+card.name); 
+                        if (card.GetComponent<CardDrag>()) card.GetComponent<CardDrag>().draggable = true;
+                        card.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+                    }
+                }
                 FindObjectOfType<UI_Train>().SpawnTrain();
             }
             else {
@@ -346,6 +361,7 @@ public class CardDealer : MonoBehaviour
         }
         else {
             // Rejection
+            Debug.Log("No Sex 4 u");
         }
     }
 

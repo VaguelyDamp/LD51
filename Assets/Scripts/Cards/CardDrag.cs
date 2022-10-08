@@ -18,9 +18,12 @@ public class CardDrag : MonoBehaviour
 
     private List<GameObject> toFlash = new List<GameObject>();
 
+    private CardChooser cc;
+
     private void Start()
     {
         sauce = GetComponent<AudioSource>();
+        cc = GetComponent<CardChooser>();
 
         EventTrigger trigger = gameObject.AddComponent<EventTrigger>();
 
@@ -47,15 +50,18 @@ public class CardDrag : MonoBehaviour
             if (sc.staffType == StaffCard.StaffType.DampBoi)
             {
                 draggable = false;
-                gameObject.GetComponent<UnityEngine.UI.Image>().color = GetComponent<CardChooser>().rejectionColor;
+                gameObject.GetComponent<UnityEngine.UI.Image>().color = cc.rejectionColor;
+                Debug.Log("CardDrag disabled DampBoi");
             } 
         } 
+
+        GameObject.FindObjectOfType<CardDealer>().CheckDampEnable();
     }
 
     private void OnDragStart(BaseEventData eventData) {
         if (draggable)
         {
-            GetComponent<CardChooser>().enabled = false;
+            cc.enabled = false;
             Debug.LogFormat("Now draggin {0}", gameObject.name);
             selectedCard = GetComponent<StaffCard>();
             isDragging = true;
@@ -73,14 +79,14 @@ public class CardDrag : MonoBehaviour
             StartCoroutine(FlashFrame());
         }
         else{
-            GetComponent<CardChooser>().StartRejectionShake();
+            cc.StartRejectionShake();
         }     
     }
 
     private void OnDragEnd(BaseEventData eventData) {
         if (draggable)
         {
-            GetComponent<CardChooser>().enabled = true;
+            cc.enabled = true;
             Debug.LogFormat("Stopped draggin {0}", gameObject.name);
             selectedCard = null;
             isDragging = false;
