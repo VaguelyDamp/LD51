@@ -424,7 +424,7 @@ MonoBehaviour:
   selectedMove: {x: 0, y: 200, z: 0}
   moveSpeed: 2500
   rejectionEffectTime: 0.5
-  rejectionColor: {r: 1, g: 0, b: 0, a: 1}
+  rejectionColor: {r: 1, g: 0, b: 0, a: 0.6862745}
   rejectionShakeMagnitude: 30
   toFade:
   - {fileID: 3977871517934573151}
@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staffType: 2
+  assignedStaffType: 0
 --- !u!82 &3977871517934573147
 AudioSource:
   m_ObjectHideFlags: 0

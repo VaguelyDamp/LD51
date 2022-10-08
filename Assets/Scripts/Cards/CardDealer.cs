@@ -45,6 +45,7 @@ public class CardDealer : MonoBehaviour
     public AudioClip readyBoop;
 
     private AudioSource sauce;
+    private int nonDampBois = 0;
 
     private void Awake() {
         selectedCards = new HashSet<int>();
@@ -275,9 +276,20 @@ public class CardDealer : MonoBehaviour
     public void MarkStaffCardAssigned(GameObject staffCard) {
         staffToAssign--;
 
+        if (staffCard.GetComponent<StaffCard>().staffType != StaffCard.StaffType.DampBoi) nonDampBois--;
+
         sauce.PlayOneShot(dropBoop);
 
         StartCoroutine(DropOutCard(staffCard, selectedCardShoop));
+
+        if (nonDampBois <= 0)
+        {
+            foreach (Transform card in transform.Find("CardRow"))
+            {
+                if (card.GetComponent<CardDrag>()) card.GetComponent<CardDrag>().draggable = true;
+                card.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+            }
+        }
 
         if(staffToAssign <= 0) {
             sauce.PlayOneShot(readyBoop);
@@ -289,6 +301,7 @@ public class CardDealer : MonoBehaviour
     public void AcceptDeal() {
         if(choosingCards && selectedCards.Count >= minAllowedSelection && selectedCards.Count <= maxAllowedSelection) {
             staffToAssign = 0;
+            nonDampBois = 0;
             choosingCards = false;
             for (int i = 0; i < dealCount; ++i) {
                 if (selectedCards.Contains(i)) {
@@ -300,6 +313,10 @@ public class CardDealer : MonoBehaviour
                         cc.Selected = true;
                         cc.GetComponent<UnityEngine.UI.Button>().enabled = false;
                         staffToAssign++;
+                        if (dealtCards[i].GetComponent<StaffCard>().staffType != StaffCard.StaffType.DampBoi)
+                        {
+                            nonDampBois++;
+                        }
                     }
                     else {
                         StartCoroutine(DropOutCard(dealtCardObjs[i], selectedCardShoop));

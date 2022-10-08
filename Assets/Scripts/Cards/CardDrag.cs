@@ -13,6 +13,8 @@ public class CardDrag : MonoBehaviour
 
     private AudioSource sauce;
 
+    public bool draggable = true;
+
     private void Start()
     {
         sauce = GetComponent<AudioSource>();
@@ -35,30 +37,52 @@ public class CardDrag : MonoBehaviour
         trigger.triggers.Add(onDragEndEntry);
 
         basePos = GetComponent<RectTransform>().anchoredPosition;
+
+        StaffCard sc = gameObject.GetComponent<StaffCard>();
+        if (sc)
+        {
+            if (sc.staffType == StaffCard.StaffType.DampBoi)
+            {
+                draggable = false;
+                gameObject.GetComponent<UnityEngine.UI.Image>().color = GetComponent<CardChooser>().rejectionColor;
+            } 
+        } 
     }
 
     private void OnDragStart(BaseEventData eventData) {
-        GetComponent<CardChooser>().enabled = false;
-        Debug.LogFormat("Now draggin {0}", gameObject.name);
-        selectedCard = GetComponent<StaffCard>();
+        if (draggable)
+        {
+            GetComponent<CardChooser>().enabled = false;
+            Debug.LogFormat("Now draggin {0}", gameObject.name);
+            selectedCard = GetComponent<StaffCard>();
 
-        sauce.PlayOneShot(dragBoop);
+            sauce.PlayOneShot(dragBoop);
+        }
+        else{
+            GetComponent<CardChooser>().StartRejectionShake();
+        }     
     }
 
     private void OnDragEnd(BaseEventData eventData) {
-        GetComponent<CardChooser>().enabled = true;
-        Debug.LogFormat("Stopped draggin {0}", gameObject.name);
-        selectedCard = null;
+        if (draggable)
+        {
+            GetComponent<CardChooser>().enabled = true;
+            Debug.LogFormat("Stopped draggin {0}", gameObject.name);
+            selectedCard = null;
+        }
     }
 
     private void OnDrag(BaseEventData eventData) {
         PointerEventData pointerEvent = (PointerEventData)eventData;
         //Debug.LogFormat("Drag {0}", pointerEvent.position);
 
-        Canvas canvas = FindObjectOfType<Canvas>();
-        Vector3 canvasPos = pointerEvent.position;
+        if (draggable)
+        {
+            Canvas canvas = FindObjectOfType<Canvas>();
+            Vector3 canvasPos = pointerEvent.position;
 
-        //GetComponent<RectTransform>().anchoredPosition = basePos + pointerEvent.position;
-        transform.position = pointerEvent.position;
+            //GetComponent<RectTransform>().anchoredPosition = basePos + pointerEvent.position;
+            transform.position = pointerEvent.position;
+        }  
     }
 }

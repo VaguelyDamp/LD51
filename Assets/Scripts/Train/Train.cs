@@ -256,7 +256,7 @@ public class Train : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (SelectedCar == -1 && previouslySelectedTrain != -1);
+            if (SelectedCar == -1 && previouslySelectedTrain != -1)
             {
                 SelectCar(previouslySelectedTrain);
             }

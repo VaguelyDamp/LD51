@@ -60,12 +60,7 @@ public class CardChooser : MonoBehaviour
         bool wasSelected = selected;
         selected = dealer.RegisterCardSelection(cardIndex);
         if(wasSelected == selected) {
-            if (animationActive) {
-                StopCoroutine(rejectionCoroutine);
-            }
-            rejectionCoroutine = RejectionShake();
-            StartCoroutine(rejectionCoroutine);
-            sauce.PlayOneShot(rejectBoop);
+            StartRejectionShake();
         }
         else if(selected) {
             sauce.PlayOneShot(selectBoop);
@@ -74,6 +69,16 @@ public class CardChooser : MonoBehaviour
             sauce.PlayOneShot(deselectBoop);
         }
     }
+
+    public void StartRejectionShake()
+    {
+        if (animationActive) {
+                StopCoroutine(rejectionCoroutine);
+            }
+        rejectionCoroutine = RejectionShake();
+        StartCoroutine(rejectionCoroutine);
+        sauce.PlayOneShot(rejectBoop);
+}
 
     private void Update() {
         if(!animationActive) {
@@ -87,11 +92,17 @@ public class CardChooser : MonoBehaviour
         Vector3 basePos = transform.position;
         animationActive = true;
 
+        Dictionary<UnityEngine.UI.Image, Color> oldColors = new Dictionary<UnityEngine.UI.Image, Color>();
+        foreach(UnityEngine.UI.Image img in toFade)
+        {
+            oldColors.Add(img, img.color);
+        }
+
         while(timer > 0) {
             float t = 1 - (timer / rejectionEffectTime);
 
             foreach(UnityEngine.UI.Image img in toFade) {
-                img.color = Color.Lerp(rejectionColor, Color.white, t);
+                img.color = Color.Lerp(rejectionColor, oldColors[img], t);
             }
 
             transform.position = basePos 
@@ -102,7 +113,7 @@ public class CardChooser : MonoBehaviour
         }
 
         foreach(UnityEngine.UI.Image img in toFade) {
-            img.color = Color.white;
+            img.color = oldColors[img];
         }
 
         animationActive = false;

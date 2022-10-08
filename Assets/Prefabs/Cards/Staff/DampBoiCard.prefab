@@ -426,7 +426,7 @@ MonoBehaviour:
   selectedMove: {x: 0, y: 200, z: 0}
   moveSpeed: 2500
   rejectionEffectTime: 0.5
-  rejectionColor: {r: 1, g: 0, b: 0, a: 1}
+  rejectionColor: {r: 0.8490566, g: 0.2683339, b: 0.2683339, a: 0.6862745}
   rejectionShakeMagnitude: 30
   toFade:
   - {fileID: 3977871517934573151}
