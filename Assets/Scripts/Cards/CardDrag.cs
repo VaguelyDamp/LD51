@@ -14,6 +14,9 @@ public class CardDrag : MonoBehaviour
     private AudioSource sauce;
 
     public bool draggable = true;
+    private bool isDragging = false;
+
+    private List<GameObject> toFlash = new List<GameObject>();
 
     private void Start()
     {
@@ -55,8 +58,19 @@ public class CardDrag : MonoBehaviour
             GetComponent<CardChooser>().enabled = false;
             Debug.LogFormat("Now draggin {0}", gameObject.name);
             selectedCard = GetComponent<StaffCard>();
+            isDragging = true;
 
             sauce.PlayOneShot(dragBoop);
+
+            foreach(Transform uiCar in GameObject.FindGameObjectWithTag("Canvas").transform.Find("UI_Train"))
+            {
+                foreach(StaffSpot sp in uiCar.GetComponentsInChildren<StaffSpot>())
+                {
+                    if(sp.staffType == selectedCard.staffType || selectedCard.staffType == StaffCard.StaffType.DampBoi) toFlash.Add(sp.gameObject);
+                }
+            }
+            
+            StartCoroutine(FlashFrame());
         }
         else{
             GetComponent<CardChooser>().StartRejectionShake();
@@ -69,6 +83,13 @@ public class CardDrag : MonoBehaviour
             GetComponent<CardChooser>().enabled = true;
             Debug.LogFormat("Stopped draggin {0}", gameObject.name);
             selectedCard = null;
+            isDragging = false;
+
+            foreach(GameObject flasher in toFlash)
+            {
+                StaffSpot sp = flasher.GetComponent<StaffSpot>();
+                flasher.transform.Find("Frame").GetComponent<UnityEngine.UI.Image>().color = sp.origColor;
+            }
         }
     }
 
@@ -83,6 +104,23 @@ public class CardDrag : MonoBehaviour
 
             //GetComponent<RectTransform>().anchoredPosition = basePos + pointerEvent.position;
             transform.position = pointerEvent.position;
+
+            
         }  
+    }
+
+    private IEnumerator FlashFrame()
+    {
+        float flashTime = 0;
+        while(isDragging)
+        {
+            flashTime += Time.deltaTime;
+            foreach(GameObject flasher in toFlash)
+            {
+                StaffSpot sp = flasher.GetComponent<StaffSpot>();
+                flasher.transform.Find("Frame").GetComponent<UnityEngine.UI.Image>().color = Color.Lerp(sp.origColor, sp.flashColor, 0.5f*(Mathf.Sin(flashTime*10)+1));
+            }
+            yield return null;
+        }
     }
 }

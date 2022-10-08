@@ -19,6 +19,9 @@ public class StaffSpot : MonoBehaviour
 
     public bool filled = false;
 
+    public Color flashColor;
+    public Color origColor;
+
     public Sprite GetSpriteForStaff(StaffCard.StaffType staffType, bool full) {
         switch(staffType) {
             case StaffCard.StaffType.Janitor:

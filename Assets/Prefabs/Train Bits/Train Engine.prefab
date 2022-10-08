@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskName: Shovel Coal
-  staffType: 4
+  staffType: 5
   keys: 730000006c00000064000000
   isOrdered: 1
   associatedTrainCar: 0
@@ -1092,6 +1092,7 @@ MonoBehaviour:
   otherSelectedTimeMult: 0.5
   timeTillFail: 0
   taskUp: 0
+  selected: 0
   successColor: {r: 0, g: 1, b: 0, a: 1}
   failColor: {r: 1, g: 0, b: 0, a: 1}
   taskPopUp: {fileID: 8300000, guid: 71fc25c94d511ac41ab8d2f84dcc9d6f, type: 3}
