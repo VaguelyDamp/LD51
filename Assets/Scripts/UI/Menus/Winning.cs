@@ -55,6 +55,6 @@ public class Winning : MonoBehaviour
     public void GoToMenu ()
     {
         SceneManager.LoadScene(1);
-        DeckManager.instance.ResetDeck();
+        //DeckManager.instance.ResetDeck(); Moved to launching from main menu
     }
 }
