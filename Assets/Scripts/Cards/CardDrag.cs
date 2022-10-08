@@ -67,8 +67,9 @@ public class CardDrag : MonoBehaviour
             isDragging = true;
 
             sauce.PlayOneShot(dragBoop);
+            Debug.Log(GameObject.Find("Canvas"));
 
-            foreach(Transform uiCar in GameObject.FindGameObjectWithTag("Canvas").transform.Find("UI_Train"))
+            foreach(Transform uiCar in GameObject.Find("Canvas").transform.Find("UI_Train"))
             {
                 foreach(StaffSpot sp in uiCar.GetComponentsInChildren<StaffSpot>())
                 {
