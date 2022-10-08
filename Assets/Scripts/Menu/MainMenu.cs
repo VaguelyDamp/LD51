@@ -83,6 +83,8 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         FindObjectOfType<Audio>().StartGame();
+        DeckManager.instance.ResetDeck();
+        DeckManager.instance.LoadDeck();
         SceneManager.LoadScene("trainplace", LoadSceneMode.Single);
     }
 
