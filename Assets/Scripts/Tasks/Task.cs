@@ -242,7 +242,15 @@ public class Task : MonoBehaviour
     
         FindObjectOfType<Train>().CarSelectionChanged.AddListener(OnTrainSelectionChanged);
         
-        if (gameObject.GetComponent<Car>().GetAssignedStaffTypes().Contains(staffType) || gameObject.GetComponent<Car>().GetAssignedStaffTypes().Contains(StaffCard.StaffType.DampBoi)) taskEnabled = false;
+        if (gameObject.GetComponent<Car>().GetAssignedStaffTypes().Contains(staffType)) taskEnabled = false;
+        else if (gameObject.GetComponent<Car>().GetAssignedStaffTypes().Contains(StaffCard.StaffType.DampBoi))
+        {
+            if (gameObject.GetComponent<Car>().card.transform.Find("StaffSpot:"+staffType).childCount > 0)
+            {
+                Debug.Log("Found Damp Boi for task "+staffType);
+                taskEnabled = false;
+            }
+        }
     }
 
     // Update is called once per frame
