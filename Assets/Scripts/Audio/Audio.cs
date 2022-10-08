@@ -91,6 +91,7 @@ public class Audio : MonoBehaviour
         else if (scene.name == "MainMenu" && stationRadio.isPlaying) 
         {
             Fade(stationRadio, 1);
+            if (winRadio.isPlaying) winRadio.Stop();
         }
         else if (scene.name == "Winsville")
         {
