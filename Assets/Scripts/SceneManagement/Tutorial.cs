@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct TutorialPrompt
+{
+    public string text;
+    
+}
+
 public class Tutorial : MonoBehaviour
 {
     public string[] PopupTexts;
@@ -97,5 +103,6 @@ public class Tutorial : MonoBehaviour
         //spriteTicket.SetActive(false);
         Time.timeScale = 1;
         textIndex++;
+        
     }
 }
