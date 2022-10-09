@@ -25,6 +25,13 @@ public class Winning : MonoBehaviour
         }
         ticket.transform.Find("Explanation").GetComponent<TMPro.TextMeshProUGUI>().text = "You were able to feed the engine coal every 10 seconds and delivered some stuff along the way.\n\nFinal Score: "+score;
         StartCoroutine(MoveTicket());
+
+        int oldScore = PlayerPrefs.GetInt("TotalStars", 0);
+        int oldHighScore = PlayerPrefs.GetInt("HighScore", 0);
+
+        PlayerPrefs.SetInt("TotalStars", oldScore + score);
+        if (score > oldHighScore) PlayerPrefs.SetInt("HighScore", score);
+        PlayerPrefs.SetString("Version", Application.version);
     }
 
     private IEnumerator MoveTicket()
@@ -48,6 +55,6 @@ public class Winning : MonoBehaviour
     public void GoToMenu ()
     {
         SceneManager.LoadScene(1);
-        DeckManager.instance.ResetDeck();
+        //DeckManager.instance.ResetDeck(); Moved to launching from main menu
     }
 }

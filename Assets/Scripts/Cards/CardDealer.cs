@@ -45,6 +45,7 @@ public class CardDealer : MonoBehaviour
     public AudioClip readyBoop;
 
     private AudioSource sauce;
+    private int nonDampBois = 0;
 
     private void Awake() {
         selectedCards = new HashSet<int>();
@@ -94,17 +95,18 @@ public class CardDealer : MonoBehaviour
         foreach(int selected in selectedCards) {
             CarCard cc = dealtCards[selected].GetComponent<CarCard>();
             if(cc) {
-                count += cc.GetSlotCountOfType(staffType);
+                if (staffType == StaffCard.StaffType.DampBoi) count += cc.staffSlots.Length;
+                else count += cc.GetSlotCountOfType(staffType);
             }
         }
         return count;
     }
 
-    private int GetAddedStaffCardsWithCurrentSelection(StaffCard.StaffType staffType) {
+    private int GetAddedStaffCardsWithCurrentSelection(StaffCard.StaffType staffType, bool countDamp = true) {
         int count = 0;
         foreach(int selected in selectedCards) {
             StaffCard sc = dealtCards[selected].GetComponent<StaffCard>();
-            if(sc && sc.staffType == staffType) {
+            if(sc && (sc.staffType == staffType || (sc.staffType == StaffCard.StaffType.DampBoi && countDamp))) {
                 ++count;
             }
         }
@@ -112,23 +114,54 @@ public class CardDealer : MonoBehaviour
     }
 
     private void UpdateJobVacanciesUI() {
-        janitorVacancyUi.text = CalculateVacanciesForJobType(StaffCard.StaffType.Janitor).ToString();
-        engineerVacancyUi.text = CalculateVacanciesForJobType(StaffCard.StaffType.Engineer).ToString();
-        cookVacancyUi.text = CalculateVacanciesForJobType(StaffCard.StaffType.Cook).ToString();
-        conductorVacancyUi.text = CalculateVacanciesForJobType(StaffCard.StaffType.Conductor).ToString();
+        int numJanitors = CalculateVacanciesForJobType(StaffCard.StaffType.Janitor);
+        int numEngineers = CalculateVacanciesForJobType(StaffCard.StaffType.Engineer);
+        int numCooks = CalculateVacanciesForJobType(StaffCard.StaffType.Cook);
+        int numConductors = CalculateVacanciesForJobType(StaffCard.StaffType.Conductor);
+        
+        int numDampBois = CountSelectedDampBois();  
+
+        janitorVacancyUi.text = (numJanitors + numDampBois).ToString() + (numDampBois > 0 ? "*" : "");
+        engineerVacancyUi.text = (numEngineers + numDampBois).ToString() + (numDampBois > 0 ? "*" : "");
+        cookVacancyUi.text = (numCooks + numDampBois).ToString() + (numDampBois > 0 ? "*" : "");
+        conductorVacancyUi.text = (numConductors + numDampBois).ToString() + (numDampBois > 0 ? "*" : "");
     }
 
-    private int CalculateVacanciesForJobType(StaffCard.StaffType staffType) {
+    private int CalculateVacanciesForJobType(StaffCard.StaffType staffType, bool countDamp = true) {
         int currentSlots = DeckManager.instance.GetStaffSlotCountInHandByType(staffType);
         int currentStaff = DeckManager.instance.GetStaffCardCountInHandByType(staffType);
 
         int addedSlots = GetAddedStaffSlotsWithCurrentSelection(staffType);
-        int addedStaff = GetAddedStaffCardsWithCurrentSelection(staffType);
+        int addedStaff = GetAddedStaffCardsWithCurrentSelection(staffType, countDamp);
 
         int totalSlots = currentSlots + addedSlots;
         int totalStaff = currentStaff + addedStaff;
 
         return totalSlots - totalStaff;
+    }
+
+    private int CalculateAllJobVacancies()
+    //Calculates all job vacancies not counting damp bois that are selected
+    {
+        int vacancies = 0;
+        List<StaffCard.StaffType> allStaffTypes = new List<StaffCard.StaffType>() {StaffCard.StaffType.Janitor, StaffCard.StaffType.Engineer, StaffCard.StaffType.Conductor, StaffCard.StaffType.Cook};
+        foreach (StaffCard.StaffType st in allStaffTypes)
+        {
+            vacancies += CalculateVacanciesForJobType(st, false); 
+        } 
+        return vacancies;
+    }
+
+    private int CountSelectedDampBois()
+    {
+        int numDampBois = 0;
+        foreach(int selected in selectedCards) {
+            StaffCard sc = dealtCards[selected].GetComponent<StaffCard>();
+            if(sc) {
+                if (sc.staffType == StaffCard.StaffType.DampBoi) numDampBois++;
+            }
+        }
+        return numDampBois;
     }
 
     private int SelectedCarCardCount() {
@@ -180,10 +213,24 @@ public class CardDealer : MonoBehaviour
                     var staffType = staff.staffType;
                     int curVacancies = CalculateVacanciesForJobType(staffType);
 
-                    if(curVacancies > 0){
+                    if (CountSelectedDampBois() > 0)
+                    {    
+                        int curVacanciesSansDamp = CalculateVacanciesForJobType(staffType, false);
+                        if(curVacanciesSansDamp > Mathf.Max(0, curVacancies))
+                        {
+                            if ((CalculateAllJobVacancies() > CountSelectedDampBois()))
+                            {
+                                selectedCards.Add(selection);
+                                isSelected = true;
+                            }   
+                        }
+                    }
+                    else if (curVacancies > 0)
+                    {
                         selectedCards.Add(selection);
                         isSelected = true;
                     }
+
                 }
                 else {
                     int currentTrainLength = DeckManager.instance.GetCarCardCountInHand();
@@ -229,9 +276,13 @@ public class CardDealer : MonoBehaviour
     public void MarkStaffCardAssigned(GameObject staffCard) {
         staffToAssign--;
 
+        if (staffCard.GetComponent<StaffCard>().staffType != StaffCard.StaffType.DampBoi) nonDampBois--;
+
         sauce.PlayOneShot(dropBoop);
 
         StartCoroutine(DropOutCard(staffCard, selectedCardShoop));
+
+        CheckDampEnable();
 
         if(staffToAssign <= 0) {
             sauce.PlayOneShot(readyBoop);
@@ -240,9 +291,22 @@ public class CardDealer : MonoBehaviour
         }
     }
 
+    public void CheckDampEnable()
+    {
+        if (nonDampBois <= 0)
+        {
+            foreach (Transform card in transform.Find("CardRow"))
+            {
+                if (card.GetComponent<CardDrag>()) card.GetComponent<CardDrag>().draggable = true;
+                card.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+            }
+        }  
+    }
+
     public void AcceptDeal() {
         if(choosingCards && selectedCards.Count >= minAllowedSelection && selectedCards.Count <= maxAllowedSelection) {
             staffToAssign = 0;
+            nonDampBois = 0;
             choosingCards = false;
             for (int i = 0; i < dealCount; ++i) {
                 if (selectedCards.Contains(i)) {
@@ -254,6 +318,10 @@ public class CardDealer : MonoBehaviour
                         cc.Selected = true;
                         cc.GetComponent<UnityEngine.UI.Button>().enabled = false;
                         staffToAssign++;
+                        if (dealtCards[i].GetComponent<StaffCard>().staffType != StaffCard.StaffType.DampBoi)
+                        {
+                            nonDampBois++;
+                        }
                     }
                     else {
                         StartCoroutine(DropOutCard(dealtCardObjs[i], selectedCardShoop));
@@ -274,6 +342,16 @@ public class CardDealer : MonoBehaviour
             sauce.PlayOneShot(readyBoop);
 
             if(staffToAssign > 0) {
+                if (nonDampBois == 0)
+                {
+                    Debug.Log("All Damp Bois");
+                    foreach (Transform card in transform.Find("CardRow"))
+                    {
+                        Debug.Log("Card Row:"+card.name); 
+                        if (card.GetComponent<CardDrag>()) card.GetComponent<CardDrag>().draggable = true;
+                        card.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+                    }
+                }
                 FindObjectOfType<UI_Train>().SpawnTrain();
             }
             else {
@@ -283,6 +361,7 @@ public class CardDealer : MonoBehaviour
         }
         else {
             // Rejection
+            Debug.Log("No Sex 4 u");
         }
     }
 

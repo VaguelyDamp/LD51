@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staffType: 3
+  assignedStaffType: 0
 --- !u!82 &4418259822049101304
 AudioSource:
   m_ObjectHideFlags: 0

@@ -72,6 +72,8 @@ MonoBehaviour:
   staffType: 0
   slotGameObject: {fileID: 0}
   filled: 0
+  flashColor: {r: 0.9245283, g: 0.82448226, b: 0.07413671, a: 0.68235296}
+  origColor: {r: 1, g: 1, b: 1, a: 0.5019608}
 --- !u!114 &4825695788444724081
 MonoBehaviour:
   m_ObjectHideFlags: 0

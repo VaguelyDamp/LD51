@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Conductor
+  m_text: Damp Boi
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e2cf287e45a704a8db7a57066ca256, type: 2}
   m_sharedMaterial: {fileID: 2586065636558689994, guid: 88e2cf287e45a704a8db7a57066ca256, type: 2}
@@ -170,8 +170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33.2, y: -85.1}
-  m_SizeDelta: {x: 120.129, y: 65.2828}
+  m_AnchoredPosition: {x: -0.1731, y: -85.1}
+  m_SizeDelta: {x: 176.198, y: 65.2828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3977871517829923877
 CanvasRenderer:
@@ -201,7 +201,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Punches tickets and sometimes passengers
+  m_text: 'The Damp Boi does it all!
+
+    (He can be used in any slot)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 27bcf3219d8ee09409578e5f68024205, type: 2}
   m_sharedMaterial: {fileID: -3654604693995019856, guid: 27bcf3219d8ee09409578e5f68024205, type: 2}
@@ -286,7 +288,7 @@ GameObject:
   - component: {fileID: 3977871517934573146}
   - component: {fileID: 3977871517934573147}
   m_Layer: 5
-  m_Name: ConductorCard
+  m_Name: DampBoiCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,7 +344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8158fa8451f86d24e91b137b9f3e15e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cb64ae6416e7d8b45b3d128e978c6d00, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -377,7 +379,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 0.2688679, b: 0.2688679, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -424,7 +426,7 @@ MonoBehaviour:
   selectedMove: {x: 0, y: 200, z: 0}
   moveSpeed: 2500
   rejectionEffectTime: 0.5
-  rejectionColor: {r: 1, g: 0, b: 0, a: 0.6862745}
+  rejectionColor: {r: 0.8490566, g: 0.2683339, b: 0.2683339, a: 0.6862745}
   rejectionShakeMagnitude: 30
   toFade:
   - {fileID: 3977871517934573151}
@@ -443,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c57936c5d553e439ed746aceb856b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staffType: 2
+  staffType: 4
   assignedStaffType: 0
 --- !u!82 &3977871517934573147
 AudioSource:

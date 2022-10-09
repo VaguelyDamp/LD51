@@ -247,16 +247,16 @@ public class Train : MonoBehaviour
             SelectCar(-1);
         }
 
-        if (SelectedCar != -1 && SelectedCar > 0 && Input.GetKeyDown(KeyCode.RightArrow)) {
+        if (SelectedCar <= 9 && SelectedCar > 0 && Input.GetKeyDown(KeyCode.RightArrow)) {
             SelectCar(SelectedCar - 1);
         }
-        else if (SelectedCar != -1 && SelectedCar < 9 && Input.GetKeyDown(KeyCode.LeftArrow)) {
+        else if (SelectedCar >= 0 && SelectedCar < 9 && Input.GetKeyDown(KeyCode.LeftArrow)) {
             SelectCar(SelectedCar + 1);
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (SelectedCar == -1 && previouslySelectedTrain != -1);
+            if (SelectedCar == -1 && previouslySelectedTrain != -1)
             {
                 SelectCar(previouslySelectedTrain);
             }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
+    public GameObject[] allCardPrefabs;
     public GameObject[] baseDeck;
 
     public List<GameObject> deck;
@@ -32,6 +33,9 @@ public class DeckManager : MonoBehaviour
 
     public StaffCard.StaffType staffType;
 
+    public bool UseSet = false;
+    public GameObject[] set;
+
 
     public Sprite GetSpriteForStaff(StaffCard.StaffType staffType, bool full) {
         switch(staffType) {
@@ -57,8 +61,37 @@ public class DeckManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             ResetDeck();
+            LoadDeck();
         }
     }
+
+    private void Start()
+    {
+       
+    }
+
+    public void LoadDeck()
+    {
+        foreach (GameObject cardPrefab in allCardPrefabs)
+        {
+            if (PlayerPrefs.HasKey(cardPrefab.name))
+            {
+                AddToDeck(cardPrefab, PlayerPrefs.GetInt(cardPrefab.name, 0));
+            }
+        }
+    }
+
+    // public void SaveDeck()
+    // {
+    //     PlayerPrefs.SetInt("DeckSaved", 1);
+    //     int cardIndex = 0;
+    //     foreach(GameObject card in baseDeck)
+    //     {
+    //         PlayerPrefs.SetString("Card"+cardIndex, card.name);
+    //         cardIndex++;
+    //     }
+    //     PlayerPrefs.SetInt("DeckCount", cardIndex);
+    // }
 
     public void ResetDeck() {
         deck = new List<GameObject>();
@@ -80,15 +113,26 @@ public class DeckManager : MonoBehaviour
 
     public GameObject[] Draw(int count) {
         int toDraw = Mathf.Min(count, deck.Count);
-        GameObject[] deal = new GameObject[toDraw];
-        for(int i = 0; i < toDraw; ++i) {
-            deal[i] = Draw();
+        if (UseSet)
+        {
+           return set;
         }
-        return deal;
+        else 
+        {
+            GameObject[] deal = new GameObject[toDraw];
+                for(int i = 0; i < toDraw; ++i) {
+                    deal[i] = Draw();
+            }
+            return deal;
+        }
     }
 
-    public void AddToDeck(GameObject card) {
-        deck.Add(card);
+    public void AddToDeck(GameObject card, int count = 1) {
+        while (count > 0)
+        {
+            deck.Add(card);
+            count--;
+        }      
     }
 
     public void RemoveCardFromHand(GameObject card) {
@@ -124,7 +168,8 @@ public class DeckManager : MonoBehaviour
         foreach(GameObject card in hand) {
             CarCard cc = card.GetComponent<CarCard>();
             if(cc) {
-                count += cc.GetSlotCountOfType(staffType);
+                if (staffType == StaffCard.StaffType.DampBoi) count += cc.staffSlots.Length;
+                else count += cc.GetSlotCountOfType(staffType);
             }
         }
 
@@ -138,6 +183,7 @@ public class DeckManager : MonoBehaviour
             StaffCard sc = card.GetComponent<StaffCard>();
             if(sc) {
                 if(sc.staffType == staffType) ++count;
+                if(sc.staffType == StaffCard.StaffType.DampBoi) if(sc.assignedStaffType == staffType) ++count;
             }
         }
         return count;

@@ -19,6 +19,9 @@ public class StaffSpot : MonoBehaviour
 
     public bool filled = false;
 
+    public Color flashColor;
+    public Color origColor;
+
     public Sprite GetSpriteForStaff(StaffCard.StaffType staffType, bool full) {
         switch(staffType) {
             case StaffCard.StaffType.Janitor:
@@ -54,9 +57,11 @@ public class StaffSpot : MonoBehaviour
     public void OnDrop(UnityEngine.EventSystems.BaseEventData eventData) {
         StaffCard sc = CardDrag.selectedCard;
 
-        if(sc && !filled && sc.staffType == staffType) {
+        if(sc && !filled && (sc.staffType == staffType || sc.staffType == StaffCard.StaffType.DampBoi)) {
             Debug.LogFormat("Dropped Staff Card {0}", sc.gameObject.name);
-            DeckManager.instance.AddToHand(sc.gameObject).transform.parent = slotGameObject.transform;
+            GameObject scGameObject = DeckManager.instance.AddToHand(sc.gameObject);
+            scGameObject.transform.parent = slotGameObject.transform;
+            scGameObject.GetComponent<StaffCard>().assignedStaffType = staffType;
             FindObjectOfType<CardDealer>().MarkStaffCardAssigned(sc.gameObject);
 
             filled = true;
