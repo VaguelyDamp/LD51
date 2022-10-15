@@ -212,9 +212,11 @@ public class Tutorial : MonoBehaviour
 
     public void HideTicket()
     {
+        //In cases where HideTicket() is called in other places and shouldn't progress unless condtions are met
         if (textIndex == 2 && !engineTask.selected) return;
         if (textIndex == 3 && !taskSucceed) return;
         if (textIndex == 4 && engineTask.selected) return;
+        
         tutorialPrompts[textIndex].HideTicket();  
         if (textIndex == tutorialPrompts.Length) tutorialActive = false; 
     }

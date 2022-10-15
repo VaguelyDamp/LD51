@@ -946,8 +946,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525308857}
-  m_LocalRotation: {x: 0.06162845, y: -0.70441604, z: 0.06162845, w: 0.70441604}
-  m_LocalPosition: {x: 16.401478, y: 5.0817437, z: 22.000002}
+  m_LocalRotation: {x: 0.026509129, y: -0.7066097, z: 0.026509129, w: 0.7066097}
+  m_LocalPosition: {x: 8.974582, y: 3.2199519, z: 21.03228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1725,7 +1725,7 @@ MonoBehaviour:
   - 'In Type Train you must perform tasks to keep your train running '
   - 'To perform task hit the number associated with the train car (in this case 0) '
   - 'Then hit the keys above in order '
-  - 'Space or Enter can be used to zoom out, arrow keys will go side to side '
+  - Space or Enter can be used to zoom out
   - 'If you miss a task that car will take damage. Once a car loses all of it''s
     hearts it''s lost and you can''t score from it. '
   - 'If your engine loses all hearts it''s game over! '
