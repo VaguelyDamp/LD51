@@ -92,6 +92,12 @@ public class Task : MonoBehaviour
         taskUp = false;
         audioS.PlayOneShot(taskSucceed);
         StartCoroutine(SucceedTaskAnim());
+        Tutorial tutorial =  DeckManager.instance.gameObject.GetComponent<Tutorial>();
+        if (tutorial) 
+        {
+            tutorial.taskSucceed = true;
+            if (tutorial.tutorialActive && tutorial.textIndex == 3) tutorial.HideTicket();
+        }
     }
     private IEnumerator SucceedTaskAnim()
     {

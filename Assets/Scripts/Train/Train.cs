@@ -100,8 +100,20 @@ public class Train : MonoBehaviour
         
 
         SelectedCar = index;
+        
         if (index != -1) previouslySelectedTrain = index;
         CarSelectionChanged.Invoke(SelectedCar);
+
+        if (SelectedCar == 0)
+        {
+            Tutorial tutorial =  DeckManager.instance.gameObject.GetComponent<Tutorial>();
+            if (tutorial) if (tutorial.tutorialActive && tutorial.textIndex == 2) tutorial.HideTicket();
+        }
+        if (previouslySelectedTrain == 0)
+        {
+            Tutorial tutorial =  DeckManager.instance.gameObject.GetComponent<Tutorial>();
+            if (tutorial) if (tutorial.tutorialActive && tutorial.textIndex == 4) tutorial.HideTicket();
+        }
     }
 
     public GameObject AddCar(GameObject carPrefab) {
