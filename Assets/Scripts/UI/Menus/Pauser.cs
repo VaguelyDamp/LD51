@@ -45,4 +45,9 @@ public class Pauser : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void TutorialButton()
+    {
+        DeckManager.instance.GetComponent<Tutorial>().HideTicket();
+    }
 }

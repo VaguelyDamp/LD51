@@ -341,6 +341,9 @@ public class CardDealer : MonoBehaviour
 
             sauce.PlayOneShot(readyBoop);
 
+            Tutorial tutorial = DeckManager.instance.GetComponent<Tutorial>();
+            if (tutorial) tutorial.dealAccepted = true;
+
             if(staffToAssign > 0) {
                 if (nonDampBois == 0)
                 {
@@ -377,12 +380,13 @@ public class CardDealer : MonoBehaviour
         while(moveTimer > 0) {
             float t = 1 - (moveTimer / trainApproachTime);
 
+            if (t <= 0.5f) if (DeckManager.instance.gameObject.GetComponent<Tutorial>() != null) DeckManager.instance.gameObject.GetComponent<Tutorial>().inStation = true;
+
             train.transform.position = Vector3.Lerp(TrainSpawnPosition.position, TrainWaitPosition.position, EasingFunction.EaseOutCubic(0, 1, t));
 
             moveTimer -= Time.deltaTime;
             yield return null;
-        }
-        if (DeckManager.instance.gameObject.GetComponent<Tutorial>() != null) DeckManager.instance.gameObject.GetComponent<Tutorial>().inStation = true;
+        }       
     }
 
     private IEnumerator SendOutTrain() {

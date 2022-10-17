@@ -64,6 +64,12 @@ public class CardChooser : MonoBehaviour
         }
         else if(selected) {
             sauce.PlayOneShot(selectBoop);
+            Tutorial tutorial = DeckManager.instance.GetComponent<Tutorial>();
+            if (tutorial && tutorial.tutorialActive && tutorial.textIndex > 7) 
+            {
+                if (gameObject.GetComponent<CarCard>()) tutorial.carCard = true;
+                else if (gameObject.GetComponent<StaffCard>()) tutorial.staffCard = true;
+            }
         }
         else if (!selected) {
             sauce.PlayOneShot(deselectBoop);

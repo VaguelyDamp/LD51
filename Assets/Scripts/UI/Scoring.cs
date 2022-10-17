@@ -6,6 +6,10 @@ public class Scoring : MonoBehaviour
 {
     public GameObject scoreTicket;
 
+    public int oldScore = 0;
+    public int newScore = 0;
+    public int totalScore = 0;
+
     private DeckManager dm;
     // Start is called before the first frame update
     void Start()
@@ -54,7 +58,7 @@ public class Scoring : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         //Fade in new star num  
-        int newScore = 0;
+        newScore = 0;
         foreach (CarCard card in dm.GetComponentsInChildren<CarCard>())
         {
             newScore += card.value;
@@ -63,12 +67,20 @@ public class Scoring : MonoBehaviour
         StartCoroutine(FadeInText(newStarNum, 1));
         yield return new WaitForSeconds(0.5f);
 
-        //Fade in total star num       
-        int totalScore = dm.score + newScore;
+        //Fade in total star num  
+        oldScore = dm.score;     
+        totalScore = oldScore + newScore;
         totalStarNum.text = totalScore.ToString();
         dm.score = totalScore;
         StartCoroutine(FadeInText(totalStarNum, 1));
         yield return new WaitForSeconds(0.5f);
+
+        if (oldScore == 0 && newScore > 0)
+        {
+            Tutorial tutorial =  DeckManager.instance.gameObject.GetComponent<Tutorial>();
+            if (tutorial) tutorial.scoringDone = true;
+        }
+        
 
         FindObjectOfType<CardDealer>().actualStart();
     }

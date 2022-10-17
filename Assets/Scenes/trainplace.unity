@@ -946,8 +946,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525308857}
-  m_LocalRotation: {x: 0.026509129, y: -0.7066097, z: 0.026509129, w: 0.7066097}
-  m_LocalPosition: {x: 8.974582, y: 3.2199519, z: 21.03228}
+  m_LocalRotation: {x: 0.06162845, y: -0.70441604, z: 0.06162845, w: 0.70441604}
+  m_LocalPosition: {x: 16.401478, y: 5.0817437, z: 22.000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1058,6 +1058,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4392758669120121082, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: defaultPositionObj
+      value: 
+      objectReference: {fileID: 218251147}
     - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
       propertyPath: stationIndex
       value: 0
@@ -1470,9 +1474,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1165492935}
-        m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
-        m_MethodName: HideTicket
+      - m_Target: {fileID: 1929059445}
+        m_TargetAssemblyTypeName: Pauser, Assembly-CSharp
+        m_MethodName: TutorialButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1702,46 +1706,6 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
---- !u!1 &1165492932 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9091689064682213663, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
-  m_PrefabInstance: {fileID: 612303301}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1165492935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165492932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4dcdcfae8836cf4f87adf20daab1d03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tutorialActive: 0
-  PopupTexts:
-  - 'Welcome to Type Train, click this ticket to progress! '
-  - 'In Type Train you must perform tasks to keep your train running '
-  - 'To perform task hit the number associated with the train car (in this case 0) '
-  - 'Then hit the keys above in order '
-  - Space or Enter can be used to zoom out
-  - 'If you miss a task that car will take damage. Once a car loses all of it''s
-    hearts it''s lost and you can''t score from it. '
-  - 'If your engine loses all hearts it''s game over! '
-  - 'Once you reach a station you gain stars from your surviving train cars. '
-  - 'At a station you can pick up new train or staff cards (you must pick at least
-    one). '
-  - 'Staff will automate a matching task on one car making your life easier. '
-  - 'Make it to Winsville Station with as many cars and stars as possible to win! '
-  conditions: 0100000000000000000000000200000005000000030000000000000006000000000000000000000000000000
-  spriteTicket: {fileID: 0}
-  inStation: 0
-  waitDone: 0
-  taskSucceed: 0
-  defaultPositionObj: {fileID: 218251147}
-  promptUp: 0
-  textIndex: 0
 --- !u!1 &1175183979
 GameObject:
   m_ObjectHideFlags: 0
