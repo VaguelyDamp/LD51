@@ -275,6 +275,12 @@ public class CardDealer : MonoBehaviour
 
     public void MarkStaffCardAssigned(GameObject staffCard) {
         staffToAssign--;
+        Tutorial tutorial = DeckManager.instance.GetComponent<Tutorial>();
+        if (tutorial) 
+        {
+            tutorial.staffAssigned = true;
+            tutorial.HideTicket();
+        }      
 
         if (staffCard.GetComponent<StaffCard>().staffType != StaffCard.StaffType.DampBoi) nonDampBois--;
 
@@ -304,13 +310,16 @@ public class CardDealer : MonoBehaviour
     }
 
     public void AcceptDeal() {
-        if(choosingCards && selectedCards.Count >= minAllowedSelection && selectedCards.Count <= maxAllowedSelection) {
+        if(choosingCards && selectedCards.Count >= minAllowedSelection && selectedCards.Count <= maxAllowedSelection) { //Can accept deal
             staffToAssign = 0;
             nonDampBois = 0;
             choosingCards = false;
+            Tutorial tutorial = DeckManager.instance.GetComponent<Tutorial>();
             for (int i = 0; i < dealCount; ++i) {
+                //Check all dealt cards
                 if (selectedCards.Contains(i)) {
                     if(dealtCards[i].GetComponent<StaffCard>()) {
+                        //Staff cards that need to be assigned
                         CardDrag cd = dealtCardObjs[i].AddComponent<CardDrag>();
                         cd.dragBoop = dragBoop;
 
@@ -318,12 +327,14 @@ public class CardDealer : MonoBehaviour
                         cc.Selected = true;
                         cc.GetComponent<UnityEngine.UI.Button>().enabled = false;
                         staffToAssign++;
+                        if (tutorial) tutorial.assigneStaff = true;
                         if (dealtCards[i].GetComponent<StaffCard>().staffType != StaffCard.StaffType.DampBoi)
                         {
                             nonDampBois++;
                         }
                     }
                     else {
+                        //Add car cards to hand
                         StartCoroutine(DropOutCard(dealtCardObjs[i], selectedCardShoop));
                         dealtCardObjs[i] = null;
                         DeckManager.instance.AddToHand(dealtCards[i]);
@@ -341,7 +352,7 @@ public class CardDealer : MonoBehaviour
 
             sauce.PlayOneShot(readyBoop);
 
-            Tutorial tutorial = DeckManager.instance.GetComponent<Tutorial>();
+            
             if (tutorial) tutorial.dealAccepted = true;
 
             if(staffToAssign > 0) {

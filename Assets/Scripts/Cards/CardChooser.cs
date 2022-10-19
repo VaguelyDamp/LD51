@@ -64,12 +64,6 @@ public class CardChooser : MonoBehaviour
         }
         else if(selected) {
             sauce.PlayOneShot(selectBoop);
-            Tutorial tutorial = DeckManager.instance.GetComponent<Tutorial>();
-            if (tutorial && tutorial.tutorialActive && tutorial.textIndex > 7) 
-            {
-                if (gameObject.GetComponent<CarCard>()) tutorial.carCard = true;
-                else if (gameObject.GetComponent<StaffCard>()) tutorial.staffCard = true;
-            }
         }
         else if (!selected) {
             sauce.PlayOneShot(deselectBoop);
@@ -90,6 +84,15 @@ public class CardChooser : MonoBehaviour
         if(!animationActive) {
             Vector3 targetPosition = selected ? selectPos : unselectPos;
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            if (transform.position == selectPos)
+            {
+                Tutorial tutorial = DeckManager.instance.GetComponent<Tutorial>();
+                if (tutorial && tutorial.tutorialActive && tutorial.textIndex > 7) 
+                {
+                    if (gameObject.GetComponent<CarCard>()) tutorial.carCard = true;
+                    else if (gameObject.GetComponent<StaffCard>()) tutorial.staffCard = true;
+                }
+            }
         }
     }
 

@@ -23,7 +23,8 @@ public class TutorialPrompt
         SelectCar,
         Scored,
         AcceptDeal,
-        LoseCar
+        LoseCar,
+        StaffAssign
     };
     public Condition condition;
     public bool completed;
@@ -132,6 +133,8 @@ public class TutorialPrompt
                 return tutorial.dealAccepted;
             case Condition.LoseCar:
                 return tutorial.carLost;
+            case Condition.StaffAssign:
+                return tutorial.assigneStaff;
             default:
                 return true;
         }
@@ -157,6 +160,8 @@ public class Tutorial : MonoBehaviour
     public bool scoringDone = false;
     public bool dealAccepted = false;
     public bool carLost = false;
+    public bool assigneStaff = false;
+    public bool staffAssigned = false;
 
     public TutorialPrompt[] tutorialPrompts;
     public List<TutorialPrompt> promptsToCheck = new List<TutorialPrompt>();
@@ -230,6 +235,7 @@ public class Tutorial : MonoBehaviour
         if (textIndex == 2 && !engineTask.selected) return;
         if (textIndex == 3 && !taskSucceed) return;
         if (textIndex == 4 && engineTask.selected) return;
+        if (textIndex == 11 && !staffAssigned) return;
         
         tutorialPrompts[textIndex].HideTicket();  
         if (textIndex == tutorialPrompts.Length) tutorialActive = false; 

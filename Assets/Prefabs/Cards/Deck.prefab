@@ -178,12 +178,12 @@ MonoBehaviour:
     idicate what kind of tasks the car will have and which staff it'll take. (Task
     Icons)
   - 'Staff will automate a matching task on one car making your life easier. '
-  - 'Make it to Winsville Station with as many cars and stars as possible to win! '
+  - Drag the staff card to a matching staff icon over a car to assign
   - You can also use the left or right arrow keys to move between (you can still
     use any number key)
   - Once you reach a station you gain stars from your surviving train cars.
   - When you lose a car you'll lose all staff aboard and you won't score from it.
-  conditions: 01000000000000000000000002000000050000000300000000000000060000000700000000000000080000000b000000090000000a0000000c000000
+  conditions: 01000000000000000000000002000000050000000300000000000000060000000700000000000000080000000d000000090000000a0000000c000000
   inStation: 0
   waitDone: 0
   taskSucceed: 0
@@ -192,6 +192,8 @@ MonoBehaviour:
   scoringDone: 0
   dealAccepted: 0
   carLost: 0
+  assigneStaff: 0
+  staffAssigned: 0
   defaultPositionObj: {fileID: 0}
   promptUp: 0
   textIndex: 0

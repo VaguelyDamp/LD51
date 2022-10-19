@@ -946,8 +946,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525308857}
-  m_LocalRotation: {x: 0.06162845, y: -0.70441604, z: 0.06162845, w: 0.70441604}
-  m_LocalPosition: {x: 16.401478, y: 5.0817437, z: 22.000002}
+  m_LocalRotation: {x: 0.026509129, y: -0.7066097, z: 0.026509129, w: 0.7066097}
+  m_LocalPosition: {x: 8.974582, y: 3.2199519, z: 21.03228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1062,6 +1062,14 @@ PrefabInstance:
       propertyPath: defaultPositionObj
       value: 
       objectReference: {fileID: 218251147}
+    - target: {fileID: 4392758669120121082, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: PopupTexts.Array.data[11]
+      value: Drag the staff card to a matching staff icon over a car to assign
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392758669120121082, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
+      propertyPath: conditions.Array.data[11]
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 9091689064682213660, guid: 93fc9a50276199746b847ba29457d57c, type: 3}
       propertyPath: stationIndex
       value: 0
